@@ -60,7 +60,7 @@ SYSTEM_PROMPT = (
 )
 
 # —— 4. Load Questions  —— 
-def load_questions(file_path='106 cfd questions.json'):
+def load_questions(file_path='CFDQuery.json'):
     """Load questions from JSON file"""
     try:
         with open(file_path, 'r', encoding='utf-8') as f:

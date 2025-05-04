@@ -84,7 +84,7 @@ python llms.py
 llm-cfd-evaluation/
 │
 ├── llms.py       # Main evaluation script
-├── 106 cfd questions.json        # Question dataset
+|
 │
 ├── results/                      # Generated after running the evaluation
 │   ├── model_evaluation_results_*.json
@@ -93,6 +93,10 @@ llm-cfd-evaluation/
 │
 └── README.md
 ```
+
+## Dataset
+The dataset used in the paper can be downloaded from "https://huggingface.co/datasets/NREL-Theseus/CFDQuery"
+- Download the dataset to the same folder as llms.py
 
 ## Acknowledgments
 
