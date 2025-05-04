@@ -1,0 +1,21 @@
+Filename,MSE,MAE,RMSE,Cosine Similarity,R-squared
+T_2D_Steady_Heat_Equation.npy,3.387e+02,1.494e+01,1.840e+01,4.550e-01,-2.808e+00
+T_2D_Unsteady_Heat_Equation.npy,1.019e+02,6.727e+00,1.010e+01,9.460e-01,-1.315e+02
+p_2D_Laplace_Equation.npy,1.815e-02,1.162e-01,1.347e-01,9.020e-01,4.950e-01
+p_2D_Poisson_Equation.npy,2.881e-06,1.122e-03,1.697e-03,8.790e-01,7.670e-01
+p_Lid_Driven_Cavity.npy,1.737e+00,1.301e+00,1.318e+00,3.750e-01,-9.171e+00
+u_1D_Burgers_Equation.npy,7.049e-03,2.276e-02,8.396e-02,1.000e+00,9.950e-01
+u_1D_Diffusion.npy,8.557e-04,1.951e-02,2.925e-02,1.000e+00,9.930e-01
+u_1D_Linear_Convection.npy,9.400e-04,1.930e-02,3.066e-02,9.960e-01,9.870e-01
+u_1D_Nonlinear_Convection.npy,3.446e-03,1.395e-02,5.870e-02,9.910e-01,9.640e-01
+u_2D_Burgers_Equation.npy,5.528e-04,6.174e-03,2.351e-02,1.000e+00,9.890e-01
+u_2D_Convection.npy,4.084e-04,7.079e-03,2.021e-02,1.000e+00,9.860e-01
+u_2D_Diffusion.npy,3.160e-03,3.459e-02,5.621e-02,9.990e-01,6.920e-01
+u_2D_Inviscid_Burgers.npy,7.613e-04,9.089e-03,2.759e-02,1.000e+00,9.740e-01
+u_2D_Linear_Convection.npy,5.196e-04,9.025e-03,2.280e-02,1.000e+00,9.860e-01
+u_Fully_Developed_Turbulent_Channel_Flow.npy,2.482e+03,4.811e+01,4.982e+01,-8.980e-01,-5.151e+01
+u_Lid_Driven_Cavity.npy,8.637e-04,2.107e-02,2.939e-02,9.930e-01,9.850e-01
+v_2D_Burgers_Equation.npy,5.528e-04,6.174e-03,2.351e-02,1.000e+00,9.890e-01
+v_2D_Convection.npy,4.084e-04,7.079e-03,2.021e-02,1.000e+00,9.860e-01
+v_2D_Inviscid_Burgers.npy,7.613e-04,9.089e-03,2.759e-02,1.000e+00,9.740e-01
+v_Lid_Driven_Cavity.npy,1.169e-03,1.966e-02,3.419e-02,9.810e-01,8.690e-01

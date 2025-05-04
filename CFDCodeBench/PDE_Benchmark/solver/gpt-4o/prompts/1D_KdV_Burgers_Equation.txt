@@ -1,0 +1,41 @@
+```python
+import numpy as np
+
+# Parameters
+a = 1e-4
+b = 2e-4
+L = 10.0
+T = 10.0
+n = 20
+
+# Discretization
+Nx = 200  # Number of spatial points
+Nt = 1000  # Number of time steps
+dx = L / Nx
+dt = T / Nt
+
+# Spatial and temporal grids
+x = np.linspace(0, L, Nx, endpoint=False)
+t = np.linspace(0, T, Nt)
+
+# Initial condition
+u = 0.5 / n * np.log(1 + (np.cosh(n)**2) / (np.cosh(n * (x - 0.2 * L))**2))
+
+# Time-stepping loop using finite difference method
+for _ in range(Nt):
+    # Compute spatial derivatives
+    u_x = np.roll(u, -1) - np.roll(u, 1)
+    u_xx = np.roll(u, -1) - 2 * u + np.roll(u, 1)
+    u_xxx = np.roll(u, -2) - 2 * np.roll(u, -1) + 2 * np.roll(u, 1) - np.roll(u, 2)
+
+    # Apply periodic boundary conditions
+    u_x[0] = u_x[-1]
+    u_xx[0] = u_xx[-1]
+    u_xxx[0] = u_xxx[-1]
+
+    # Update u using an explicit time-stepping scheme
+    u = u - dt * (0.5 * (u * u_x) / dx - a * u_xx / dx**2 + b * u_xxx / dx**3)
+
+# Save the final solution
+np.save('u.npy', u)
+```

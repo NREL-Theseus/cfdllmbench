@@ -1,0 +1,109 @@
+import numpy as np
+
+def solve_cavity_flow(
+    rho=1.0,
+    nu=0.1,
+    nx=41,
+    ny=41,
+    nt=500,
+    dt=0.001,
+):
+    """
+    Solves the 2D cavity flow problem using a finite difference method.
+
+    Args:
+        rho (float): Fluid density.
+        nu (float): Kinematic viscosity.
+        nx (int): Number of grid points in the x-direction.
+        ny (int): Number of grid points in the y-direction.
+        nt (int): Number of time steps.
+        dt (float): Time step size.
+
+    Returns:
+        tuple: u, v, p at the final time step.
+    """
+
+    dx = 1.0 / (nx - 1)
+    dy = 1.0 / (ny - 1)
+
+    # Initialize variables
+    u = np.zeros((ny, nx))
+    v = np.zeros((ny, nx))
+    p = np.zeros((ny, nx))
+    u_star = np.zeros((ny, nx))
+    v_star = np.zeros((ny, nx))
+
+    # Boundary conditions
+    u[ny - 1, :] = 1.0  # Top lid
+
+    # Time loop
+    for n in range(nt):
+        # Momentum prediction step
+        u_star[1:-1, 1:-1] = (
+            u[1:-1, 1:-1]
+            - dt * u[1:-1, 1:-1] * (u[1:-1, 1:-1] - u[1:-1, 0:-2]) / dx
+            - dt * v[1:-1, 1:-1] * (u[1:-1, 1:-1] - u[0:-2, 1:-1]) / dy
+            + dt * nu * ((u[1:-1, 2:] - 2 * u[1:-1, 1:-1] + u[1:-1, 0:-2]) / dx**2 + (u[2:, 1:-1] - 2 * u[1:-1, 1:-1] + u[0:-2, 1:-1]) / dy**2)
+        )
+
+        v_star[1:-1, 1:-1] = (
+            v[1:-1, 1:-1]
+            - dt * u[1:-1, 1:-1] * (v[1:-1, 1:-1] - v[1:-1, 0:-2]) / dx
+            - dt * v[1:-1, 1:-1] * (v[1:-1, 1:-1] - v[0:-2, 1:-1]) / dy
+            + dt * nu * ((v[1:-1, 2:] - 2 * v[1:-1, 1:-1] + v[1:-1, 0:-2]) / dx**2 + (v[2:, 1:-1] - 2 * v[1:-1, 1:-1] + v[0:-2, 1:-1]) / dy**2)
+        )
+
+        # Boundary conditions for u_star and v_star
+        u_star[0, :] = 0.0
+        u_star[:, 0] = 0.0
+        u_star[:, -1] = 0.0
+        u_star[ny - 1, :] = 1.0
+
+        v_star[0, :] = 0.0
+        v_star[:, 0] = 0.0
+        v_star[:, -1] = 0.0
+        v_star[ny - 1, :] = 0.0
+        v_star[-1, :] = 0.0
+
+        # Pressure Poisson equation
+        for _ in range(50):  # Iterate to convergence
+            p[1:-1, 1:-1] = (
+                ((p[1:-1, 2:] + p[1:-1, 0:-2]) * dy**2 + (p[2:, 1:-1] + p[0:-2, 1:-1]) * dx**2)
+                / (2 * (dx**2 + dy**2))
+                - rho * dy**2 * dx**2 / (2 * (dx**2 + dy**2))
+                * (
+                    (u_star[1:-1, 2:] - u_star[1:-1, 0:-2]) / (2 * dx)
+                    + (v_star[2:, 1:-1] - v_star[0:-2, 1:-1]) / (2 * dy)
+                )
+            )
+
+            # Neumann boundary conditions for pressure
+            p[:, 0] = p[:, 1]
+            p[:, -1] = p[:, -2]
+            p[0, :] = p[1, :]
+            p[-1, :] = p[-2, :]
+
+        # Velocity correction
+        u[1:-1, 1:-1] = u_star[1:-1, 1:-1] - dt / rho * (p[1:-1, 2:] - p[1:-1, 0:-2]) / (2 * dx)
+        v[1:-1, 1:-1] = v_star[1:-1, 1:-1] - dt / rho * (p[2:, 1:-1] - p[0:-2, 1:-1]) / (2 * dy)
+
+        # Boundary conditions for u and v
+        u[0, :] = 0.0
+        u[:, 0] = 0.0
+        u[:, -1] = 0.0
+        u[ny - 1, :] = 1.0
+
+        v[0, :] = 0.0
+        v[:, 0] = 0.0
+        v[:, -1] = 0.0
+        v[ny - 1, :] = 0.0
+        v[-1, :] = 0.0
+
+    return u, v, p
+
+
+if __name__ == "__main__":
+    u, v, p = solve_cavity_flow()
+    np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/gemini/prompts/u_Lid_Driven_Cavity.npy', u)
+    np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/gemini/prompts/v_Lid_Driven_Cavity.npy', v)
+    np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/gemini/prompts/p_Lid_Driven_Cavity.npy', p)

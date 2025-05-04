@@ -1,0 +1,34 @@
+```python
+import numpy as np
+
+# Parameters
+L = 2.0  # Length of domain
+nx = 200  # Number of spatial points
+dx = L/nx  # Spatial step size
+nu = 0.3   # Diffusion coefficient
+T = 0.0333  # Total time
+dt = 0.5*dx**2/nu  # Time step (for stability)
+nt = int(T/dt)  # Number of time steps
+
+# Initialize grid
+x = np.linspace(0, L, nx)
+u = np.ones(nx)  # Initialize with u=1 everywhere
+
+# Set initial condition
+u[(x >= 0.5) & (x <= 1.0)] = 2.0
+
+# Time stepping
+for n in range(nt):
+    # Create copy of u for previous time step
+    un = u.copy()
+    
+    # Update interior points using central difference
+    u[1:-1] = un[1:-1] + nu*dt/dx**2 * (un[2:] - 2*un[1:-1] + un[:-2])
+    
+    # Periodic boundary conditions
+    u[0] = u[-2]
+    u[-1] = u[1]
+
+# Save final solution
+np.save('u', u)
+```

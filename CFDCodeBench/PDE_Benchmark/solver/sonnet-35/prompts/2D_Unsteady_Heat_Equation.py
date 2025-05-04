@@ -1,0 +1,50 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Problem parameters
+Lx, Ly = 1.0, 1.0  # Domain size
+nx, ny = 100, 100  # Number of grid points
+nt = 300  # Number of time steps
+alpha = 1.0  # Thermal diffusivity 
+Q0 = 200.0  # Source magnitude
+sigma = 0.1  # Source width
+
+# Grid generation
+dx = 2*Lx / (nx-1)
+dy = 2*Ly / (ny-1)
+dt = 3.0 / nt
+
+x = np.linspace(-Lx, Lx, nx)
+y = np.linspace(-Ly, Ly, ny)
+X, Y = np.meshgrid(x, y)
+
+# Initial condition
+T = np.ones((ny, nx)) + Q0 * np.exp(-(X**2 + Y**2)/(2*sigma**2))
+
+# Stability check
+stability_x = alpha * dt / (dx**2)
+stability_y = alpha * dt / (dy**2)
+print(f"Stability check (should be <= 0.5): {max(stability_x, stability_y)}")
+
+# Time stepping (explicit finite difference)
+for n in range(nt):
+    # Source term
+    q = Q0 * np.exp(-(X**2 + Y**2)/(2*sigma**2))
+    
+    # Create copy of previous time step
+    T_old = T.copy()
+    
+    # Internal points
+    T[1:-1, 1:-1] = T_old[1:-1, 1:-1] + alpha * dt * (
+        (T_old[1:-1, 2:] - 2*T_old[1:-1, 1:-1] + T_old[1:-1, :-2]) / dx**2 +
+        (T_old[2:, 1:-1] - 2*T_old[1:-1, 1:-1] + T_old[:-2, 1:-1]) / dy**2
+    ) + dt * q[1:-1, 1:-1]
+    
+    # Boundary conditions
+    T[0, :] = 1
+    T[-1, :] = 1
+    T[:, 0] = 1
+    T[:, -1] = 1
+
+# Save final solution
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/sonnet-35/prompts/T_2D_Unsteady_Heat_Equation.npy', T)

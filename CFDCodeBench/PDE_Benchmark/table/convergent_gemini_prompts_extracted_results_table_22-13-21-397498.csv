@@ -1,0 +1,11 @@
+Filename,MSE,MAE,RMSE,Cosine Similarity,R-squared
+b_2D_Rayleigh_Benard_Convection.npy,7.545e+00,1.476e+00,2.747e+00,1.000e-03,-1.277e+05
+p_2D_Poisson_Equation.npy,9.495e-06,1.059e-03,3.081e-03,9.460e-01,2.320e-01
+u_1D_Linear_Convection.npy,1.050e-02,7.078e-02,1.025e-01,9.570e-01,8.500e-01
+u_1D_Nonlinear_Convection.npy,6.451e-03,2.539e-02,8.032e-02,9.840e-01,9.320e-01
+u_2D_Convection.npy,2.196e-04,4.435e-03,1.482e-02,1.000e+00,9.930e-01
+u_2D_Inviscid_Burgers.npy,5.151e-04,5.839e-03,2.270e-02,1.000e+00,9.830e-01
+u_2D_Linear_Convection.npy,6.554e+180,4.293e+89,2.560e+90,0.000e+00,-1.774e+182
+u_Fully_Developed_Turbulent_Channel_Flow.npy,1.970e+02,1.231e+01,1.404e+01,8.100e-02,-3.167e+00
+v_2D_Convection.npy,2.196e-04,4.435e-03,1.482e-02,1.000e+00,9.930e-01
+v_2D_Inviscid_Burgers.npy,5.151e-04,5.839e-03,2.270e-02,1.000e+00,9.830e-01

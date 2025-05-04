@@ -1,0 +1,39 @@
+#!/usr/bin/env python
+import numpy as np
+
+# Parameters
+nu = 0.07
+L = 2 * np.pi
+Nx = 256
+x = np.linspace(0, L, Nx, endpoint=False)
+dx = L / Nx
+t_final = 0.14 * np.pi
+
+# Initial condition: given phi and its derivative, then u = -2ν/phi * dphi/dx + 4
+phi = np.exp(-x**2 / (4 * nu)) + np.exp(-(x - L)**2 / (4 * nu))
+# Compute phi_x analytically
+phi_x = - (x / (2 * nu)) * np.exp(-x**2 / (4 * nu)) - ((x - L) / (2 * nu)) * np.exp(-(x - L)**2 / (4 * nu))
+u = -2 * nu / phi * phi_x + 4
+
+# Time stepping parameters (CFL condition)
+dt1 = dx / np.max(np.abs(u))
+dt2 = dx**2 / (2 * nu)
+dt = 0.4 * min(dt1, dt2)
+
+t = 0.0
+while t < t_final:
+    # Adjust final time step if needed
+    if t + dt > t_final:
+        dt = t_final - t
+
+    # Compute first derivative using periodic central difference (using np.roll)
+    u_x = (np.roll(u, -1) - np.roll(u, 1)) / (2 * dx)
+    # Compute second derivative using periodic central difference
+    u_xx = (np.roll(u, -1) - 2 * u + np.roll(u, 1)) / dx**2
+
+    # Update u using Forward Euler time-stepping
+    u = u + dt * (- u * u_x + nu * u_xx)
+    t += dt
+
+# Save final solution as a 1D NumPy array in 'u.npy'
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/o3-mini/prompts/u_1D_Burgers_Equation.npy', u)

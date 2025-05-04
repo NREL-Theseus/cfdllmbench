@@ -1,0 +1,76 @@
+```python
+import numpy as np
+from scipy.sparse import diags
+from scipy.sparse.linalg import spsolve
+
+# Parameters
+Re_tau = 395
+kappa = 0.42 
+A = 25.4
+mu = 1/Re_tau
+
+# Grid
+N = 200
+y = np.linspace(0, 2, N)
+dy = y[1] - y[0]
+
+# Initial conditions
+u = np.zeros(N)
+mu_eff = np.ones(N) * mu
+
+def get_mu_eff(y):
+    yplus = y * Re_tau
+    term = (1/9) * (kappa**2) * (Re_tau**2) * ((2*y - y**2)**2) * ((3 - 4*y + 2*y**2)**2)
+    damp = (1 - np.exp(-yplus/A))**2
+    return mu * (0.5 * (1 + term * damp)**0.5 - 0.5)
+
+# Iteration loop
+max_iter = 1000
+tolerance = 1e-6
+error = 1
+
+for iter in range(max_iter):
+    # Store old solution
+    u_old = u.copy()
+    
+    # Update effective viscosity
+    mu_eff = get_mu_eff(y)
+    
+    # Build system matrix
+    dmu = np.gradient(mu_eff, dy)
+    
+    # Main diagonal
+    main = -2 * mu_eff / dy**2
+    
+    # Upper diagonal
+    upper = (mu_eff[1:] / dy**2) + (dmu[1:] / (2*dy))
+    
+    # Lower diagonal
+    lower = (mu_eff[:-1] / dy**2) - (dmu[:-1] / (2*dy))
+    
+    # RHS
+    rhs = -np.ones(N)
+    
+    # Apply boundary conditions
+    main[0] = 1
+    main[-1] = 1
+    upper[0] = 0
+    lower[-1] = 0
+    rhs[0] = 0
+    rhs[-1] = 0
+    
+    # Build sparse matrix
+    A = diags([lower, main, upper], [-1, 0, 1], format='csr')
+    
+    # Solve system
+    u = spsolve(A, rhs)
+    
+    # Check convergence
+    error = np.max(np.abs(u - u_old))
+    if error < tolerance:
+        break
+
+# Save solution
+np.save('u.npy', u)
+np.save('mu_eff.npy', mu_eff)
+```

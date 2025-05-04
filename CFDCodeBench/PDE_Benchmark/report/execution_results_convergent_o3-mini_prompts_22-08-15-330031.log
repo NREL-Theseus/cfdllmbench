@@ -1,0 +1,526 @@
+====== Execution Results for Generated Solvers ======
+
+--- Running: 2D_Steady_Heat_Equation.py ---
+Exception occurred while logging execution: 'NoneType' object has no attribute 'returncode'
+
+
+====== Execution Summary ======
+Total Scripts Passed: 0
+Total Scripts Failed: 1
+--- Running: 1D_Linear_Convection.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 1
+Total Scripts Failed: 1
+--- Running: 2D_Unsteady_Heat_Equation.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 2
+Total Scripts Failed: 1
+--- Running: Fully_Developed_Turbulent_Channel_Flow.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 3
+Total Scripts Failed: 1
+--- Running: 2D_Inviscid_Burgers.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 4
+Total Scripts Failed: 1
+--- Running: Lane_Emden_Equation.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 5
+Total Scripts Failed: 1
+--- Running: 1D_Burgers_Equation.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 6
+Total Scripts Failed: 1
+--- Running: 2D_Diffusion.py ---
+Exit Code: 0
+Output:
+
+Errors:
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Diffusion.py:45: RuntimeWarning: overflow encountered in multiply
+  Cx * (u_old[1:-1, 2:] - 2*u_old[1:-1, 1:-1] + u_old[1:-1, :-2]) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Diffusion.py:45: RuntimeWarning: overflow encountered in subtract
+  Cx * (u_old[1:-1, 2:] - 2*u_old[1:-1, 1:-1] + u_old[1:-1, :-2]) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Diffusion.py:45: RuntimeWarning: overflow encountered in add
+  Cx * (u_old[1:-1, 2:] - 2*u_old[1:-1, 1:-1] + u_old[1:-1, :-2]) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Diffusion.py:46: RuntimeWarning: overflow encountered in multiply
+  Cy * (u_old[2:, 1:-1] - 2*u_old[1:-1, 1:-1] + u_old[:-2, 1:-1]))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Diffusion.py:46: RuntimeWarning: overflow encountered in subtract
+  Cy * (u_old[2:, 1:-1] - 2*u_old[1:-1, 1:-1] + u_old[:-2, 1:-1]))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Diffusion.py:46: RuntimeWarning: overflow encountered in add
+  Cy * (u_old[2:, 1:-1] - 2*u_old[1:-1, 1:-1] + u_old[:-2, 1:-1]))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Diffusion.py:44: RuntimeWarning: invalid value encountered in add
+  u[1:-1, 1:-1] = (u_old[1:-1, 1:-1] +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Diffusion.py:46: RuntimeWarning: invalid value encountered in subtract
+  Cy * (u_old[2:, 1:-1] - 2*u_old[1:-1, 1:-1] + u_old[:-2, 1:-1]))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Diffusion.py:46: RuntimeWarning: invalid value encountered in add
+  Cy * (u_old[2:, 1:-1] - 2*u_old[1:-1, 1:-1] + u_old[:-2, 1:-1]))
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 6
+Total Scripts Failed: 2
+--- Running: 2D_Shear_Flow_With_Tracer.py ---
+Exit Code: 0
+Output:
+Time step 500/4000
+Time step 1000/4000
+Time step 1500/4000
+Time step 2000/4000
+Time step 2500/4000
+Time step 3000/4000
+Time step 3500/4000
+Time step 4000/4000
+
+Errors:
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Shear_Flow_With_Tracer.py:95: RuntimeWarning: overflow encountered in multiply
+  adv_s = u * s_x + w * s_z
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Shear_Flow_With_Tracer.py:95: RuntimeWarning: overflow encountered in add
+  adv_s = u * s_x + w * s_z
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Shear_Flow_With_Tracer.py:95: RuntimeWarning: invalid value encountered in add
+  adv_s = u * s_x + w * s_z
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Shear_Flow_With_Tracer.py:62: RuntimeWarning: overflow encountered in multiply
+  adv_u = u * u_x + w * u_z
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Shear_Flow_With_Tracer.py:62: RuntimeWarning: invalid value encountered in add
+  adv_u = u * u_x + w * u_z
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Shear_Flow_With_Tracer.py:63: RuntimeWarning: overflow encountered in multiply
+  adv_w = u * w_x + w * w_z
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Shear_Flow_With_Tracer.py:63: RuntimeWarning: invalid value encountered in add
+  adv_w = u * w_x + w * w_z
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Shear_Flow_With_Tracer.py:44: RuntimeWarning: invalid value encountered in subtract
+  return (np.roll(f, -1, axis=1) - np.roll(f, 1, axis=1)) / (2*dx)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Shear_Flow_With_Tracer.py:48: RuntimeWarning: invalid value encountered in subtract
+  return (np.roll(f, -1, axis=0) - np.roll(f, 1, axis=0)) / (2*dz)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Shear_Flow_With_Tracer.py:51: RuntimeWarning: invalid value encountered in subtract
+  return (np.roll(f, -1, axis=1) - 2*f + np.roll(f, 1, axis=1)) / dx**2 + \
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Shear_Flow_With_Tracer.py:51: RuntimeWarning: invalid value encountered in add
+  return (np.roll(f, -1, axis=1) - 2*f + np.roll(f, 1, axis=1)) / dx**2 + \
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Shear_Flow_With_Tracer.py:51: RuntimeWarning: overflow encountered in divide
+  return (np.roll(f, -1, axis=1) - 2*f + np.roll(f, 1, axis=1)) / dx**2 + \
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Shear_Flow_With_Tracer.py:52: RuntimeWarning: invalid value encountered in subtract
+  (np.roll(f, -1, axis=0) - 2*f + np.roll(f, 1, axis=0)) / dz**2
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Shear_Flow_With_Tracer.py:52: RuntimeWarning: invalid value encountered in add
+  (np.roll(f, -1, axis=0) - 2*f + np.roll(f, 1, axis=0)) / dz**2
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Shear_Flow_With_Tracer.py:52: RuntimeWarning: overflow encountered in divide
+  (np.roll(f, -1, axis=0) - 2*f + np.roll(f, 1, axis=0)) / dz**2
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Shear_Flow_With_Tracer.py:51: RuntimeWarning: overflow encountered in add
+  return (np.roll(f, -1, axis=1) - 2*f + np.roll(f, 1, axis=1)) / dx**2 + \
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 6
+Total Scripts Failed: 3
+--- Running: 2D_Convection.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 7
+Total Scripts Failed: 3
+--- Running: 1D_KdV_Burgers_Equation.py ---
+Exit Code: 0
+Output:
+
+Errors:
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/1D_KdV_Burgers_Equation.py:33: RuntimeWarning: overflow encountered in multiply
+  return - u * ux + a * uxx + b * uxxx
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/1D_KdV_Burgers_Equation.py:28: RuntimeWarning: invalid value encountered in subtract
+  uxx = (np.roll(u, -1) - 2*u + np.roll(u, 1)) / (dx**2)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/1D_KdV_Burgers_Equation.py:28: RuntimeWarning: invalid value encountered in add
+  uxx = (np.roll(u, -1) - 2*u + np.roll(u, 1)) / (dx**2)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/1D_KdV_Burgers_Equation.py:30: RuntimeWarning: invalid value encountered in add
+  uxxx = (-np.roll(u, 2) + 2*np.roll(u, 1) - 2*np.roll(u, -1) + np.roll(u, -2)) / (2*dx**3)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/1D_KdV_Burgers_Equation.py:33: RuntimeWarning: invalid value encountered in add
+  return - u * ux + a * uxx + b * uxxx
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 7
+Total Scripts Failed: 4
+--- Running: 2D_Poisson_Equation.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 8
+Total Scripts Failed: 4
+--- Running: 1D_Diffusion.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 9
+Total Scripts Failed: 4
+--- Running: Flow_Past_Circular_Cylinder.py ---
+Exception occurred while logging execution: 'NoneType' object has no attribute 'returncode'
+
+
+====== Execution Summary ======
+Total Scripts Passed: 9
+Total Scripts Failed: 5
+--- Running: 2D_Navier_Stokes_Channel.py ---
+Exit Code: 1
+Output:
+
+Errors:
+Traceback (most recent call last):
+  File "/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Channel.py", line 59, in <module>
+    - un[1:-1,:] * ((un[1:-1, :] - np.roll(un[1:-1, :], 1, axis=1)) / dx) 
+ValueError: operands could not be broadcast together with shapes (162,164) (164,164) 
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 9
+Total Scripts Failed: 6
+--- Running: 2D_Laplace_Equation.py ---
+Exception occurred while logging execution: 'NoneType' object has no attribute 'returncode'
+
+
+====== Execution Summary ======
+Total Scripts Passed: 9
+Total Scripts Failed: 7
+--- Running: 2D_Rayleigh_Benard_Convection.py ---
+Exception occurred while logging execution: 'NoneType' object has no attribute 'returncode'
+
+
+====== Execution Summary ======
+Total Scripts Passed: 9
+Total Scripts Failed: 8
+--- Running: Lid_Driven_Cavity.py ---
+Exit Code: 0
+Output:
+
+Errors:
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:27: RuntimeWarning: overflow encountered in square
+  ((u[1:-1, 2:] - u[1:-1, 0:-2])/(2*dx))**2 -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:28: RuntimeWarning: overflow encountered in multiply
+  2 * ((u[2:, 1:-1] - u[0:-2, 1:-1])/(2*dy) *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:28: RuntimeWarning: overflow encountered in divide
+  2 * ((u[2:, 1:-1] - u[0:-2, 1:-1])/(2*dy) *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:24: RuntimeWarning: overflow encountered in subtract
+  b[1:-1, 1:-1] = (rho * (1.0/dt *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:24: RuntimeWarning: invalid value encountered in subtract
+  b[1:-1, 1:-1] = (rho * (1.0/dt *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:30: RuntimeWarning: overflow encountered in square
+  ((v[2:, 1:-1] - v[0:-2, 1:-1])/(2*dy))**2))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:61: RuntimeWarning: overflow encountered in multiply
+  un[1:-1,1:-1] * dt/dx * (un[1:-1,1:-1] - un[1:-1,0:-2]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:62: RuntimeWarning: overflow encountered in multiply
+  vn[1:-1,1:-1] * dt/dy * (un[1:-1,1:-1] - un[0:-2,1:-1]) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:60: RuntimeWarning: overflow encountered in subtract
+  u[1:-1,1:-1] = (un[1:-1,1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:60: RuntimeWarning: invalid value encountered in subtract
+  u[1:-1,1:-1] = (un[1:-1,1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:67: RuntimeWarning: overflow encountered in multiply
+  un[1:-1,1:-1] * dt/dx * (vn[1:-1,1:-1] - vn[1:-1,0:-2]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:68: RuntimeWarning: overflow encountered in multiply
+  vn[1:-1,1:-1] * dt/dy * (vn[1:-1,1:-1] - vn[0:-2,1:-1]) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:66: RuntimeWarning: overflow encountered in subtract
+  v[1:-1,1:-1] = (vn[1:-1,1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:66: RuntimeWarning: invalid value encountered in subtract
+  v[1:-1,1:-1] = (vn[1:-1,1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:90: RuntimeWarning: invalid value encountered in subtract
+  u[1:-1,1:-1] -= dt/(2*rho*dx) * (p[1:-1,2:] - p[1:-1,0:-2])
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:91: RuntimeWarning: invalid value encountered in subtract
+  v[1:-1,1:-1] -= dt/(2*rho*dy) * (p[2:,1:-1] - p[0:-2,1:-1])
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:29: RuntimeWarning: invalid value encountered in subtract
+  (v[1:-1, 2:] - v[1:-1, 0:-2])/(2*dx)) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:61: RuntimeWarning: invalid value encountered in subtract
+  un[1:-1,1:-1] * dt/dx * (un[1:-1,1:-1] - un[1:-1,0:-2]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:62: RuntimeWarning: invalid value encountered in subtract
+  vn[1:-1,1:-1] * dt/dy * (un[1:-1,1:-1] - un[0:-2,1:-1]) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:63: RuntimeWarning: invalid value encountered in subtract
+  nu * dt/dx**2 * (un[1:-1,2:] - 2*un[1:-1,1:-1] + un[1:-1,0:-2]) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:63: RuntimeWarning: invalid value encountered in add
+  nu * dt/dx**2 * (un[1:-1,2:] - 2*un[1:-1,1:-1] + un[1:-1,0:-2]) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:64: RuntimeWarning: invalid value encountered in subtract
+  nu * dt/dy**2 * (un[2:,1:-1] - 2*un[1:-1,1:-1] + un[0:-2,1:-1]))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:67: RuntimeWarning: invalid value encountered in subtract
+  un[1:-1,1:-1] * dt/dx * (vn[1:-1,1:-1] - vn[1:-1,0:-2]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:68: RuntimeWarning: invalid value encountered in subtract
+  vn[1:-1,1:-1] * dt/dy * (vn[1:-1,1:-1] - vn[0:-2,1:-1]) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:69: RuntimeWarning: invalid value encountered in subtract
+  nu * dt/dx**2 * (vn[1:-1,2:] - 2*vn[1:-1,1:-1] + vn[1:-1,0:-2]) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:69: RuntimeWarning: invalid value encountered in add
+  nu * dt/dx**2 * (vn[1:-1,2:] - 2*vn[1:-1,1:-1] + vn[1:-1,0:-2]) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/Lid_Driven_Cavity.py:70: RuntimeWarning: invalid value encountered in subtract
+  nu * dt/dy**2 * (vn[2:,1:-1] - 2*vn[1:-1,1:-1] + vn[0:-2,1:-1]))
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 9
+Total Scripts Failed: 9
+--- Running: 1D_Nonlinear_Convection.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 10
+Total Scripts Failed: 9
+--- Running: 2D_Navier_Stokes_Cavity.py ---
+Exit Code: 0
+Output:
+
+Errors:
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:35: RuntimeWarning: overflow encountered in square
+  - ((u[1:-1,2:] - u[1:-1,0:-2])/(2*dx))**2
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:36: RuntimeWarning: overflow encountered in multiply
+  - 2 * ((u[2:,1:-1] - u[0:-2,1:-1])/(2*dy) *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:36: RuntimeWarning: overflow encountered in divide
+  - 2 * ((u[2:,1:-1] - u[0:-2,1:-1])/(2*dy) *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:33: RuntimeWarning: overflow encountered in subtract
+  b[1:-1,1:-1] = (rho * (1/dt *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:33: RuntimeWarning: invalid value encountered in subtract
+  b[1:-1,1:-1] = (rho * (1/dt *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:38: RuntimeWarning: overflow encountered in square
+  - ((v[2:,1:-1] - v[0:-2,1:-1])/(2*dy))**2))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:73: RuntimeWarning: overflow encountered in multiply
+  un[1:-1,1:-1]*dt/dx*(un[1:-1,1:-1] - un[1:-1,0:-2]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:74: RuntimeWarning: overflow encountered in multiply
+  vn[1:-1,1:-1]*dt/dy*(un[1:-1,1:-1] - un[0:-2,1:-1]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:72: RuntimeWarning: overflow encountered in subtract
+  u[1:-1,1:-1] = (un[1:-1,1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:72: RuntimeWarning: invalid value encountered in subtract
+  u[1:-1,1:-1] = (un[1:-1,1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:75: RuntimeWarning: invalid value encountered in subtract
+  dt/(2*rho*dx)*(p[1:-1,2:] - p[1:-1,0:-2]) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:81: RuntimeWarning: overflow encountered in multiply
+  un[1:-1,1:-1]*dt/dx*(vn[1:-1,1:-1] - vn[1:-1,0:-2]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:82: RuntimeWarning: overflow encountered in multiply
+  vn[1:-1,1:-1]*dt/dy*(vn[1:-1,1:-1] - vn[0:-2,1:-1]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:80: RuntimeWarning: overflow encountered in subtract
+  v[1:-1,1:-1] = (vn[1:-1,1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:80: RuntimeWarning: invalid value encountered in subtract
+  v[1:-1,1:-1] = (vn[1:-1,1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:83: RuntimeWarning: invalid value encountered in subtract
+  dt/(2*rho*dy)*(p[2:,1:-1] - p[0:-2,1:-1]) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:37: RuntimeWarning: invalid value encountered in subtract
+  (v[1:-1,2:] - v[1:-1,0:-2])/(2*dx))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:73: RuntimeWarning: invalid value encountered in subtract
+  un[1:-1,1:-1]*dt/dx*(un[1:-1,1:-1] - un[1:-1,0:-2]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:74: RuntimeWarning: invalid value encountered in subtract
+  vn[1:-1,1:-1]*dt/dy*(un[1:-1,1:-1] - un[0:-2,1:-1]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:76: RuntimeWarning: invalid value encountered in subtract
+  nu*dt*((un[1:-1,2:] - 2*un[1:-1,1:-1] + un[1:-1,0:-2])/(dx**2) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:76: RuntimeWarning: invalid value encountered in add
+  nu*dt*((un[1:-1,2:] - 2*un[1:-1,1:-1] + un[1:-1,0:-2])/(dx**2) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:77: RuntimeWarning: invalid value encountered in subtract
+  (un[2:,1:-1] - 2*un[1:-1,1:-1] + un[0:-2,1:-1])/(dy**2)))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:81: RuntimeWarning: invalid value encountered in subtract
+  un[1:-1,1:-1]*dt/dx*(vn[1:-1,1:-1] - vn[1:-1,0:-2]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:82: RuntimeWarning: invalid value encountered in subtract
+  vn[1:-1,1:-1]*dt/dy*(vn[1:-1,1:-1] - vn[0:-2,1:-1]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:84: RuntimeWarning: invalid value encountered in subtract
+  nu*dt*((vn[1:-1,2:] - 2*vn[1:-1,1:-1] + vn[1:-1,0:-2])/(dx**2) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:84: RuntimeWarning: invalid value encountered in add
+  nu*dt*((vn[1:-1,2:] - 2*vn[1:-1,1:-1] + vn[1:-1,0:-2])/(dx**2) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Navier_Stokes_Cavity.py:85: RuntimeWarning: invalid value encountered in subtract
+  (vn[2:,1:-1] - 2*vn[1:-1,1:-1] + vn[0:-2,1:-1])/(dy**2)))
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 10
+Total Scripts Failed: 10
+--- Running: Pipe_Flow_Disk_EVP.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 11
+Total Scripts Failed: 10
+--- Running: 2D_Linear_Convection.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 12
+Total Scripts Failed: 10
+--- Running: 2D_Burgers_Equation.py ---
+Exit Code: 0
+Output:
+
+Errors:
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:40: RuntimeWarning: overflow encountered in add
+  dt * ( un[1:-1,1:-1] * (un[1:-1,1:-1] - un[:-2,1:-1]) / dx +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:47: RuntimeWarning: overflow encountered in add
+  dt * ( un[1:-1,1:-1] * (vn[1:-1,1:-1] - vn[:-2,1:-1]) / dx +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:40: RuntimeWarning: overflow encountered in multiply
+  dt * ( un[1:-1,1:-1] * (un[1:-1,1:-1] - un[:-2,1:-1]) / dx +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:40: RuntimeWarning: overflow encountered in divide
+  dt * ( un[1:-1,1:-1] * (un[1:-1,1:-1] - un[:-2,1:-1]) / dx +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:41: RuntimeWarning: overflow encountered in multiply
+  vn[1:-1,1:-1] * (un[1:-1,1:-1] - un[1:-1,:-2]) / dy ) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:41: RuntimeWarning: overflow encountered in divide
+  vn[1:-1,1:-1] * (un[1:-1,1:-1] - un[1:-1,:-2]) / dy ) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:40: RuntimeWarning: invalid value encountered in add
+  dt * ( un[1:-1,1:-1] * (un[1:-1,1:-1] - un[:-2,1:-1]) / dx +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:39: RuntimeWarning: invalid value encountered in add
+  u[1:-1,1:-1] = (un[1:-1,1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:47: RuntimeWarning: overflow encountered in multiply
+  dt * ( un[1:-1,1:-1] * (vn[1:-1,1:-1] - vn[:-2,1:-1]) / dx +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:47: RuntimeWarning: overflow encountered in divide
+  dt * ( un[1:-1,1:-1] * (vn[1:-1,1:-1] - vn[:-2,1:-1]) / dx +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:48: RuntimeWarning: overflow encountered in multiply
+  vn[1:-1,1:-1] * (vn[1:-1,1:-1] - vn[1:-1,:-2]) / dy ) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:48: RuntimeWarning: overflow encountered in divide
+  vn[1:-1,1:-1] * (vn[1:-1,1:-1] - vn[1:-1,:-2]) / dy ) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:47: RuntimeWarning: invalid value encountered in add
+  dt * ( un[1:-1,1:-1] * (vn[1:-1,1:-1] - vn[:-2,1:-1]) / dx +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:46: RuntimeWarning: invalid value encountered in add
+  v[1:-1,1:-1] = (vn[1:-1,1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:40: RuntimeWarning: invalid value encountered in subtract
+  dt * ( un[1:-1,1:-1] * (un[1:-1,1:-1] - un[:-2,1:-1]) / dx +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:41: RuntimeWarning: invalid value encountered in subtract
+  vn[1:-1,1:-1] * (un[1:-1,1:-1] - un[1:-1,:-2]) / dy ) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:39: RuntimeWarning: invalid value encountered in subtract
+  u[1:-1,1:-1] = (un[1:-1,1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:42: RuntimeWarning: invalid value encountered in subtract
+  dt * nu * ( (un[2:,1:-1] - 2*un[1:-1,1:-1] + un[:-2,1:-1]) / dx**2 +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:42: RuntimeWarning: invalid value encountered in add
+  dt * nu * ( (un[2:,1:-1] - 2*un[1:-1,1:-1] + un[:-2,1:-1]) / dx**2 +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:43: RuntimeWarning: invalid value encountered in subtract
+  (un[1:-1,2:] - 2*un[1:-1,1:-1] + un[1:-1,:-2]) / dy**2 ) )
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:43: RuntimeWarning: invalid value encountered in add
+  (un[1:-1,2:] - 2*un[1:-1,1:-1] + un[1:-1,:-2]) / dy**2 ) )
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:47: RuntimeWarning: invalid value encountered in subtract
+  dt * ( un[1:-1,1:-1] * (vn[1:-1,1:-1] - vn[:-2,1:-1]) / dx +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:48: RuntimeWarning: invalid value encountered in subtract
+  vn[1:-1,1:-1] * (vn[1:-1,1:-1] - vn[1:-1,:-2]) / dy ) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:46: RuntimeWarning: invalid value encountered in subtract
+  v[1:-1,1:-1] = (vn[1:-1,1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:49: RuntimeWarning: invalid value encountered in subtract
+  dt * nu * ( (vn[2:,1:-1] - 2*vn[1:-1,1:-1] + vn[:-2,1:-1]) / dx**2 +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:49: RuntimeWarning: invalid value encountered in add
+  dt * nu * ( (vn[2:,1:-1] - 2*vn[1:-1,1:-1] + vn[:-2,1:-1]) / dx**2 +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:50: RuntimeWarning: invalid value encountered in subtract
+  (vn[1:-1,2:] - 2*vn[1:-1,1:-1] + vn[1:-1,:-2]) / dy**2 ) )
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/o3-mini/prompts/2D_Burgers_Equation.py:50: RuntimeWarning: invalid value encountered in add
+  (vn[1:-1,2:] - 2*vn[1:-1,1:-1] + vn[1:-1,:-2]) / dy**2 ) )
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 12
+Total Scripts Failed: 11
+--- Running: 1D_Euler_Shock_Tube.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 13
+Total Scripts Failed: 11

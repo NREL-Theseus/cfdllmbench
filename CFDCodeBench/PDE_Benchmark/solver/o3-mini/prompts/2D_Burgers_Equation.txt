@@ -1,0 +1,65 @@
+#!/usr/bin/env python3
+import numpy as np
+
+# Parameters
+nx = 81  # number of grid points in x
+ny = 81  # number of grid points in y
+lx = 2.0
+ly = 2.0
+dx = lx / (nx - 1)
+dy = ly / (ny - 1)
+nu = 0.01  # kinematic viscosity
+
+t_final = 0.027
+dt = 0.001
+nt = int(t_final / dt)
+
+# Create grid
+x = np.linspace(0, lx, nx)
+y = np.linspace(0, ly, ny)
+X, Y = np.meshgrid(x, y, indexing='ij')
+
+# Initialize u and v fields
+u = np.ones((nx, ny))
+v = np.ones((nx, ny))
+
+# Set initial conditions: u=v=2 for region 0.5<= x <= 1 and 0.5<= y <= 1
+u[np.logical_and(X >= 0.5, X <= 1) & np.logical_and(Y >= 0.5, Y <= 1)] = 2.0
+v[np.logical_and(X >= 0.5, X <= 1) & np.logical_and(Y >= 0.5, Y <= 1)] = 2.0
+
+# Time stepping loop
+for n in range(nt):
+    un = u.copy()
+    vn = v.copy()
+    
+    # Update interior points using finite difference approximations.
+    # Use first-order upwind for convective terms (assuming positive velocities) and centered differences for diffusive terms.
+    
+    # For u
+    u[1:-1,1:-1] = (un[1:-1,1:-1] -
+                      dt * ( un[1:-1,1:-1] * (un[1:-1,1:-1] - un[:-2,1:-1]) / dx +
+                             vn[1:-1,1:-1] * (un[1:-1,1:-1] - un[1:-1,:-2]) / dy ) +
+                      dt * nu * ( (un[2:,1:-1] - 2*un[1:-1,1:-1] + un[:-2,1:-1]) / dx**2 +
+                                  (un[1:-1,2:] - 2*un[1:-1,1:-1] + un[1:-1,:-2]) / dy**2 ) )
+    
+    # For v
+    v[1:-1,1:-1] = (vn[1:-1,1:-1] -
+                      dt * ( un[1:-1,1:-1] * (vn[1:-1,1:-1] - vn[:-2,1:-1]) / dx +
+                             vn[1:-1,1:-1] * (vn[1:-1,1:-1] - vn[1:-1,:-2]) / dy ) +
+                      dt * nu * ( (vn[2:,1:-1] - 2*vn[1:-1,1:-1] + vn[:-2,1:-1]) / dx**2 +
+                                  (vn[1:-1,2:] - 2*vn[1:-1,1:-1] + vn[1:-1,:-2]) / dy**2 ) )
+    
+    # Apply Dirichlet boundary conditions: u = 1, v = 1 on boundaries
+    u[0, :] = 1.0
+    u[-1, :] = 1.0
+    u[:, 0] = 1.0
+    u[:, -1] = 1.0
+
+    v[0, :] = 1.0
+    v[-1, :] = 1.0
+    v[:, 0] = 1.0
+    v[:, -1] = 1.0
+
+# Save final solution arrays
+np.save("u.npy", u)
+np.save("v.npy", v)

@@ -1,0 +1,39 @@
+```python
+import numpy as np
+
+# Parameters
+nu = 0.05
+Lx, Ly = 2.0, 2.0
+Nx, Ny = 101, 101
+dx = Lx / (Nx - 1)
+dy = Ly / (Ny - 1)
+dt = 0.001
+T_final = 0.3777
+
+# Create grid
+x = np.linspace(0, Lx, Nx)
+y = np.linspace(0, Ly, Ny)
+
+# Initialize u
+u = np.ones((Nx, Ny))
+u[(x >= 0.5) & (x <= 1.0)][:, (y >= 0.5) & (y <= 1.0)] = 2.0
+
+# Time-stepping loop
+t = 0.0
+while t < T_final:
+    un = u.copy()
+    u[1:-1, 1:-1] = (un[1:-1, 1:-1] +
+                     nu * dt / dx**2 * (un[2:, 1:-1] - 2 * un[1:-1, 1:-1] + un[:-2, 1:-1]) +
+                     nu * dt / dy**2 * (un[1:-1, 2:] - 2 * un[1:-1, 1:-1] + un[1:-1, :-2]))
+    
+    # Apply Dirichlet boundary conditions
+    u[0, :] = 1
+    u[-1, :] = 1
+    u[:, 0] = 1
+    u[:, -1] = 1
+    
+    t += dt
+
+# Save the final solution
+np.save('u', u)
+```

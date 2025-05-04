@@ -1,0 +1,111 @@
+#!/usr/bin/env python3
+import numpy as np
+
+# Parameters
+nx = 41      # number of grid points in x
+ny = 41      # number of grid points in y
+Lx = 2.0     # domain length in x
+Ly = 2.0     # domain length in y
+dx = Lx / (nx - 1)
+dy = Ly / (ny - 1)
+
+t_final = 5.0   # final time
+dt = 0.001      # time step
+nt = int(t_final / dt)  # number of time steps
+
+rho = 1.0
+nu = 0.1
+F = 1.0
+
+# Pressure Poisson iterations per time step
+nit = 50
+
+# Create grids
+x = np.linspace(0, Lx, nx)
+y = np.linspace(0, Ly, ny)
+
+# Initialize field variables: shape (ny, nx) with y as first index, x as second index.
+u = np.zeros((ny, nx))
+v = np.zeros((ny, nx))
+p = np.zeros((ny, nx))
+b = np.zeros((ny, nx))  # source term for pressure Poisson equation
+
+# Time-stepping loop
+for n in range(nt):
+    un = u.copy()
+    vn = v.copy()
+    pn = p.copy()
+
+    # Compute derivatives using central differences.
+    # Use np.roll for periodic x-boundary conditions.
+    du_dx = (np.roll(un, -1, axis=1) - np.roll(un, 1, axis=1)) / (2*dx)
+    du_dy = (un[2:, :] - un[0:-2, :]) / (2*dy)
+    dv_dx = (np.roll(vn, -1, axis=1) - np.roll(vn, 1, axis=1)) / (2*dx)
+    dv_dy = (vn[2:, :] - vn[0:-2, :]) / (2*dy)
+
+    # To compute second derivatives, use central differences.
+    d2u_dx2 = (np.roll(un, -1, axis=1) - 2*un + np.roll(un, 1, axis=1)) / dx**2
+    d2u_dy2 = np.zeros_like(u)
+    d2u_dy2[1:-1,:] = (un[2:,:] - 2*un[1:-1,:] + un[0:-2,:]) / dy**2
+
+    d2v_dx2 = (np.roll(vn, -1, axis=1) - 2*vn + np.roll(vn, 1, axis=1)) / dx**2
+    d2v_dy2 = np.zeros_like(v)
+    d2v_dy2[1:-1,:] = (vn[2:,:] - 2*vn[1:-1,:] + vn[0:-2,:]) / dy**2
+
+    # Update u and v using explicit time-stepping (forward Euler)
+    # For u-equation: include convection, pressure gradient in x, viscous diffusion, and force F.
+    u[1:-1, :] = (un[1:-1,:] +
+                  dt * (
+                      - un[1:-1,:] * ((un[1:-1, :] - np.roll(un[1:-1, :], 1, axis=1)) / dx) 
+                      - vn[1:-1,:] * ((un[2:,:] - un[0:-2,:]) / (2*dy))
+                      - (1/rho) * ((np.roll(p, -1, axis=1) - np.roll(p, 1, axis=1)) / (2*dx))
+                      + nu * (d2u_dx2[1:-1,:] + d2u_dy2[1:-1,:])
+                      + F
+                  ))
+
+    # For v-equation: include convection, pressure gradient in y, viscous diffusion.
+    v[1:-1, :] = (vn[1:-1,:] +
+                  dt * (
+                      - un[1:-1,:] * ((vn[1:-1, :] - np.roll(vn[1:-1, :], 1, axis=1)) / dx)
+                      - vn[1:-1,:] * ((vn[2:,:] - vn[0:-2,:]) / (2*dy))
+                      - (1/rho) * ((np.roll(p, -1, axis=1) - np.roll(p, 1, axis=1)) / (2*dx)) * 0  # no force in v eq.
+                      + nu * (d2v_dx2[1:-1,:] + d2v_dy2[1:-1,:])
+                  ))
+    # Apply boundary conditions for u and v:
+    # Periodic in x: already handled by np.roll in derivatives.
+    # No-slip in y: u = 0, v = 0 at y = 0 and y = Ly.
+    u[0, :] = 0
+    u[-1, :] = 0
+    v[0, :] = 0
+    v[-1, :] = 0
+
+    # Compute the source term b for the pressure Poisson equation (using central differences).
+    # For interior points.
+    # Use same finite difference approximations.
+    u_x = (np.roll(u, -1, axis=1) - np.roll(u, 1, axis=1)) / (2*dx)
+    v_y = (np.roll(v, -1, axis=0) - np.roll(v, 1, axis=0)) / (2*dy)
+    u_y = np.zeros_like(u)
+    u_y[1:-1,:] = (u[2:,:] - u[0:-2,:]) / (2*dy)
+    v_x = (np.roll(v, -1, axis=1) - np.roll(v, 1, axis=1)) / (2*dx)
+    b = - (u_x**2 + 2*u_y*v_x + v_y**2)
+
+    # Solve pressure Poisson equation iteratively
+    for it in range(nit):
+        p_old = p.copy()
+        # Update interior points (y-direction: 1 to ny-2, x is periodic)
+        p[1:-1, :] = (((dy**2)*(np.roll(p, -1, axis=1)[1:-1,:] + np.roll(p, 1, axis=1)[1:-1,:]) +
+                       (dx**2)*(p[2:,:] + p[0:-2,:]) -
+                       b[1:-1,:]*dx**2*dy**2)
+                      / (2*(dx**2+dy**2)))
+        # Apply boundary conditions for p:
+        # Periodic in x is enforced by np.roll.
+        # For y, Neumann: dp/dy = 0 => p[0,:] = p[1,:] and p[-1,:] = p[-2,:]
+        p[0, :] = p[1, :]
+        p[-1, :] = p[-2, :]
+
+    # End of time step
+
+# Save final solution arrays as .npy files (2D arrays)
+np.save('u.npy', u)
+np.save('v.npy', v)
+np.save('p.npy', p)

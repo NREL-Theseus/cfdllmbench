@@ -1,0 +1,90 @@
+```python
+import numpy as np
+import scipy.linalg
+from scipy.sparse import diags
+from scipy.sparse.linalg import spsolve
+
+def solve_linearized_navier_stokes():
+    # Problem parameters
+    Re = 1e4
+    kz = 1.0
+    nr = 50  # Number of radial points
+    r = np.linspace(0, 1, nr)
+    dr = r[1] - r[0]
+    w0 = 1 - r**2
+
+    # Finite difference matrices
+    def create_matrix(N):
+        """Creates a sparse matrix for second-order finite difference."""
+        e = np.ones(N)
+        A = diags([e, -2*e, e], [-1, 0, 1], shape=(N, N)).toarray()
+        return A
+
+    Drr = create_matrix(nr) / dr**2
+    Drr[0, :] = 0  # Boundary condition at r=0
+    Drr[0, 0] = -2 / dr**2
+    Drr[0, 1] = 2 / dr**2
+    Drr[-1, :] = 0 # Boundary condition at r=1
+    Drr[-1, -1] = -2 / dr**2
+    Drr[-1, -2] = 2 / dr**2
+
+    # Boundary conditions
+    def apply_bc(A):
+        A[0, :] = 0
+        A[-1, :] = 0
+        return A
+
+    # Solve the eigenvalue problem
+    def solve_eigensystem(kz, Re, nr, dr, w0, Drr):
+        """Solves the linearized Navier-Stokes eigenvalue problem."""
+
+        # Construct the matrices for the eigenvalue problem
+        A = np.zeros((3*nr, 3*nr), dtype=complex)
+        B = np.zeros((3*nr, 3*nr), dtype=complex)
+
+        # u equation
+        A[:nr, :nr] = Drr - kz**2 * np.eye(nr) - 1j * Re * w0 * kz * np.eye(nr)
+        A[:nr, nr:2*nr] = np.diag(1/r) + 1j * Re * np.diag(np.ones(nr))
+        B[:nr, :nr] = np.eye(nr)
+
+        # w equation
+        A[nr:2*nr, :nr] = np.diag(np.gradient(w0, dr)) * 1j * Re
+        A[nr:2*nr, nr:2*nr] = Drr - kz**2 * np.eye(nr) - 1j * Re * w0 * kz * np.eye(nr)
+        A[nr:2*nr, 2*nr:] = 1j * Re * kz * np.eye(nr)
+        B[nr:2*nr, nr:2*nr] = np.eye(nr)
+
+        # Continuity equation
+        A[2*nr:, :nr] = np.diag(1/r) + np.diag(np.gradient(np.ones(nr), dr))
+        A[2*nr:, nr:2*nr] = 1j * kz * np.eye(nr)
+        B[2*nr:, 2*nr:] = np.zeros((nr, nr))
+
+        # Apply boundary conditions
+        A[:nr, :nr] = apply_bc(A[:nr, :nr])
+        A[nr:2*nr, nr:2*nr] = apply_bc(A[nr:2*nr, nr:2*nr])
+
+        # Solve the generalized eigenvalue problem
+        eigvals, eigvecs = scipy.linalg.eig(A, B)
+
+        # Find the eigenvalue with the largest real part
+        stable_modes = eigvals[np.abs(eigvals) < 1e5]
+        most_unstable_mode_index = np.argmax(np.real(stable_modes))
+        s = stable_modes[most_unstable_mode_index]
+        eigenvector = eigvecs[:, np.abs(eigvals) < 1e5][:, most_unstable_mode_index]
+
+        # Extract the velocity and pressure fields
+        u = eigenvector[:nr]
+        w = eigenvector[nr:2*nr]
+        p = eigenvector[2*nr:]
+
+        return u, w, p, s
+
+    # Solve the eigenvalue problem
+    u, w, p, s = solve_eigensystem(kz, Re, nr, dr, w0, Drr)
+
+    # Save the variables
+    np.save('u.npy', u)
+    np.save('w.npy', w)
+    np.save('p.npy', p)
+
+solve_linearized_navier_stokes()
+```

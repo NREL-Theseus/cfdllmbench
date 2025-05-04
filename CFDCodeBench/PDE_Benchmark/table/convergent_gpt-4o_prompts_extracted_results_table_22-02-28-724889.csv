@@ -1,0 +1,10 @@
+Filename,MSE,MAE,RMSE,Cosine Similarity,R-squared
+T_2D_Unsteady_Heat_Equation.npy,1.068e+03,1.127e+01,3.268e+01,6.910e-01,-1.388e+03
+u_1D_Burgers_Equation.npy,1.187e-01,7.143e-02,3.445e-01,9.970e-01,9.200e-01
+u_1D_Linear_Convection.npy,5.630e-03,4.422e-02,7.503e-02,9.830e-01,9.200e-01
+u_1D_Nonlinear_Convection.npy,6.470e-03,2.544e-02,8.044e-02,9.840e-01,9.320e-01
+u_2D_Burgers_Equation.npy,2.114e-02,4.684e-02,1.454e-01,9.910e-01,5.850e-01
+u_2D_Diffusion.npy,1.596e-02,7.557e-02,1.263e-01,9.960e-01,-5.570e-01
+u_2D_Linear_Convection.npy,4.147e-02,6.722e-02,2.036e-01,9.840e-01,-1.220e-01
+u_Fully_Developed_Turbulent_Channel_Flow.npy,1.366e+02,1.031e+01,1.169e+01,9.180e-01,-1.891e+00
+v_2D_Burgers_Equation.npy,2.114e-02,4.684e-02,1.454e-01,9.910e-01,5.850e-01

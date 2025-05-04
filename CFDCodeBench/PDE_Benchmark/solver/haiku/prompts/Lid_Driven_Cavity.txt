@@ -1,0 +1,90 @@
+```python
+import numpy as np
+
+# Parameters
+nx = 41  # number of points in x
+ny = 41  # number of points in y
+dx = 1.0/(nx-1)
+dy = 1.0/(ny-1)
+dt = 0.001
+nu = 0.1  # kinematic viscosity
+rho = 1.0
+t_end = 0.5
+
+# Initialize variables
+u = np.zeros((ny, nx))
+v = np.zeros((ny, nx))
+p = np.zeros((ny, nx))
+b = np.zeros((ny, nx))
+
+# Temporary arrays
+ut = np.zeros_like(u)
+vt = np.zeros_like(v)
+
+def pressure_poisson(p, b, dx, dy):
+    pn = np.empty_like(p)
+    for q in range(50):  # iteration limit
+        pn = p.copy()
+        p[1:-1,1:-1] = 0.25*(pn[1:-1,2:] + pn[1:-1,:-2] + 
+                            pn[2:,1:-1] + pn[:-2,1:-1] - 
+                            dx*dy*b[1:-1,1:-1])
+        # Neumann BC
+        p[-1,:] = p[-2,:]  # dp/dy = 0 at y = 1
+        p[0,:] = p[1,:]    # dp/dy = 0 at y = 0
+        p[:,0] = p[:,1]    # dp/dx = 0 at x = 0
+        p[:,-1] = p[:,-2]  # dp/dx = 0 at x = 1
+        
+        if np.abs(np.sum(p-pn)) < 1e-3:
+            break
+    return p
+
+t = 0
+while t < t_end:
+    # Temporary velocity
+    ut[1:-1,1:-1] = u[1:-1,1:-1] - dt*(
+        u[1:-1,1:-1]*(u[1:-1,2:] - u[1:-1,:-2])/(2*dx) +
+        v[1:-1,1:-1]*(u[2:,1:-1] - u[:-2,1:-1])/(2*dy)
+    ) + nu*dt*(
+        (u[1:-1,2:] - 2*u[1:-1,1:-1] + u[1:-1,:-2])/dx**2 +
+        (u[2:,1:-1] - 2*u[1:-1,1:-1] + u[:-2,1:-1])/dy**2
+    )
+    
+    vt[1:-1,1:-1] = v[1:-1,1:-1] - dt*(
+        u[1:-1,1:-1]*(v[1:-1,2:] - v[1:-1,:-2])/(2*dx) +
+        v[1:-1,1:-1]*(v[2:,1:-1] - v[:-2,1:-1])/(2*dy)
+    ) + nu*dt*(
+        (v[1:-1,2:] - 2*v[1:-1,1:-1] + v[1:-1,:-2])/dx**2 +
+        (v[2:,1:-1] - 2*v[1:-1,1:-1] + v[:-2,1:-1])/dy**2
+    )
+
+    # Build RHS of pressure Poisson equation
+    b[1:-1,1:-1] = rho*(
+        (ut[1:-1,2:] - ut[1:-1,:-2])/(2*dx) +
+        (vt[2:,1:-1] - vt[:-2,1:-1])/(2*dy)
+    )/dt
+
+    # Solve pressure Poisson equation
+    p = pressure_poisson(p, b, dx, dy)
+    
+    # Correct velocities
+    u[1:-1,1:-1] = ut[1:-1,1:-1] - dt/rho*(p[1:-1,2:] - p[1:-1,:-2])/(2*dx)
+    v[1:-1,1:-1] = vt[1:-1,1:-1] - dt/rho*(p[2:,1:-1] - p[:-2,1:-1])/(2*dy)
+    
+    # Boundary conditions
+    u[-1,:] = 1    # lid velocity
+    u[0,:] = 0     # bottom wall
+    u[:,0] = 0     # left wall
+    u[:,-1] = 0    # right wall
+    
+    v[-1,:] = 0    # lid
+    v[0,:] = 0     # bottom wall
+    v[:,0] = 0     # left wall
+    v[:,-1] = 0    # right wall
+    
+    t += dt
+
+# Save final solutions
+np.save('u.npy', u)
+np.save('v.npy', v)
+np.save('p.npy', p)
+```

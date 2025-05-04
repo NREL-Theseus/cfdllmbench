@@ -1,0 +1,38 @@
+import numpy as np
+
+# Parameters
+L = 2 * np.pi          # domain length
+T = 5.0                # final time
+N = 400                # number of spatial points
+dx = L / N
+CFL = 0.4              # CFL number, chosen conservatively
+x = np.linspace(0, L, N, endpoint=False)
+
+# Initial condition: u(x,0) = sin(x) + 0.5*sin(0.5*x)
+u = np.sin(x) + 0.5 * np.sin(0.5 * x)
+
+# Time stepping parameters
+# Estimate max(u) from initial condition for dt selection; update dt during simulation if needed.
+dt = CFL * dx / np.max(np.abs(u))
+num_steps = int(T / dt) + 1
+dt = T / num_steps  # adjust dt to exactly reach T
+
+def flux(u_val):
+    return 0.5 * u_val**2
+
+# Time integration using Lax-Friedrichs scheme
+for n in range(num_steps):
+    # Compute flux
+    f = flux(u)
+    # Periodic indices: use np.roll for periodic BC
+    u_plus  = np.roll(u, -1)
+    u_minus = np.roll(u, 1)
+    f_plus  = np.roll(f, -1)
+    f_minus = np.roll(f, 1)
+    
+    # Lax-Friedrichs update formula
+    u_new = 0.5 * (u_plus + u_minus) - dt / (2*dx) * (f_plus - f_minus)
+    u = u_new
+
+# Save final solution as a 1D numpy array in 'u.npy'
+np.save("u.npy", u)

@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+import numpy as np
+
+# Domain parameters
+Lx = 2.0
+Ly = 1.0
+nx = 404  # number of grid points in x-direction
+ny = 204   # number of grid points in y-direction
+dx = Lx / (nx - 1)
+dy = Ly / (ny - 1)
+
+# Create grid
+x = np.linspace(0, Lx, nx)
+y = np.linspace(0, Ly, ny)
+
+# Initialize pressure field p and source term b
+p = np.zeros((ny, nx))  # using (row, col) indexing: row ~ y, col ~ x
+b = np.zeros((ny, nx))
+
+# Set the source term b
+# b = 100 at (x=1/4 Lx, y=1/4 Ly) and b = -100 at (x=3/4 Lx, y=3/4 Ly)
+x1 = Lx / 4.0    # 0.5
+y1 = Ly / 4.0    # 0.25
+x2 = 3.0 * Lx / 4.0  # 1.5
+y2 = 3.0 * Ly / 4.0  # 0.75
+
+# find nearest indices for the source points
+i1 = np.argmin(np.abs(x - x1))
+j1 = np.argmin(np.abs(y - y1))
+i2 = np.argmin(np.abs(x - x2))
+j2 = np.argmin(np.abs(y - y2))
+
+b[j1, i1] = 100.0
+b[j2, i2] = -100.0
+
+# Iterative solver using Gauss-Seidel method (with SOR relaxation)
+tolerance = 1e-5
+max_iterations = 10000
+omega = 1.7  # SOR relaxation factor: can be tuned
+error = 1.0
+iteration = 0
+
+# Precompute coefficient
+dx2 = dx * dx
+dy2 = dy * dy
+denom = 2.0 * (1.0/dx2 + 1.0/dy2)
+
+while error > tolerance and iteration < max_iterations:
+    error = 0.0
+    # copy previous solution for error computation if needed (not using vectorized update here)
+    for j in range(1, ny-1):
+        for i in range(1, nx-1):
+            # compute the new value using finite difference discretization
+            p_old = p[j, i]
+            new_val = ((p[j, i+1] + p[j, i-1]) / dx2 + (p[j+1, i] + p[j-1, i]) / dy2 - b[j, i]) / (2.0/dx2 + 2.0/dy2)
+            # SOR update
+            p[j, i] = (1.0 - omega) * p_old + omega * new_val
+            error = max(error, abs(p[j, i] - p_old))
+    iteration += 1
+
+# Enforce Dirichlet boundary conditions: p = 0 at boundaries
+p[0, :] = 0.0     # y = 0
+p[-1, :] = 0.0    # y = Ly
+p[:, 0] = 0.0     # x = 0
+p[:, -1] = 0.0    # x = Lx
+
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/o3-mini/prompts/p_2D_Poisson_Equation.npy', p)

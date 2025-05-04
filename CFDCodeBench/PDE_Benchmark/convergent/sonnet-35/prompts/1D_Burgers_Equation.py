@@ -1,0 +1,45 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Problem parameters
+nu = 0.07  # viscosity coefficient
+L = 2 * np.pi  # domain length
+T = 0.14 * np.pi  # final time
+
+# Discretization parameters
+Nx = 200  # spatial points 
+Nt = 1000  # time steps
+
+# Grid setup
+dx = L / (Nx - 1)
+dt = T / (Nt - 1)
+x = np.linspace(0, L, Nx)
+
+# Initial condition function
+def initial_condition(x):
+    phi = np.exp(-x**2 / (4*nu)) + np.exp(-(x - L)**2 / (4*nu))
+    u0 = -2*nu/phi * np.gradient(phi, dx) + 4
+    return u0
+
+# Initialize solution array
+u = initial_condition(x)
+
+# Time integration using Lax-Wendroff scheme
+for n in range(Nt):
+    # Periodic boundary conditions
+    u_periodic = np.zeros_like(u)
+    u_periodic[:-1] = u[:-1]
+    u_periodic[-1] = u[0]
+    
+    # Compute fluxes
+    F = 0.5 * u_periodic**2
+    D = nu * np.gradient(np.gradient(u_periodic, dx), dx)
+    
+    # Lax-Wendroff update
+    u_new = u_periodic - dt/dx * (F - np.roll(F, 1)) + dt * D
+    
+    # Update solution
+    u = u_new
+
+# Save final solution
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/sonnet-35/prompts/u_1D_Burgers_Equation.npy', u)

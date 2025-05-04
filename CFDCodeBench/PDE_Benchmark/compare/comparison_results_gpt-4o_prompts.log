@@ -1,0 +1,68 @@
+2025-04-23 20:27:38,127 - INFO - ====== Starting Comparison ======
+2025-04-23 20:27:38,128 - INFO - Found 31 common files.
+2025-04-23 20:27:38,136 - INFO - T_2D_Steady_Heat_Equation.npy: MSE=3.387e+02, MAE=1.494e+01, RMSE=1.840e+01, Cosine=0.455, R2=-2.809, NMSE=1.277
+2025-04-23 20:27:38,138 - INFO - T_2D_Unsteady_Heat_Equation.npy: MSE=1.068e+03, MAE=1.127e+01, RMSE=3.268e+01, Cosine=0.691, R2=-1387.619, NMSE=260.757
+2025-04-23 20:27:38,140 - ERROR - ❌ b_2D_Rayleigh_Benard_Convection.npy failed: Input contains NaN.
+2025-04-23 20:27:38,143 - INFO - p_2D_Laplace_Equation.npy: MSE=4.592e-02, MAE=1.692e-01, RMSE=2.143e-01, Cosine=0.756, R2=-0.278, NMSE=0.488
+2025-04-23 20:27:38,144 - ERROR - ❌ p_2D_Navier_Stokes_Cavity.npy failed: Input contains NaN.
+2025-04-23 20:27:38,145 - ERROR - ❌ p_2D_Navier_Stokes_Channel.npy failed: Input contains NaN.
+2025-04-23 20:27:38,148 - INFO - p_2D_Poisson_Equation.npy: MSE=2.873e-06, MAE=1.155e-03, RMSE=1.695e-03, Cosine=0.880, R2=0.768, NMSE=0.232
+2025-04-23 20:27:38,150 - INFO - p_Lid_Driven_Cavity.npy: MSE=8.292e-04, MAE=1.135e-02, RMSE=2.880e-02, Cosine=0.999, R2=0.995, NMSE=0.005
+2025-04-23 20:27:38,152 - ERROR - ❌ s_2D_Shear_Flow_With_Tracer.npy failed: Input contains NaN.
+2025-04-23 20:27:38,154 - INFO - u_1D_Burgers_Equation.npy: MSE=9.273e-01, MAE=3.068e-01, RMSE=9.630e-01, Cosine=0.974, R2=0.378, NMSE=0.053
+2025-04-23 20:27:38,157 - INFO - u_1D_Diffusion.npy: MSE=4.536e-04, MAE=1.463e-02, RMSE=2.130e-02, Cosine=1.000, R2=0.996, NMSE=0.000
+2025-04-23 20:27:38,158 - ERROR - ❌ u_1D_KdV_Burgers_Equation.npy failed: Input contains NaN.
+2025-04-23 20:27:38,161 - INFO - u_1D_Linear_Convection.npy: MSE=1.832e-02, MAE=7.576e-02, RMSE=1.353e-01, Cosine=0.951, R2=0.739, NMSE=0.181
+2025-04-23 20:27:38,163 - INFO - u_1D_Nonlinear_Convection.npy: MSE=2.925e-02, MAE=1.039e-01, RMSE=1.710e-01, Cosine=0.927, R2=0.690, NMSE=0.150
+2025-04-23 20:27:38,166 - INFO - u_2D_Burgers_Equation.npy: MSE=3.209e-07, MAE=1.561e-04, RMSE=5.665e-04, Cosine=1.000, R2=1.000, NMSE=0.000
+2025-04-23 20:27:38,169 - INFO - u_2D_Convection.npy: MSE=6.918e-05, MAE=2.087e-03, RMSE=8.318e-03, Cosine=1.000, R2=0.998, NMSE=0.000
+2025-04-23 20:27:38,172 - INFO - u_2D_Diffusion.npy: MSE=1.596e-02, MAE=7.557e-02, RMSE=1.263e-01, Cosine=0.996, R2=-0.557, NMSE=0.014
+2025-04-23 20:27:38,176 - INFO - u_2D_Inviscid_Burgers.npy: MSE=5.041e-04, MAE=4.746e-03, RMSE=2.245e-02, Cosine=1.000, R2=0.983, NMSE=0.000
+2025-04-23 20:27:38,180 - INFO - u_2D_Linear_Convection.npy: MSE=4.147e-02, MAE=6.722e-02, RMSE=2.036e-01, Cosine=0.984, R2=-0.122, NMSE=0.035
+2025-04-23 20:27:38,181 - ERROR - ❌ u_2D_Navier_Stokes_Cavity.npy failed: Input contains NaN.
+2025-04-23 20:27:38,182 - ERROR - ❌ u_2D_Navier_Stokes_Channel.npy failed: Input contains NaN.
+2025-04-23 20:27:38,182 - ERROR - ❌ u_2D_Rayleigh_Benard_Convection.npy failed: 'NoneType' object has no attribute 'shape'
+2025-04-23 20:27:38,183 - ERROR - ❌ u_2D_Shear_Flow_With_Tracer.npy failed: 'NoneType' object has no attribute 'shape'
+2025-04-23 20:27:38,186 - INFO - u_Fully_Developed_Turbulent_Channel_Flow.npy: MSE=1.366e+02, MAE=1.031e+01, RMSE=1.169e+01, Cosine=0.918, R2=-1.891, NMSE=0.689
+2025-04-23 20:27:38,189 - INFO - u_Lid_Driven_Cavity.npy: MSE=1.749e-05, MAE=2.410e-03, RMSE=4.182e-03, Cosine=1.000, R2=1.000, NMSE=0.000
+2025-04-23 20:27:38,192 - INFO - v_2D_Burgers_Equation.npy: MSE=3.209e-07, MAE=1.561e-04, RMSE=5.665e-04, Cosine=1.000, R2=1.000, NMSE=0.000
+2025-04-23 20:27:38,195 - INFO - v_2D_Convection.npy: MSE=6.918e-05, MAE=2.087e-03, RMSE=8.318e-03, Cosine=1.000, R2=0.998, NMSE=0.000
+2025-04-23 20:27:38,199 - INFO - v_2D_Inviscid_Burgers.npy: MSE=5.041e-04, MAE=4.746e-03, RMSE=2.245e-02, Cosine=1.000, R2=0.983, NMSE=0.000
+2025-04-23 20:27:38,200 - ERROR - ❌ v_2D_Navier_Stokes_Cavity.npy failed: Input contains NaN.
+2025-04-23 20:27:38,201 - ERROR - ❌ v_2D_Navier_Stokes_Channel.npy failed: Input contains NaN.
+2025-04-23 20:27:38,204 - INFO - v_Lid_Driven_Cavity.npy: MSE=1.318e-05, MAE=1.971e-03, RMSE=3.630e-03, Cosine=1.000, R2=0.999, NMSE=0.001
+2025-04-23 21:55:55,170 - INFO - ====== Starting Comparison ======
+2025-04-23 21:55:55,171 - INFO - Found 31 common files.
+2025-04-23 21:55:55,174 - INFO - T_2D_Steady_Heat_Equation.npy: MSE=3.387e+02, MAE=1.494e+01, RMSE=1.840e+01, Cosine=0.455, R2=-2.809, NMSE=1.277
+2025-04-23 21:55:55,176 - INFO - T_2D_Unsteady_Heat_Equation.npy: MSE=1.068e+03, MAE=1.127e+01, RMSE=3.268e+01, Cosine=0.691, R2=-1387.619, NMSE=260.757
+2025-04-23 21:55:55,178 - ERROR - ❌ b_2D_Rayleigh_Benard_Convection.npy failed: Input contains NaN.
+2025-04-23 21:55:55,180 - INFO - p_2D_Laplace_Equation.npy: MSE=4.592e-02, MAE=1.692e-01, RMSE=2.143e-01, Cosine=0.756, R2=-0.278, NMSE=0.488
+2025-04-23 21:55:55,180 - ERROR - ❌ p_2D_Navier_Stokes_Cavity.npy failed: Input contains NaN.
+2025-04-23 21:55:55,181 - ERROR - ❌ p_2D_Navier_Stokes_Channel.npy failed: Input contains NaN.
+2025-04-23 21:55:55,183 - INFO - p_2D_Poisson_Equation.npy: MSE=2.873e-06, MAE=1.155e-03, RMSE=1.695e-03, Cosine=0.880, R2=0.768, NMSE=0.232
+2025-04-23 21:55:55,184 - INFO - p_Lid_Driven_Cavity.npy: MSE=8.292e-04, MAE=1.135e-02, RMSE=2.880e-02, Cosine=0.999, R2=0.995, NMSE=0.005
+2025-04-23 21:55:55,185 - ERROR - ❌ s_2D_Shear_Flow_With_Tracer.npy failed: Input contains NaN.
+2025-04-23 21:55:55,187 - INFO - u_1D_Burgers_Equation.npy: MSE=9.273e-01, MAE=3.068e-01, RMSE=9.630e-01, Cosine=0.974, R2=0.378, NMSE=0.053
+2025-04-23 21:55:55,189 - INFO - u_1D_Diffusion.npy: MSE=4.536e-04, MAE=1.463e-02, RMSE=2.130e-02, Cosine=1.000, R2=0.996, NMSE=0.000
+2025-04-23 21:55:55,189 - ERROR - ❌ u_1D_KdV_Burgers_Equation.npy failed: Input contains NaN.
+2025-04-23 21:55:55,191 - INFO - u_1D_Linear_Convection.npy: MSE=1.832e-02, MAE=7.576e-02, RMSE=1.353e-01, Cosine=0.951, R2=0.739, NMSE=0.181
+2025-04-23 21:55:55,193 - INFO - u_1D_Nonlinear_Convection.npy: MSE=2.925e-02, MAE=1.039e-01, RMSE=1.710e-01, Cosine=0.927, R2=0.690, NMSE=0.150
+2025-04-23 21:55:55,194 - INFO - u_2D_Burgers_Equation.npy: MSE=3.209e-07, MAE=1.561e-04, RMSE=5.665e-04, Cosine=1.000, R2=1.000, NMSE=0.000
+2025-04-23 21:55:55,199 - INFO - u_2D_Convection.npy: MSE=6.918e-05, MAE=2.087e-03, RMSE=8.318e-03, Cosine=1.000, R2=0.998, NMSE=0.000
+2025-04-23 21:55:55,201 - INFO - u_2D_Diffusion.npy: MSE=1.596e-02, MAE=7.557e-02, RMSE=1.263e-01, Cosine=0.996, R2=-0.557, NMSE=0.014
+2025-04-23 21:55:55,207 - INFO - u_2D_Inviscid_Burgers.npy: MSE=5.041e-04, MAE=4.746e-03, RMSE=2.245e-02, Cosine=1.000, R2=0.983, NMSE=0.000
+2025-04-23 21:55:55,209 - INFO - u_2D_Linear_Convection.npy: MSE=4.147e-02, MAE=6.722e-02, RMSE=2.036e-01, Cosine=0.984, R2=-0.122, NMSE=0.035
+2025-04-23 21:55:55,210 - ERROR - ❌ u_2D_Navier_Stokes_Cavity.npy failed: Input contains NaN.
+2025-04-23 21:55:55,210 - ERROR - ❌ u_2D_Navier_Stokes_Channel.npy failed: Input contains NaN.
+2025-04-23 21:55:55,211 - ERROR - ❌ u_2D_Rayleigh_Benard_Convection.npy failed: 'NoneType' object has no attribute 'shape'
+2025-04-23 21:55:55,211 - ERROR - ❌ u_2D_Shear_Flow_With_Tracer.npy failed: 'NoneType' object has no attribute 'shape'
+2025-04-23 21:55:55,213 - INFO - u_Fully_Developed_Turbulent_Channel_Flow.npy: MSE=1.366e+02, MAE=1.031e+01, RMSE=1.169e+01, Cosine=0.918, R2=-1.891, NMSE=0.689
+2025-04-23 21:55:55,215 - INFO - u_Lid_Driven_Cavity.npy: MSE=1.749e-05, MAE=2.410e-03, RMSE=4.182e-03, Cosine=1.000, R2=1.000, NMSE=0.000
+2025-04-23 21:55:55,217 - INFO - v_2D_Burgers_Equation.npy: MSE=3.209e-07, MAE=1.561e-04, RMSE=5.665e-04, Cosine=1.000, R2=1.000, NMSE=0.000
+2025-04-23 21:55:55,219 - INFO - v_2D_Convection.npy: MSE=6.918e-05, MAE=2.087e-03, RMSE=8.318e-03, Cosine=1.000, R2=0.998, NMSE=0.000
+2025-04-23 21:55:55,223 - INFO - v_2D_Inviscid_Burgers.npy: MSE=5.041e-04, MAE=4.746e-03, RMSE=2.245e-02, Cosine=1.000, R2=0.983, NMSE=0.000
+2025-04-23 21:55:55,224 - ERROR - ❌ v_2D_Navier_Stokes_Cavity.npy failed: Input contains NaN.
+2025-04-23 21:55:55,224 - ERROR - ❌ v_2D_Navier_Stokes_Channel.npy failed: Input contains NaN.
+2025-04-23 21:55:55,226 - INFO - v_Lid_Driven_Cavity.npy: MSE=1.318e-05, MAE=1.971e-03, RMSE=3.630e-03, Cosine=1.000, R2=0.999, NMSE=0.001
+2025-04-23 21:55:55,238 - INFO - Found 31 common files.
+2025-04-23 21:56:07,914 - INFO - Found 31 common files.

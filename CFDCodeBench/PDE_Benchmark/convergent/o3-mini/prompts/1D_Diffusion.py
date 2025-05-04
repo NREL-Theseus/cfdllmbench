@@ -1,0 +1,33 @@
+#!/usr/bin/env python3
+import numpy as np
+
+# Parameters
+nu = 0.3                   # diffusion coefficient
+L = 2.0                    # length of the spatial domain [0,L]
+t_end = 0.0333             # final time
+nx = 804                   # number of spatial grid points
+dx = L / (nx - 1)          # spatial step size
+
+# Stability condition for the explicit diffusion scheme: dt <= dx^2/(2*nu)
+dt = 0.5 * dx**2 / nu      # choose dt safely below the stability limit
+nsteps = int(t_end / dt)   # number of time steps
+
+# Spatial mesh
+x = np.linspace(0, L, nx)
+
+# Initial condition: u(x,0) = 2 for 0.5 <= x <= 1, and 1 elsewhere
+u = np.ones(nx)
+u[(x >= 0.5) & (x <= 1.0)] = 2.0
+
+# Time integration loop using forward Euler and central differences
+for step in range(nsteps):
+    u_new = u.copy()
+    # update interior points
+    u_new[1:-1] = u[1:-1] + dt * nu * (u[2:] - 2*u[1:-1] + u[:-2]) / dx**2
+    # apply Dirichlet BC: u(0)=1, u(L)=1 (consistent with initial condition outside [0.5, 1])
+    u_new[0] = 1.0
+    u_new[-1] = 1.0
+    u = u_new
+
+# Save the final solution as a 1D NumPy array in 'u.npy'
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/o3-mini/prompts/u_1D_Diffusion.npy', u)

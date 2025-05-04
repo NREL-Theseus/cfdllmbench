@@ -1,0 +1,47 @@
+```python
+import numpy as np
+
+def solve_kdv_burgers():
+    # Parameters
+    L = 10.0
+    T = 10.0
+    nx = 200
+    nt = 5000
+    a = 1e-4
+    b = 2e-4
+    n = 20
+
+    dx = L / nx
+    dt = T / nt
+
+    # Spatial grid
+    x = np.linspace(0, L, nx, endpoint=False)
+
+    # Initial condition
+    u = 0.5 / n * np.log(1 + np.cosh(n)**2 / np.cosh(n * (x - 0.2 * L))**2)
+
+    # Numerical solution using finite difference method
+    for _ in range(nt):
+        u_new = np.copy(u)
+        for i in range(nx):
+            # Periodic boundary conditions
+            i_minus_1 = (i - 1) % nx
+            i_plus_1 = (i + 1) % nx
+            i_plus_2 = (i + 2) % nx
+            i_minus_2 = (i - 2) % nx
+
+            # Spatial derivatives (central difference)
+            du_dx = (u[i_plus_1] - u[i_minus_1]) / (2 * dx)
+            d2u_dx2 = (u[i_plus_1] - 2 * u[i] + u[i_minus_1]) / (dx**2)
+            d3u_dx3 = (-u[i_minus_2] + 2 * u[i_minus_1] - 2 * u[i_plus_1] + u[i_plus_2]) / (2 * dx**3)
+
+            # Update using forward Euler
+            u_new[i] = u[i] + dt * (-u[i] * du_dx + a * d2u_dx2 + b * d3u_dx3)
+
+        u = u_new
+
+    # Save the final solution
+    np.save('u.npy', u)
+
+solve_kdv_burgers()
+```

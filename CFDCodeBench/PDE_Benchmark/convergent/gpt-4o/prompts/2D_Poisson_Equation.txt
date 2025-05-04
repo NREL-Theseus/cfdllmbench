@@ -1,0 +1,46 @@
+```python
+import numpy as np
+
+# Domain parameters
+Lx, Ly = 2.0, 1.0
+nx, ny = 101, 51  # Number of grid points
+dx, dy = Lx / (nx - 1), Ly / (ny - 1)
+
+# Create grid
+x = np.linspace(0, Lx, nx)
+y = np.linspace(0, Ly, ny)
+
+# Initialize p and b
+p = np.zeros((ny, nx))
+b = np.zeros((ny, nx))
+
+# Set source term b
+b[int(ny / 4), int(nx / 4)] = 100
+b[int(3 * ny / 4), int(3 * nx / 4)] = -100
+
+# Finite difference method parameters
+tolerance = 1e-5
+max_iterations = 10000
+
+# Iterative solver (Gauss-Seidel)
+for it in range(max_iterations):
+    p_old = p.copy()
+    for j in range(1, ny - 1):
+        for i in range(1, nx - 1):
+            p[j, i] = ((p_old[j, i + 1] + p[j, i - 1]) * dy**2 +
+                       (p_old[j + 1, i] + p[j - 1, i]) * dx**2 -
+                       b[j, i] * dx**2 * dy**2) / (2 * (dx**2 + dy**2))
+    
+    # Apply boundary conditions
+    p[0, :] = 0
+    p[-1, :] = 0
+    p[:, 0] = 0
+    p[:, -1] = 0
+    
+    # Check for convergence
+    if np.linalg.norm(p - p_old, ord=np.inf) < tolerance:
+        break
+
+# Save the final solution
+np.save('p.npy', p)
+```

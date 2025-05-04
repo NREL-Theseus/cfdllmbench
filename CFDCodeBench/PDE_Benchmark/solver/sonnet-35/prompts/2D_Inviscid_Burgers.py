@@ -1,0 +1,75 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Problem Parameters
+Lx, Ly = 2.0, 2.0  # Domain size
+nx, ny = 100, 100  # Grid points
+nt = 200  # Time steps
+dt = 0.4 / nt  # Time step size
+dx, dy = Lx / (nx-1), Ly / (ny-1)  # Spatial step sizes
+
+# Initialize solution arrays
+u = np.ones((ny, nx))
+v = np.ones((ny, nx))
+
+# Initial Condition
+for i in range(ny):
+    for j in range(nx):
+        x, y = j*dx, i*dy
+        if 0.5 <= x <= 1.0 and 0.5 <= y <= 1.0:
+            u[i,j] = 2.0
+            v[i,j] = 2.0
+
+# Boundary Conditions (Dirichlet)
+u[0,:] = 1.0
+u[-1,:] = 1.0
+u[:,0] = 1.0
+u[:,-1] = 1.0
+v[0,:] = 1.0
+v[-1,:] = 1.0
+v[:,0] = 1.0
+v[:,-1] = 1.0
+
+# Finite Difference Method (Lax-Wendroff)
+def lax_wendroff_2d(u, v):
+    un = u.copy()
+    vn = v.copy()
+    
+    for it in range(nt):
+        # Compute fluxes
+        uf = np.zeros_like(u)
+        vf = np.zeros_like(v)
+        
+        # x-direction flux
+        for i in range(1, ny-1):
+            for j in range(1, nx-1):
+                uf[i,j] = 0.5 * (u[i,j+1] + u[i,j]) - \
+                          0.5 * dt/dx * (u[i,j+1]**2 - u[i,j-1]**2) - \
+                          0.5 * dt/dy * (u[i+1,j] * v[i+1,j] - u[i-1,j] * v[i-1,j])
+                
+                vf[i,j] = 0.5 * (v[i,j+1] + v[i,j]) - \
+                          0.5 * dt/dx * (v[i,j+1] * u[i,j+1] - v[i,j-1] * u[i,j-1]) - \
+                          0.5 * dt/dy * (v[i+1,j]**2 - v[i-1,j]**2)
+        
+        # Update solution
+        u[1:-1,1:-1] = uf[1:-1,1:-1]
+        v[1:-1,1:-1] = vf[1:-1,1:-1]
+        
+        # Enforce boundary conditions
+        u[0,:] = 1.0
+        u[-1,:] = 1.0
+        u[:,0] = 1.0
+        u[:,-1] = 1.0
+        v[0,:] = 1.0
+        v[-1,:] = 1.0
+        v[:,0] = 1.0
+        v[:,-1] = 1.0
+    
+    return u, v
+
+# Solve
+u_final, v_final = lax_wendroff_2d(u, v)
+
+# Save final solutions
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/sonnet-35/prompts/u_final_2D_Inviscid_Burgers.npy', u_final)
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/sonnet-35/prompts/v_final_2D_Inviscid_Burgers.npy', v_final)

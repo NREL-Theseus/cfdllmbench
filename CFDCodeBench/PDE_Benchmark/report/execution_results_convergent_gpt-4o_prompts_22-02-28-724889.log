@@ -1,0 +1,572 @@
+====== Execution Results for Generated Solvers ======
+
+--- Running: 2D_Steady_Heat_Equation.py ---
+Exception occurred while logging execution: 'NoneType' object has no attribute 'returncode'
+
+
+====== Execution Summary ======
+Total Scripts Passed: 0
+Total Scripts Failed: 1
+--- Running: 1D_Linear_Convection.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 1
+Total Scripts Failed: 1
+--- Running: 2D_Unsteady_Heat_Equation.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 2
+Total Scripts Failed: 1
+--- Running: Fully_Developed_Turbulent_Channel_Flow.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 3
+Total Scripts Failed: 1
+--- Running: 2D_Inviscid_Burgers.py ---
+Exit Code: 0
+Output:
+
+Errors:
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Inviscid_Burgers.py:26: RuntimeWarning: overflow encountered in multiply
+  dt / dx * un[1:, 1:] * (un[1:, 1:] - un[1:, :-1]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Inviscid_Burgers.py:27: RuntimeWarning: overflow encountered in multiply
+  dt / dy * vn[1:, 1:] * (un[1:, 1:] - un[:-1, 1:]))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Inviscid_Burgers.py:25: RuntimeWarning: invalid value encountered in subtract
+  u[1:, 1:] = (un[1:, 1:] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Inviscid_Burgers.py:30: RuntimeWarning: overflow encountered in multiply
+  dt / dx * un[1:, 1:] * (vn[1:, 1:] - vn[1:, :-1]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Inviscid_Burgers.py:31: RuntimeWarning: overflow encountered in multiply
+  dt / dy * vn[1:, 1:] * (vn[1:, 1:] - vn[:-1, 1:]))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Inviscid_Burgers.py:29: RuntimeWarning: invalid value encountered in subtract
+  v[1:, 1:] = (vn[1:, 1:] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Inviscid_Burgers.py:26: RuntimeWarning: invalid value encountered in subtract
+  dt / dx * un[1:, 1:] * (un[1:, 1:] - un[1:, :-1]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Inviscid_Burgers.py:30: RuntimeWarning: invalid value encountered in subtract
+  dt / dx * un[1:, 1:] * (vn[1:, 1:] - vn[1:, :-1]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Inviscid_Burgers.py:27: RuntimeWarning: invalid value encountered in subtract
+  dt / dy * vn[1:, 1:] * (un[1:, 1:] - un[:-1, 1:]))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Inviscid_Burgers.py:31: RuntimeWarning: invalid value encountered in subtract
+  dt / dy * vn[1:, 1:] * (vn[1:, 1:] - vn[:-1, 1:]))
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 3
+Total Scripts Failed: 2
+--- Running: Lane_Emden_Equation.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 4
+Total Scripts Failed: 2
+--- Running: 1D_Burgers_Equation.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 5
+Total Scripts Failed: 2
+--- Running: 2D_Diffusion.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 6
+Total Scripts Failed: 2
+--- Running: 2D_Shear_Flow_With_Tracer.py ---
+Exit Code: 0
+Output:
+
+Errors:
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:51: RuntimeWarning: overflow encountered in multiply
+  u_new = u + dt * (-u * u_x - w * u_z + nu * (u_xx + u_zz))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:51: RuntimeWarning: invalid value encountered in subtract
+  u_new = u + dt * (-u * u_x - w * u_z + nu * (u_xx + u_zz))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:52: RuntimeWarning: overflow encountered in multiply
+  w_new = w + dt * (-u * w_x - w * w_z + nu * (w_xx + w_zz))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:52: RuntimeWarning: invalid value encountered in subtract
+  w_new = w + dt * (-u * w_x - w * w_z + nu * (w_xx + w_zz))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:53: RuntimeWarning: overflow encountered in multiply
+  s_new = s + dt * (-u * s_x - w * s_z + D * (s_xx + s_zz))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:53: RuntimeWarning: invalid value encountered in subtract
+  s_new = s + dt * (-u * s_x - w * s_z + D * (s_xx + s_zz))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:35: RuntimeWarning: invalid value encountered in subtract
+  u_x = (np.roll(u, -1, axis=0) - np.roll(u, 1, axis=0)) / (2 * dx)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:37: RuntimeWarning: invalid value encountered in subtract
+  w_x = (np.roll(w, -1, axis=0) - np.roll(w, 1, axis=0)) / (2 * dx)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:40: RuntimeWarning: invalid value encountered in subtract
+  u_xx = (np.roll(u, -1, axis=0) - 2 * u + np.roll(u, 1, axis=0)) / (dx ** 2)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:40: RuntimeWarning: invalid value encountered in add
+  u_xx = (np.roll(u, -1, axis=0) - 2 * u + np.roll(u, 1, axis=0)) / (dx ** 2)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:41: RuntimeWarning: invalid value encountered in subtract
+  u_zz = (np.roll(u, -1, axis=1) - 2 * u + np.roll(u, 1, axis=1)) / (dz ** 2)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:41: RuntimeWarning: invalid value encountered in add
+  u_zz = (np.roll(u, -1, axis=1) - 2 * u + np.roll(u, 1, axis=1)) / (dz ** 2)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:42: RuntimeWarning: invalid value encountered in subtract
+  w_xx = (np.roll(w, -1, axis=0) - 2 * w + np.roll(w, 1, axis=0)) / (dx ** 2)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:42: RuntimeWarning: invalid value encountered in add
+  w_xx = (np.roll(w, -1, axis=0) - 2 * w + np.roll(w, 1, axis=0)) / (dx ** 2)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:43: RuntimeWarning: invalid value encountered in subtract
+  w_zz = (np.roll(w, -1, axis=1) - 2 * w + np.roll(w, 1, axis=1)) / (dz ** 2)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:43: RuntimeWarning: invalid value encountered in add
+  w_zz = (np.roll(w, -1, axis=1) - 2 * w + np.roll(w, 1, axis=1)) / (dz ** 2)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:45: RuntimeWarning: invalid value encountered in subtract
+  s_x = (np.roll(s, -1, axis=0) - np.roll(s, 1, axis=0)) / (2 * dx)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:47: RuntimeWarning: invalid value encountered in subtract
+  s_xx = (np.roll(s, -1, axis=0) - 2 * s + np.roll(s, 1, axis=0)) / (dx ** 2)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:47: RuntimeWarning: invalid value encountered in add
+  s_xx = (np.roll(s, -1, axis=0) - 2 * s + np.roll(s, 1, axis=0)) / (dx ** 2)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:48: RuntimeWarning: invalid value encountered in subtract
+  s_zz = (np.roll(s, -1, axis=1) - 2 * s + np.roll(s, 1, axis=1)) / (dz ** 2)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:48: RuntimeWarning: invalid value encountered in add
+  s_zz = (np.roll(s, -1, axis=1) - 2 * s + np.roll(s, 1, axis=1)) / (dz ** 2)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:51: RuntimeWarning: invalid value encountered in add
+  u_new = u + dt * (-u * u_x - w * u_z + nu * (u_xx + u_zz))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:52: RuntimeWarning: invalid value encountered in add
+  w_new = w + dt * (-u * w_x - w * w_z + nu * (w_xx + w_zz))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:53: RuntimeWarning: invalid value encountered in add
+  s_new = s + dt * (-u * s_x - w * s_z + D * (s_xx + s_zz))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:51: RuntimeWarning: invalid value encountered in multiply
+  u_new = u + dt * (-u * u_x - w * u_z + nu * (u_xx + u_zz))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:52: RuntimeWarning: invalid value encountered in multiply
+  w_new = w + dt * (-u * w_x - w * w_z + nu * (w_xx + w_zz))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:53: RuntimeWarning: invalid value encountered in multiply
+  s_new = s + dt * (-u * s_x - w * s_z + D * (s_xx + s_zz))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:36: RuntimeWarning: invalid value encountered in subtract
+  u_z = (np.roll(u, -1, axis=1) - np.roll(u, 1, axis=1)) / (2 * dz)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:38: RuntimeWarning: invalid value encountered in subtract
+  w_z = (np.roll(w, -1, axis=1) - np.roll(w, 1, axis=1)) / (2 * dz)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:42: RuntimeWarning: overflow encountered in divide
+  w_xx = (np.roll(w, -1, axis=0) - 2 * w + np.roll(w, 1, axis=0)) / (dx ** 2)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:43: RuntimeWarning: overflow encountered in divide
+  w_zz = (np.roll(w, -1, axis=1) - 2 * w + np.roll(w, 1, axis=1)) / (dz ** 2)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:46: RuntimeWarning: invalid value encountered in subtract
+  s_z = (np.roll(s, -1, axis=1) - np.roll(s, 1, axis=1)) / (2 * dz)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:40: RuntimeWarning: overflow encountered in divide
+  u_xx = (np.roll(u, -1, axis=0) - 2 * u + np.roll(u, 1, axis=0)) / (dx ** 2)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:41: RuntimeWarning: overflow encountered in divide
+  u_zz = (np.roll(u, -1, axis=1) - 2 * u + np.roll(u, 1, axis=1)) / (dz ** 2)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:47: RuntimeWarning: overflow encountered in divide
+  s_xx = (np.roll(s, -1, axis=0) - 2 * s + np.roll(s, 1, axis=0)) / (dx ** 2)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Shear_Flow_With_Tracer.py:48: RuntimeWarning: overflow encountered in divide
+  s_zz = (np.roll(s, -1, axis=1) - 2 * s + np.roll(s, 1, axis=1)) / (dz ** 2)
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 6
+Total Scripts Failed: 3
+--- Running: 2D_Convection.py ---
+Exit Code: 0
+Output:
+
+Errors:
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Convection.py:29: RuntimeWarning: overflow encountered in multiply
+  dt / dx * un[1:-1, 1:-1] * (un[1:-1, 1:-1] - un[1:-1, :-2]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Convection.py:30: RuntimeWarning: overflow encountered in multiply
+  dt / dy * vn[1:-1, 1:-1] * (un[1:-1, 1:-1] - un[:-2, 1:-1]))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Convection.py:28: RuntimeWarning: invalid value encountered in subtract
+  u[1:-1, 1:-1] = (un[1:-1, 1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Convection.py:33: RuntimeWarning: overflow encountered in multiply
+  dt / dx * un[1:-1, 1:-1] * (vn[1:-1, 1:-1] - vn[1:-1, :-2]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Convection.py:34: RuntimeWarning: overflow encountered in multiply
+  dt / dy * vn[1:-1, 1:-1] * (vn[1:-1, 1:-1] - vn[:-2, 1:-1]))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Convection.py:32: RuntimeWarning: invalid value encountered in subtract
+  v[1:-1, 1:-1] = (vn[1:-1, 1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Convection.py:29: RuntimeWarning: invalid value encountered in subtract
+  dt / dx * un[1:-1, 1:-1] * (un[1:-1, 1:-1] - un[1:-1, :-2]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Convection.py:33: RuntimeWarning: invalid value encountered in subtract
+  dt / dx * un[1:-1, 1:-1] * (vn[1:-1, 1:-1] - vn[1:-1, :-2]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Convection.py:30: RuntimeWarning: invalid value encountered in subtract
+  dt / dy * vn[1:-1, 1:-1] * (un[1:-1, 1:-1] - un[:-2, 1:-1]))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Convection.py:34: RuntimeWarning: invalid value encountered in subtract
+  dt / dy * vn[1:-1, 1:-1] * (vn[1:-1, 1:-1] - vn[:-2, 1:-1]))
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 6
+Total Scripts Failed: 4
+--- Running: 1D_KdV_Burgers_Equation.py ---
+Exit Code: 0
+Output:
+
+Errors:
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/1D_KdV_Burgers_Equation.py:36: RuntimeWarning: overflow encountered in multiply
+  u = u - dt * (0.5 * (u * u_x) / dx - a * u_xx / dx**2 + b * u_xxx / dx**3)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/1D_KdV_Burgers_Equation.py:26: RuntimeWarning: invalid value encountered in subtract
+  u_x = np.roll(u, -1) - np.roll(u, 1)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/1D_KdV_Burgers_Equation.py:27: RuntimeWarning: invalid value encountered in subtract
+  u_xx = np.roll(u, -1) - 2 * u + np.roll(u, 1)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/1D_KdV_Burgers_Equation.py:27: RuntimeWarning: invalid value encountered in add
+  u_xx = np.roll(u, -1) - 2 * u + np.roll(u, 1)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/1D_KdV_Burgers_Equation.py:28: RuntimeWarning: invalid value encountered in subtract
+  u_xxx = np.roll(u, -2) - 2 * np.roll(u, -1) + 2 * np.roll(u, 1) - np.roll(u, 2)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/1D_KdV_Burgers_Equation.py:28: RuntimeWarning: invalid value encountered in add
+  u_xxx = np.roll(u, -2) - 2 * np.roll(u, -1) + 2 * np.roll(u, 1) - np.roll(u, 2)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/1D_KdV_Burgers_Equation.py:36: RuntimeWarning: invalid value encountered in subtract
+  u = u - dt * (0.5 * (u * u_x) / dx - a * u_xx / dx**2 + b * u_xxx / dx**3)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/1D_KdV_Burgers_Equation.py:36: RuntimeWarning: invalid value encountered in add
+  u = u - dt * (0.5 * (u * u_x) / dx - a * u_xx / dx**2 + b * u_xxx / dx**3)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/1D_KdV_Burgers_Equation.py:36: RuntimeWarning: overflow encountered in divide
+  u = u - dt * (0.5 * (u * u_x) / dx - a * u_xx / dx**2 + b * u_xxx / dx**3)
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 6
+Total Scripts Failed: 5
+--- Running: 2D_Poisson_Equation.py ---
+Exception occurred while logging execution: 'NoneType' object has no attribute 'returncode'
+
+
+====== Execution Summary ======
+Total Scripts Passed: 6
+Total Scripts Failed: 6
+--- Running: 1D_Diffusion.py ---
+Exit Code: 1
+Output:
+
+Errors:
+Traceback (most recent call last):
+  File "/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/1D_Diffusion.py", line 13, in <module>
+    assert nu * dt / dx**2 <= 0.5, "Stability condition not met!"
+AssertionError: Stability condition not met!
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 6
+Total Scripts Failed: 7
+--- Running: Flow_Past_Circular_Cylinder.py ---
+Exception occurred while logging execution: 'NoneType' object has no attribute 'returncode'
+
+
+====== Execution Summary ======
+Total Scripts Passed: 6
+Total Scripts Failed: 8
+--- Running: 2D_Navier_Stokes_Channel.py ---
+Exit Code: 0
+Output:
+
+Errors:
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:24: RuntimeWarning: overflow encountered in square
+  ((u[1:-1, 2:] - u[1:-1, 0:-2]) / (2 * dx))**2 -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:25: RuntimeWarning: overflow encountered in multiply
+  2 * ((u[2:, 1:-1] - u[0:-2, 1:-1]) / (2 * dy) *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:25: RuntimeWarning: overflow encountered in divide
+  2 * ((u[2:, 1:-1] - u[0:-2, 1:-1]) / (2 * dy) *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:21: RuntimeWarning: invalid value encountered in subtract
+  b[1:-1, 1:-1] = (rho * (1 / dt *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:27: RuntimeWarning: overflow encountered in square
+  ((v[2:, 1:-1] - v[0:-2, 1:-1]) / (2 * dy))**2))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:36: RuntimeWarning: invalid value encountered in add
+  (pn[2:, 1:-1] + pn[0:-2, 1:-1]) * dx**2) /
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:35: RuntimeWarning: invalid value encountered in add
+  p[1:-1, 1:-1] = (((pn[1:-1, 2:] + pn[1:-1, 0:-2]) * dy**2 +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:35: RuntimeWarning: invalid value encountered in subtract
+  p[1:-1, 1:-1] = (((pn[1:-1, 2:] + pn[1:-1, 0:-2]) * dy**2 +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:63: RuntimeWarning: overflow encountered in multiply
+  un[1:-1, 1:-1] * dt / dx *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:65: RuntimeWarning: overflow encountered in multiply
+  vn[1:-1, 1:-1] * dt / dy *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:62: RuntimeWarning: overflow encountered in subtract
+  u[1:-1, 1:-1] = (un[1:-1, 1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:62: RuntimeWarning: invalid value encountered in subtract
+  u[1:-1, 1:-1] = (un[1:-1, 1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:67: RuntimeWarning: invalid value encountered in subtract
+  dt / (2 * rho * dx) * (p[1:-1, 2:] - p[1:-1, 0:-2]) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:75: RuntimeWarning: overflow encountered in multiply
+  un[1:-1, 1:-1] * dt / dx *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:77: RuntimeWarning: overflow encountered in multiply
+  vn[1:-1, 1:-1] * dt / dy *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:74: RuntimeWarning: invalid value encountered in subtract
+  v[1:-1, 1:-1] = (vn[1:-1, 1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:79: RuntimeWarning: invalid value encountered in subtract
+  dt / (2 * rho * dy) * (p[2:, 1:-1] - p[0:-2, 1:-1]) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:25: RuntimeWarning: invalid value encountered in subtract
+  2 * ((u[2:, 1:-1] - u[0:-2, 1:-1]) / (2 * dy) *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:64: RuntimeWarning: invalid value encountered in subtract
+  (un[1:-1, 1:-1] - un[1:-1, 0:-2]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:66: RuntimeWarning: invalid value encountered in subtract
+  (un[1:-1, 1:-1] - un[0:-2, 1:-1]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:69: RuntimeWarning: invalid value encountered in subtract
+  (un[1:-1, 2:] - 2 * un[1:-1, 1:-1] + un[1:-1, 0:-2]) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:69: RuntimeWarning: invalid value encountered in add
+  (un[1:-1, 2:] - 2 * un[1:-1, 1:-1] + un[1:-1, 0:-2]) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:71: RuntimeWarning: invalid value encountered in subtract
+  (un[2:, 1:-1] - 2 * un[1:-1, 1:-1] + un[0:-2, 1:-1])) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:71: RuntimeWarning: invalid value encountered in add
+  (un[2:, 1:-1] - 2 * un[1:-1, 1:-1] + un[0:-2, 1:-1])) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:76: RuntimeWarning: invalid value encountered in subtract
+  (vn[1:-1, 1:-1] - vn[1:-1, 0:-2]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:78: RuntimeWarning: invalid value encountered in subtract
+  (vn[1:-1, 1:-1] - vn[0:-2, 1:-1]) -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:81: RuntimeWarning: invalid value encountered in subtract
+  (vn[1:-1, 2:] - 2 * vn[1:-1, 1:-1] + vn[1:-1, 0:-2]) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:81: RuntimeWarning: invalid value encountered in add
+  (vn[1:-1, 2:] - 2 * vn[1:-1, 1:-1] + vn[1:-1, 0:-2]) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:83: RuntimeWarning: invalid value encountered in subtract
+  (vn[2:, 1:-1] - 2 * vn[1:-1, 1:-1] + vn[0:-2, 1:-1])))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Channel.py:83: RuntimeWarning: invalid value encountered in add
+  (vn[2:, 1:-1] - 2 * vn[1:-1, 1:-1] + vn[0:-2, 1:-1])))
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 6
+Total Scripts Failed: 9
+--- Running: 2D_Laplace_Equation.py ---
+Exception occurred while logging execution: 'NoneType' object has no attribute 'returncode'
+
+
+====== Execution Summary ======
+Total Scripts Passed: 6
+Total Scripts Failed: 10
+--- Running: 2D_Rayleigh_Benard_Convection.py ---
+Exit Code: 0
+Output:
+
+Errors:
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Rayleigh_Benard_Convection.py:53: RuntimeWarning: overflow encountered in multiply
+  w_adv = u * w_x + w * w_z
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Rayleigh_Benard_Convection.py:54: RuntimeWarning: overflow encountered in multiply
+  b_adv = u * b_x + w * b_z
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Rayleigh_Benard_Convection.py:41: RuntimeWarning: invalid value encountered in subtract
+  grad_z[:, 1:-1] = (arr[:, 2:] - arr[:, :-2]) / (2 * dz)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Rayleigh_Benard_Convection.py:52: RuntimeWarning: invalid value encountered in multiply
+  u_adv = u * u_x + w * u_z
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Rayleigh_Benard_Convection.py:53: RuntimeWarning: invalid value encountered in multiply
+  w_adv = u * w_x + w * w_z
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Rayleigh_Benard_Convection.py:54: RuntimeWarning: invalid value encountered in multiply
+  b_adv = u * b_x + w * b_z
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Rayleigh_Benard_Convection.py:34: RuntimeWarning: invalid value encountered in subtract
+  (arr[1:-1, 2:] - 2 * arr[1:-1, 1:-1] + arr[1:-1, :-2]) / dz**2
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Rayleigh_Benard_Convection.py:34: RuntimeWarning: invalid value encountered in add
+  (arr[1:-1, 2:] - 2 * arr[1:-1, 1:-1] + arr[1:-1, :-2]) / dz**2
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Rayleigh_Benard_Convection.py:63: RuntimeWarning: invalid value encountered in add
+  w[1:-1, 1:-1] += dt * (-w_adv[1:-1, 1:-1] + nu * w_lap[1:-1, 1:-1] + b[1:-1, 1:-1])
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Rayleigh_Benard_Convection.py:64: RuntimeWarning: invalid value encountered in add
+  b[1:-1, 1:-1] += dt * (-b_adv[1:-1, 1:-1] + kappa * b_lap[1:-1, 1:-1])
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Rayleigh_Benard_Convection.py:33: RuntimeWarning: invalid value encountered in subtract
+  lap[1:-1, 1:-1] = (arr[2:, 1:-1] - 2 * arr[1:-1, 1:-1] + arr[:-2, 1:-1]) / dx**2 + \
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Rayleigh_Benard_Convection.py:33: RuntimeWarning: invalid value encountered in add
+  lap[1:-1, 1:-1] = (arr[2:, 1:-1] - 2 * arr[1:-1, 1:-1] + arr[:-2, 1:-1]) / dx**2 + \
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 6
+Total Scripts Failed: 11
+--- Running: Lid_Driven_Cavity.py ---
+Exit Code: 0
+Output:
+
+Errors:
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/Lid_Driven_Cavity.py:23: RuntimeWarning: overflow encountered in square
+  ((u[1:-1, 2:] - u[1:-1, 0:-2]) / (2 * dx))**2 -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/Lid_Driven_Cavity.py:24: RuntimeWarning: overflow encountered in multiply
+  2 * ((u[2:, 1:-1] - u[0:-2, 1:-1]) / (2 * dy) *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/Lid_Driven_Cavity.py:20: RuntimeWarning: invalid value encountered in subtract
+  b[1:-1, 1:-1] = (rho * (1 / dt *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/Lid_Driven_Cavity.py:26: RuntimeWarning: overflow encountered in square
+  ((v[2:, 1:-1] - v[0:-2, 1:-1]) / (2 * dy))**2))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/Lid_Driven_Cavity.py:60: RuntimeWarning: overflow encountered in multiply
+  un[1:-1, 1:-1] * dt / dx *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/Lid_Driven_Cavity.py:62: RuntimeWarning: overflow encountered in multiply
+  vn[1:-1, 1:-1] * dt / dy *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/Lid_Driven_Cavity.py:59: RuntimeWarning: invalid value encountered in subtract
+  u[1:-1, 1:-1] = (un[1:-1, 1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/Lid_Driven_Cavity.py:64: RuntimeWarning: invalid value encountered in subtract
+  dt / (2 * rho * dx) * (p[1:-1, 2:] - p[1:-1, 0:-2]) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/Lid_Driven_Cavity.py:71: RuntimeWarning: overflow encountered in multiply
+  un[1:-1, 1:-1] * dt / dx *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/Lid_Driven_Cavity.py:73: RuntimeWarning: overflow encountered in multiply
+  vn[1:-1, 1:-1] * dt / dy *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/Lid_Driven_Cavity.py:70: RuntimeWarning: invalid value encountered in subtract
+  v[1:-1, 1:-1] = (vn[1:-1, 1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/Lid_Driven_Cavity.py:75: RuntimeWarning: invalid value encountered in subtract
+  dt / (2 * rho * dy) * (p[2:, 1:-1] - p[0:-2, 1:-1]) +
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 6
+Total Scripts Failed: 12
+--- Running: 1D_Nonlinear_Convection.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 7
+Total Scripts Failed: 12
+--- Running: 2D_Navier_Stokes_Cavity.py ---
+Exit Code: 0
+Output:
+
+Errors:
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Cavity.py:25: RuntimeWarning: overflow encountered in square
+  ((u[1:-1, 2:] - u[1:-1, 0:-2]) / (2 * dx))**2 -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Cavity.py:26: RuntimeWarning: overflow encountered in multiply
+  2 * ((u[2:, 1:-1] - u[0:-2, 1:-1]) / (2 * dy) *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Cavity.py:26: RuntimeWarning: overflow encountered in divide
+  2 * ((u[2:, 1:-1] - u[0:-2, 1:-1]) / (2 * dy) *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Cavity.py:22: RuntimeWarning: overflow encountered in subtract
+  b[1:-1, 1:-1] = (rho * (1 / dt *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Cavity.py:22: RuntimeWarning: invalid value encountered in subtract
+  b[1:-1, 1:-1] = (rho * (1 / dt *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Cavity.py:28: RuntimeWarning: overflow encountered in square
+  ((v[2:, 1:-1] - v[0:-2, 1:-1]) / (2 * dy))**2))
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Cavity.py:62: RuntimeWarning: overflow encountered in multiply
+  un[1:-1, 1:-1] * dt / dx *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Cavity.py:64: RuntimeWarning: overflow encountered in multiply
+  vn[1:-1, 1:-1] * dt / dy *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Cavity.py:61: RuntimeWarning: overflow encountered in subtract
+  u[1:-1, 1:-1] = (un[1:-1, 1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Cavity.py:61: RuntimeWarning: invalid value encountered in subtract
+  u[1:-1, 1:-1] = (un[1:-1, 1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Cavity.py:66: RuntimeWarning: invalid value encountered in subtract
+  dt / (2 * rho * dx) * (p[1:-1, 2:] - p[1:-1, 0:-2]) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Cavity.py:73: RuntimeWarning: overflow encountered in multiply
+  un[1:-1, 1:-1] * dt / dx *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Cavity.py:75: RuntimeWarning: overflow encountered in multiply
+  vn[1:-1, 1:-1] * dt / dy *
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Cavity.py:72: RuntimeWarning: overflow encountered in subtract
+  v[1:-1, 1:-1] = (vn[1:-1, 1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Cavity.py:72: RuntimeWarning: invalid value encountered in subtract
+  v[1:-1, 1:-1] = (vn[1:-1, 1:-1] -
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/2D_Navier_Stokes_Cavity.py:77: RuntimeWarning: invalid value encountered in subtract
+  dt / (2 * rho * dy) * (p[2:, 1:-1] - p[0:-2, 1:-1]) +
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 7
+Total Scripts Failed: 13
+--- Running: Pipe_Flow_Disk_EVP.py ---
+Exception occurred while logging execution: 'NoneType' object has no attribute 'returncode'
+
+
+====== Execution Summary ======
+Total Scripts Passed: 7
+Total Scripts Failed: 14
+--- Running: 2D_Linear_Convection.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 8
+Total Scripts Failed: 14
+--- Running: 2D_Burgers_Equation.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 9
+Total Scripts Failed: 14
+--- Running: 1D_Euler_Shock_Tube.py ---
+Exit Code: 0
+Output:
+
+Errors:
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/1D_Euler_Shock_Tube.py:34: RuntimeWarning: overflow encountered in square
+  F2 = U2**2 / U1 + (gamma - 1) * (U3 - 0.5 * U2**2 / U1)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/1D_Euler_Shock_Tube.py:34: RuntimeWarning: invalid value encountered in add
+  F2 = U2**2 / U1 + (gamma - 1) * (U3 - 0.5 * U2**2 / U1)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/1D_Euler_Shock_Tube.py:35: RuntimeWarning: overflow encountered in square
+  F3 = (U3 + (gamma - 1) * (U3 - 0.5 * U2**2 / U1)) * U2 / U1
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/1D_Euler_Shock_Tube.py:35: RuntimeWarning: overflow encountered in multiply
+  F3 = (U3 + (gamma - 1) * (U3 - 0.5 * U2**2 / U1)) * U2 / U1
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/1D_Euler_Shock_Tube.py:40: RuntimeWarning: invalid value encountered in subtract
+  U3[1:-1] -= dt / dx * (F3[1:-1] - F3[:-2])
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/1D_Euler_Shock_Tube.py:34: RuntimeWarning: invalid value encountered in subtract
+  F2 = U2**2 / U1 + (gamma - 1) * (U3 - 0.5 * U2**2 / U1)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/gpt-4o/prompts/1D_Euler_Shock_Tube.py:35: RuntimeWarning: invalid value encountered in subtract
+  F3 = (U3 + (gamma - 1) * (U3 - 0.5 * U2**2 / U1)) * U2 / U1
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 9
+Total Scripts Failed: 15

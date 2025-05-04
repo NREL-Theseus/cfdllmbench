@@ -1,0 +1,52 @@
+```python
+import numpy as np
+
+# Constants
+gamma = 1.4
+
+# Domain
+x_start, x_end = -1.0, 1.0
+t_start, t_end = 0.0, 0.25
+nx = 200  # Number of spatial points
+dx = (x_end - x_start) / (nx - 1)
+dt = 0.0005  # Time step
+nt = int((t_end - t_start) / dt)  # Number of time steps
+
+# Initial conditions
+rho_L, u_L, p_L = 1.0, 0.0, 1.0
+rho_R, u_R, p_R = 0.125, 0.0, 0.1
+
+# Initialize variables
+x = np.linspace(x_start, x_end, nx)
+rho = np.where(x < 0, rho_L, rho_R)
+u = np.where(x < 0, u_L, u_R)
+p = np.where(x < 0, p_L, p_R)
+E = p / ((gamma - 1) * rho) + 0.5 * u**2
+
+# Conservative variables
+U1 = rho
+U2 = rho * u
+U3 = rho * E
+
+# Time-stepping loop
+for n in range(nt):
+    # Compute fluxes
+    F1 = U2
+    F2 = U2**2 / U1 + (gamma - 1) * (U3 - 0.5 * U2**2 / U1)
+    F3 = (U3 + (gamma - 1) * (U3 - 0.5 * U2**2 / U1)) * U2 / U1
+
+    # Update using finite difference method
+    U1[1:-1] -= dt / dx * (F1[1:-1] - F1[:-2])
+    U2[1:-1] -= dt / dx * (F2[1:-1] - F2[:-2])
+    U3[1:-1] -= dt / dx * (F3[1:-1] - F3[:-2])
+
+    # Reflective boundary conditions
+    U1[0], U1[-1] = U1[1], U1[-2]
+    U2[0], U2[-1] = -U2[1], -U2[-2]
+    U3[0], U3[-1] = U3[1], U3[-2]
+
+# Save final results
+np.save('rho.npy', U1)
+np.save('rho_u.npy', U2)
+np.save('rho_E.npy', U3)
+```

@@ -1,0 +1,45 @@
+import numpy as np
+
+# Domain parameters
+Lx = 5.0
+Ly = 4.0
+nx = 51  # number of grid points in x-direction
+ny = 41  # number of grid points in y-direction
+dx = Lx / (nx - 1)
+dy = Ly / (ny - 1)
+
+# Create grid
+x = np.linspace(0, Lx, nx)
+y = np.linspace(0, Ly, ny)
+
+# Initialize temperature field with zero everywhere except boundaries
+T = np.zeros((ny, nx))
+
+# Apply Dirichlet boundary conditions
+T[:, 0] = 10.0     # Left boundary at x = 0
+T[:, -1] = 40.0    # Right boundary at x = 5
+T[-1, :] = 0.0     # Top boundary at y = 4
+T[0, :] = 20.0     # Bottom boundary at y = 0
+
+# Iterative solver parameters
+tol = 1e-5
+max_iter = 10000
+iteration = 0
+error = 1.0
+
+# Jacobi iteration for Laplace equation
+T_new = T.copy()
+
+while error > tol and iteration < max_iter:
+    error = 0.0
+    # Update interior points
+    for j in range(1, ny-1):
+        for i in range(1, nx-1):
+            T_new[j, i] = 0.25 * (T[j, i+1] + T[j, i-1] + T[j+1, i] + T[j-1, i])
+    
+    error = np.max(np.abs(T_new - T))
+    T[:] = T_new[:]
+    iteration += 1
+
+# Save the final solution as 2D NumPy array in "T.npy"
+np.save("T.npy", T)

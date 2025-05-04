@@ -1,0 +1,76 @@
+#!/usr/bin/env python3
+import numpy as np
+
+def solve_lane_emden():
+    # Problem parameters
+    n = 3.0
+    R0 = 5.0
+    N = 101  # number of grid points (can be refined)
+    r_min = 0.0
+    r_max = 1.0
+    dr = (r_max - r_min) / (N - 1)
+    
+    # Grid array in radial coordinate
+    r = np.linspace(r_min, r_max, N)
+    
+    # Initial guess: f0(r) = R0^(2/(n-1))*(1 - r^2)^2.
+    # For n=3, exponent becomes 2/(n-1)= 2/2 = 1, so initial guess:  f0 = R0*(1 - r^2)^2
+    f = R0 * (1 - r**2)**2
+
+    # Newton iteration parameters
+    tol = 1e-8
+    max_iter = 50
+    
+    for iteration in range(max_iter):
+        # Residual vector
+        F = np.zeros_like(f)
+        # Jacobian matrix (dense)
+        J = np.zeros((N, N))
+        
+        # i = 0 (center): using ghost point: f[-1] = f[1]
+        # Equation: 2*(f[1]-f[0])/dr^2 + f[0]^n = 0
+        F[0] = 2.0*(f[1] - f[0]) / dr**2 + f[0]**n
+        J[0,0] = -2.0/dr**2 + n * f[0]**(n-1)
+        J[0,1] = 2.0/dr**2
+        
+        # i = 1,..., N-2 (interior nodes)
+        for i in range(1, N-1):
+            if r[i] == 0.0:
+                # Should not happen because r[0] is handled above
+                ri = dr  # use dr instead of 0 to avoid division by zero
+            else:
+                ri = r[i]
+            # Finite difference discretization:
+            # f'' ~ (f[i+1]-2*f[i]+f[i-1])/dr^2, f' ~ (f[i+1]-f[i-1])/(2*dr)
+            # But with spherical coordinate Laplacian, the derivative term becomes:
+            # (1/ri)*(f[i+1]-f[i-1])/(dr)
+            F[i] = (f[i+1] - 2*f[i] + f[i-1]) / dr**2 + (1.0/ri) * (f[i+1] - f[i-1]) / dr + f[i]**n
+            # Jacobian components
+            dF_dfim1 = 1.0/dr**2 - (1.0/ri)*(1.0/dr)
+            dF_dfip1 = 1.0/dr**2 + (1.0/ri)*(1.0/dr)
+            dF_df = -2.0/dr**2 + n * f[i]**(n-1)
+            J[i, i-1] = dF_dfim1
+            J[i, i]   = dF_df
+            J[i, i+1] = dF_dfip1
+        
+        # i = N-1 (outer boundary r=1, Dirichlet: f=0)
+        F[N-1] = f[N-1]
+        J[N-1, N-1] = 1.0
+
+        # Compute the norm of residual
+        res_norm = np.linalg.norm(F, ord=2)
+        if res_norm < tol:
+            break
+        
+        # Solve the linear system for Newton update: J * delta = -F
+        delta = np.linalg.solve(J, -F)
+        f = f + delta
+
+    return r, f
+
+if __name__ == '__main__':
+    # Solve the Lane-Emden equation
+    r, f = solve_lane_emden()
+    
+    # Save final solution f as a 1D numpy array in f.npy.
+    np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/o3-mini/prompts/f_Lane_Emden_Equation.npy', f)

@@ -1,0 +1,66 @@
+#!/usr/bin/env python3
+import numpy as np
+
+# Domain parameters
+Lx = 2.0
+Ly = 1.0
+
+# Discretization parameters
+nx = 101  # number of grid points in x-direction
+ny = 51   # number of grid points in y-direction
+dx = Lx / (nx - 1)
+dy = Ly / (ny - 1)
+
+# Create spatial grid
+x = np.linspace(0, Lx, nx)
+y = np.linspace(0, Ly, ny)
+
+# Initialize the potential field p with initial condition (p=0 everywhere)
+p = np.zeros((nx, ny))
+p_new = np.zeros_like(p)
+
+# Set boundary conditions
+# Left boundary (x=0): Dirichlet p=0
+p[0, :] = 0.0
+# Right boundary (x=2): Dirichlet p=y
+for j in range(ny):
+    p[-1, j] = y[j]
+    
+# Tolerance and maximum iterations for the iterative solver
+tol = 1e-6
+max_iter = 10000
+
+# Relaxation parameter (for SOR if desired; here we use simple Gauss-Seidel with omega=1)
+omega = 1.0
+
+# Main iterative solver using Gauss-Seidel method to solve Laplace equation
+for it in range(max_iter):
+    p_old = p.copy()
+    
+    # Update interior nodes (skip boundaries in x)
+    for i in range(1, nx-1):
+        for j in range(1, ny-1):
+            p[i, j] = (1 - omega)*p[i, j] + (omega/2.0/(dx**2+dy**2)) * (
+                dx**2*(p[i, j+1] + p[i, j-1]) +
+                dy**2*(p[i+1, j] + p[i-1, j])
+            )
+    
+    # Apply Neumann BC at bottom (y=0): dp/dy = 0 => p[i,0] = p[i,1]
+    for i in range(1, nx-1):
+        p[i, 0] = p[i, 1]
+    
+    # Apply Neumann BC at top (y=Ly): dp/dy = 0 => p[i,ny-1] = p[i,ny-2]
+    for i in range(1, nx-1):
+        p[i, ny-1] = p[i, ny-2]
+    
+    # Re-impose Dirichlet BC on left and right edges
+    p[0, :] = 0.0
+    for j in range(ny):
+        p[-1, j] = y[j]
+    
+    # Check convergence with the L2-norm of the difference
+    if np.linalg.norm(p - p_old, ord=2) < tol:
+        break
+
+# Save the final solution as a 2D numpy array in 'p.npy'
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/o3-mini/prompts/p_2D_Laplace_Equation.npy', p)

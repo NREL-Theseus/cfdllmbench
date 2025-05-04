@@ -1,0 +1,55 @@
+import numpy as np
+
+# Parameters
+nu = 0.05
+Lx, Ly = 2.0, 2.0
+T = 0.3777
+
+# Grid resolution
+nx, ny = 101, 101  # number of grid points
+dx = Lx / (nx - 1)
+dy = Ly / (ny - 1)
+
+# Time stepping parameters
+dt = 0.0005  # time step
+nt = int(T / dt)
+
+# Create spatial grid
+x = np.linspace(0, Lx, nx)
+y = np.linspace(0, Ly, ny)
+
+# Initialize field u to 1 everywhere
+u = np.ones((ny, nx))
+
+# Set initial condition: u=2 in the region 0.5 <= x,y <= 1, else remain 1
+for i in range(nx):
+    for j in range(ny):
+        if 0.5 <= x[i] <= 1.0 and 0.5 <= y[j] <= 1.0:
+            u[j, i] = 2.0  # note: u[j, i] corresponds to (x[i], y[j])
+            
+# Dirichlet boundary conditions: u = 1 on all boundaries
+u[0, :] = 1.0
+u[-1, :] = 1.0
+u[:, 0] = 1.0
+u[:, -1] = 1.0
+
+# Precompute constant coefficients for the finite-difference scheme
+Cx = nu * dt / dx**2
+Cy = nu * dt / dy**2
+
+# Time-marching loop (explicit scheme)
+for n in range(nt):
+    u_old = u.copy()
+    # Update interior points using central difference in space
+    u[1:-1, 1:-1] = (u_old[1:-1, 1:-1] +
+                      Cx * (u_old[1:-1, 2:] - 2*u_old[1:-1, 1:-1] + u_old[1:-1, :-2]) +
+                      Cy * (u_old[2:, 1:-1] - 2*u_old[1:-1, 1:-1] + u_old[:-2, 1:-1]))
+    
+    # Reapply Dirichlet boundary conditions (u = 1 at boundaries)
+    u[0, :] = 1.0
+    u[-1, :] = 1.0
+    u[:, 0] = 1.0
+    u[:, -1] = 1.0
+
+# Save the final solution as a 2D array in 'u.npy'
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/o3-mini/prompts/u_2D_Diffusion.npy', u)

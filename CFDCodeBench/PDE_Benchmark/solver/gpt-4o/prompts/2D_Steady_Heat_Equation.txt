@@ -1,0 +1,44 @@
+```python
+import numpy as np
+
+# Domain parameters
+width = 5.0
+height = 4.0
+nx = 51  # number of grid points in x
+ny = 41  # number of grid points in y
+dx = width / (nx - 1)
+dy = height / (ny - 1)
+
+# Initialize the temperature field
+T = np.zeros((ny, nx))
+
+# Boundary conditions
+T[:, 0] = 10.0  # Left boundary (x = 0)
+T[:, -1] = 40.0  # Right boundary (x = 5)
+T[-1, :] = 0.0  # Top boundary (y = 4)
+T[0, :] = 20.0  # Bottom boundary (y = 0)
+
+# Iterative solver parameters
+tolerance = 1e-5
+max_iterations = 10000
+
+# Successive Over-Relaxation (SOR) method
+omega = 1.5  # Relaxation factor
+
+# Iterative solver
+for iteration in range(max_iterations):
+    T_old = T.copy()
+    for j in range(1, ny-1):
+        for i in range(1, nx-1):
+            T[j, i] = ((1 - omega) * T_old[j, i] +
+                       omega * 0.5 * ((T[j, i+1] + T[j, i-1]) * dy**2 +
+                                      (T[j+1, i] + T[j-1, i]) * dx**2) /
+                       (dx**2 + dy**2))
+    
+    # Check for convergence
+    if np.linalg.norm(T - T_old, ord=np.inf) < tolerance:
+        break
+
+# Save the final temperature field
+np.save('T.npy', T)
+```

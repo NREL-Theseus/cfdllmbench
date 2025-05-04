@@ -1,0 +1,69 @@
+```python
+import numpy as np
+
+# Parameters
+nx = ny = 50  # Number of grid points
+Lx = Ly = 2.0  # Domain size
+dx = Lx/(nx-1)
+dy = Ly/(ny-1)
+nu = 0.01  # Kinematic viscosity
+dt = 0.0001  # Time step
+t_final = 0.027  # Final time
+nt = int(t_final/dt)  # Number of time steps
+
+# Grid
+x = np.linspace(0, Lx, nx)
+y = np.linspace(0, Ly, ny)
+X, Y = np.meshgrid(x, y)
+
+# Initialize velocity fields
+u = np.ones((ny, nx))
+v = np.ones((ny, nx))
+
+# Set initial conditions
+u[(Y >= 0.5) & (Y <= 1.0) & (X >= 0.5) & (X <= 1.0)] = 2.0
+v[(Y >= 0.5) & (Y <= 1.0) & (X >= 0.5) & (X <= 1.0)] = 2.0
+
+# Arrays for next time step
+un = u.copy()
+vn = v.copy()
+
+# Time stepping
+for n in range(nt):
+    # Copy values
+    u_old = u.copy()
+    v_old = v.copy()
+    
+    # Interior points
+    for i in range(1, ny-1):
+        for j in range(1, nx-1):
+            # u-velocity
+            un[i,j] = u_old[i,j] - dt*(
+                u_old[i,j]*(u_old[i,j+1] - u_old[i,j-1])/(2*dx) +
+                v_old[i,j]*(u_old[i+1,j] - u_old[i-1,j])/(2*dy)
+            ) + nu*dt*(
+                (u_old[i,j+1] - 2*u_old[i,j] + u_old[i,j-1])/dx**2 +
+                (u_old[i+1,j] - 2*u_old[i,j] + u_old[i-1,j])/dy**2
+            )
+            
+            # v-velocity
+            vn[i,j] = v_old[i,j] - dt*(
+                u_old[i,j]*(v_old[i,j+1] - v_old[i,j-1])/(2*dx) +
+                v_old[i,j]*(v_old[i+1,j] - v_old[i-1,j])/(2*dy)
+            ) + nu*dt*(
+                (v_old[i,j+1] - 2*v_old[i,j] + v_old[i,j-1])/dx**2 +
+                (v_old[i+1,j] - 2*v_old[i,j] + v_old[i-1,j])/dy**2
+            )
+    
+    # Boundary conditions
+    un[0,:] = un[-1,:] = un[:,0] = un[:,-1] = 1  # u = 1 on boundaries
+    vn[0,:] = vn[-1,:] = vn[:,0] = vn[:,-1] = 1  # v = 1 on boundaries
+    
+    # Update for next time step
+    u = un.copy()
+    v = vn.copy()
+
+# Save final solutions
+np.save('u', u)
+np.save('v', v)
+```

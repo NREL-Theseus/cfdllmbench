@@ -1,0 +1,74 @@
+import numpy as np
+
+def solve_pde():
+    # Domain parameters
+    x_start, x_end = 0.0, 2.0
+    y_start, y_end = 0.0, 2.0
+    t_start, t_end = 0.0, 0.40
+
+    # Grid parameters
+    nx = 50
+    ny = 50
+    nt = 50
+
+    dx = (x_end - x_start) / (nx - 1)
+    dy = (y_end - y_start) / (ny - 1)
+    dt = (t_end - t_start) / (nt - 1)
+
+    # Initialize variables
+    u = np.ones((nx, ny))
+    v = np.ones((nx, ny))
+
+    # Initial conditions
+    for i in range(nx):
+        for j in range(ny):
+            x = x_start + i * dx
+            y = y_start + j * dy
+            if 0.5 <= x <= 1.0 and 0.5 <= y <= 1.0:
+                u[i, j] = 2.0
+                v[i, j] = 2.0
+
+    # Boundary conditions
+    u[0, :] = 1.0
+    u[-1, :] = 1.0
+    u[:, 0] = 1.0
+    u[:, -1] = 1.0
+
+    v[0, :] = 1.0
+    v[-1, :] = 1.0
+    v[:, 0] = 1.0
+    v[:, -1] = 1.0
+
+    # Time loop
+    for n in range(nt - 1):
+        u_old = u.copy()
+        v_old = v.copy()
+
+        for i in range(1, nx - 1):
+            for j in range(1, ny - 1):
+                u[i, j] = u_old[i, j] - dt * (
+                    u_old[i, j] * (u_old[i, j] - u_old[i - 1, j]) / dx +
+                    v_old[i, j] * (u_old[i, j] - u_old[i, j - 1]) / dy
+                )
+
+                v[i, j] = v_old[i, j] - dt * (
+                    u_old[i, j] * (v_old[i, j] - v_old[i - 1, j]) / dx +
+                    v_old[i, j] * (v_old[i, j] - v_old[i, j - 1]) / dy
+                )
+
+        # Boundary conditions
+        u[0, :] = 1.0
+        u[-1, :] = 1.0
+        u[:, 0] = 1.0
+        u[:, -1] = 1.0
+
+        v[0, :] = 1.0
+        v[-1, :] = 1.0
+        v[:, 0] = 1.0
+        v[:, -1] = 1.0
+
+    # Save the final solution
+    np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/gemini/prompts/u_2D_Inviscid_Burgers.npy', u)
+    np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/gemini/prompts/v_2D_Inviscid_Burgers.npy', v)
+
+solve_pde()

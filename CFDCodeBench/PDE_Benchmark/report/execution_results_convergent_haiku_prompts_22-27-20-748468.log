@@ -1,0 +1,370 @@
+====== Execution Results for Generated Solvers ======
+
+--- Running: 2D_Steady_Heat_Equation.py ---
+Exception occurred while logging execution: 'NoneType' object has no attribute 'returncode'
+
+
+====== Execution Summary ======
+Total Scripts Passed: 0
+Total Scripts Failed: 1
+--- Running: 1D_Linear_Convection.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 1
+Total Scripts Failed: 1
+--- Running: 2D_Unsteady_Heat_Equation.py ---
+Exception occurred while logging execution: 'NoneType' object has no attribute 'returncode'
+
+
+====== Execution Summary ======
+Total Scripts Passed: 1
+Total Scripts Failed: 2
+--- Running: Fully_Developed_Turbulent_Channel_Flow.py ---
+Exit Code: 1
+Output:
+
+Errors:
+Traceback (most recent call last):
+  File "/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Fully_Developed_Turbulent_Channel_Flow.py", line 36, in <module>
+    mu_eff = get_mu_eff(y)
+  File "/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Fully_Developed_Turbulent_Channel_Flow.py", line 23, in get_mu_eff
+    damp = (1 - np.exp(-yplus/A))**2
+TypeError: unsupported operand type(s) for /: 'numpy.ndarray' and 'csr_matrix'
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 1
+Total Scripts Failed: 3
+--- Running: 2D_Inviscid_Burgers.py ---
+Exception occurred while logging execution: 'NoneType' object has no attribute 'returncode'
+
+
+====== Execution Summary ======
+Total Scripts Passed: 1
+Total Scripts Failed: 4
+--- Running: Lane_Emden_Equation.py ---
+Exit Code: 1
+Output:
+
+Errors:
+Traceback (most recent call last):
+  File "/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lane_Emden_Equation.py", line 38, in <module>
+    f_laplace[1:-1] = (f[2:] - 2*f[1:-1] + f[:-2])/(dr**2) + \
+ValueError: could not broadcast input array from shape (998,) into shape (997,)
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 1
+Total Scripts Failed: 5
+--- Running: 1D_Burgers_Equation.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 2
+Total Scripts Failed: 5
+--- Running: 2D_Diffusion.py ---
+Exit Code: 0
+Output:
+
+Errors:
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/2D_Diffusion.py:28: RuntimeWarning: overflow encountered in divide
+  (un[1:-1,2:] - 2*un[1:-1,1:-1] + un[1:-1,:-2])/dx**2 +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/2D_Diffusion.py:29: RuntimeWarning: overflow encountered in divide
+  (un[2:,1:-1] - 2*un[1:-1,1:-1] + un[:-2,1:-1])/dy**2
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/2D_Diffusion.py:28: RuntimeWarning: overflow encountered in add
+  (un[1:-1,2:] - 2*un[1:-1,1:-1] + un[1:-1,:-2])/dx**2 +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/2D_Diffusion.py:27: RuntimeWarning: invalid value encountered in add
+  u[1:-1,1:-1] = un[1:-1,1:-1] + nu*dt*(
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/2D_Diffusion.py:28: RuntimeWarning: invalid value encountered in subtract
+  (un[1:-1,2:] - 2*un[1:-1,1:-1] + un[1:-1,:-2])/dx**2 +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/2D_Diffusion.py:29: RuntimeWarning: invalid value encountered in subtract
+  (un[2:,1:-1] - 2*un[1:-1,1:-1] + un[:-2,1:-1])/dy**2
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/2D_Diffusion.py:28: RuntimeWarning: invalid value encountered in add
+  (un[1:-1,2:] - 2*un[1:-1,1:-1] + un[1:-1,:-2])/dx**2 +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/2D_Diffusion.py:29: RuntimeWarning: invalid value encountered in add
+  (un[2:,1:-1] - 2*un[1:-1,1:-1] + un[:-2,1:-1])/dy**2
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 2
+Total Scripts Failed: 6
+--- Running: 2D_Shear_Flow_With_Tracer.py ---
+Exception occurred while logging execution: 'NoneType' object has no attribute 'returncode'
+
+
+====== Execution Summary ======
+Total Scripts Passed: 2
+Total Scripts Failed: 7
+--- Running: 2D_Convection.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 3
+Total Scripts Failed: 7
+--- Running: 1D_KdV_Burgers_Equation.py ---
+Exit Code: 0
+Output:
+
+Errors:
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/1D_KdV_Burgers_Equation.py:36: RuntimeWarning: overflow encountered in multiply
+  u = u - dt*(u*du_dx - a*d2u_dx2 - b*d3u_dx3)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/1D_KdV_Burgers_Equation.py:31: RuntimeWarning: invalid value encountered in subtract
+  du_dx = (u_p1 - u_m1)/(2*dx)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/1D_KdV_Burgers_Equation.py:32: RuntimeWarning: invalid value encountered in subtract
+  d2u_dx2 = (u_p1 - 2*u + u_m1)/dx**2
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/1D_KdV_Burgers_Equation.py:32: RuntimeWarning: invalid value encountered in add
+  d2u_dx2 = (u_p1 - 2*u + u_m1)/dx**2
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/1D_KdV_Burgers_Equation.py:33: RuntimeWarning: invalid value encountered in add
+  d3u_dx3 = (-u_p2 + 2*u_p1 - 2*u_m1 + u_m2)/(2*dx**3)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/1D_KdV_Burgers_Equation.py:33: RuntimeWarning: invalid value encountered in subtract
+  d3u_dx3 = (-u_p2 + 2*u_p1 - 2*u_m1 + u_m2)/(2*dx**3)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/1D_KdV_Burgers_Equation.py:36: RuntimeWarning: invalid value encountered in subtract
+  u = u - dt*(u*du_dx - a*d2u_dx2 - b*d3u_dx3)
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 3
+Total Scripts Failed: 8
+--- Running: 2D_Poisson_Equation.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 4
+Total Scripts Failed: 8
+--- Running: 1D_Diffusion.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 5
+Total Scripts Failed: 8
+--- Running: Flow_Past_Circular_Cylinder.py ---
+Exit Code: 1
+Output:
+
+Errors:
+Traceback (most recent call last):
+  File "/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Flow_Past_Circular_Cylinder.py", line 61, in <module>
+    ur[:,1:-1] = (psi[2:,1:-1] - psi[:-2,1:-1])/(2*r[:,1:-1]*dtheta)
+IndexError: too many indices for array: array is 1-dimensional, but 2 were indexed
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 5
+Total Scripts Failed: 9
+--- Running: 2D_Navier_Stokes_Channel.py ---
+Exception occurred while logging execution: 'NoneType' object has no attribute 'returncode'
+
+
+====== Execution Summary ======
+Total Scripts Passed: 5
+Total Scripts Failed: 10
+--- Running: 2D_Laplace_Equation.py ---
+Exception occurred while logging execution: 'NoneType' object has no attribute 'returncode'
+
+
+====== Execution Summary ======
+Total Scripts Passed: 5
+Total Scripts Failed: 11
+--- Running: 2D_Rayleigh_Benard_Convection.py ---
+Exception occurred while logging execution: 'NoneType' object has no attribute 'returncode'
+
+
+====== Execution Summary ======
+Total Scripts Passed: 5
+Total Scripts Failed: 12
+--- Running: Lid_Driven_Cavity.py ---
+Exit Code: 0
+Output:
+
+Errors:
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:44: RuntimeWarning: overflow encountered in multiply
+  u[1:-1,1:-1]*(u[1:-1,2:] - u[1:-1,:-2])/(2*dx) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:44: RuntimeWarning: overflow encountered in divide
+  u[1:-1,1:-1]*(u[1:-1,2:] - u[1:-1,:-2])/(2*dx) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:45: RuntimeWarning: overflow encountered in multiply
+  v[1:-1,1:-1]*(u[2:,1:-1] - u[:-2,1:-1])/(2*dy)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:45: RuntimeWarning: overflow encountered in divide
+  v[1:-1,1:-1]*(u[2:,1:-1] - u[:-2,1:-1])/(2*dy)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:44: RuntimeWarning: overflow encountered in add
+  u[1:-1,1:-1]*(u[1:-1,2:] - u[1:-1,:-2])/(2*dx) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:44: RuntimeWarning: invalid value encountered in add
+  u[1:-1,1:-1]*(u[1:-1,2:] - u[1:-1,:-2])/(2*dx) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:52: RuntimeWarning: overflow encountered in multiply
+  u[1:-1,1:-1]*(v[1:-1,2:] - v[1:-1,:-2])/(2*dx) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:52: RuntimeWarning: overflow encountered in divide
+  u[1:-1,1:-1]*(v[1:-1,2:] - v[1:-1,:-2])/(2*dx) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:53: RuntimeWarning: overflow encountered in multiply
+  v[1:-1,1:-1]*(v[2:,1:-1] - v[:-2,1:-1])/(2*dy)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:53: RuntimeWarning: overflow encountered in divide
+  v[1:-1,1:-1]*(v[2:,1:-1] - v[:-2,1:-1])/(2*dy)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:52: RuntimeWarning: overflow encountered in add
+  u[1:-1,1:-1]*(v[1:-1,2:] - v[1:-1,:-2])/(2*dx) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:52: RuntimeWarning: invalid value encountered in add
+  u[1:-1,1:-1]*(v[1:-1,2:] - v[1:-1,:-2])/(2*dx) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:61: RuntimeWarning: invalid value encountered in subtract
+  (ut[1:-1,2:] - ut[1:-1,:-2])/(2*dx) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:62: RuntimeWarning: invalid value encountered in subtract
+  (vt[2:,1:-1] - vt[:-2,1:-1])/(2*dy)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:60: RuntimeWarning: overflow encountered in divide
+  b[1:-1,1:-1] = rho*(
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:36: RuntimeWarning: invalid value encountered in subtract
+  if np.abs(np.sum(p-pn)) < 1e-3:
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:69: RuntimeWarning: invalid value encountered in subtract
+  u[1:-1,1:-1] = ut[1:-1,1:-1] - dt/rho*(p[1:-1,2:] - p[1:-1,:-2])/(2*dx)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:70: RuntimeWarning: invalid value encountered in subtract
+  v[1:-1,1:-1] = vt[1:-1,1:-1] - dt/rho*(p[2:,1:-1] - p[:-2,1:-1])/(2*dy)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:47: RuntimeWarning: invalid value encountered in subtract
+  (u[1:-1,2:] - 2*u[1:-1,1:-1] + u[1:-1,:-2])/dx**2 +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:47: RuntimeWarning: invalid value encountered in add
+  (u[1:-1,2:] - 2*u[1:-1,1:-1] + u[1:-1,:-2])/dx**2 +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:48: RuntimeWarning: invalid value encountered in subtract
+  (u[2:,1:-1] - 2*u[1:-1,1:-1] + u[:-2,1:-1])/dy**2
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:52: RuntimeWarning: invalid value encountered in subtract
+  u[1:-1,1:-1]*(v[1:-1,2:] - v[1:-1,:-2])/(2*dx) +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:55: RuntimeWarning: invalid value encountered in subtract
+  (v[1:-1,2:] - 2*v[1:-1,1:-1] + v[1:-1,:-2])/dx**2 +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:55: RuntimeWarning: invalid value encountered in add
+  (v[1:-1,2:] - 2*v[1:-1,1:-1] + v[1:-1,:-2])/dx**2 +
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Lid_Driven_Cavity.py:56: RuntimeWarning: invalid value encountered in subtract
+  (v[2:,1:-1] - 2*v[1:-1,1:-1] + v[:-2,1:-1])/dy**2
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 5
+Total Scripts Failed: 13
+--- Running: 1D_Nonlinear_Convection.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 6
+Total Scripts Failed: 13
+--- Running: 2D_Navier_Stokes_Cavity.py ---
+Exception occurred while logging execution: 'NoneType' object has no attribute 'returncode'
+
+
+====== Execution Summary ======
+Total Scripts Passed: 6
+Total Scripts Failed: 14
+--- Running: Pipe_Flow_Disk_EVP.py ---
+Exit Code: 1
+Output:
+
+Errors:
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Pipe_Flow_Disk_EVP.py:32: RuntimeWarning: divide by zero encountered in divide
+  R_inv = sparse.diags(1/r, 0)
+/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Pipe_Flow_Disk_EVP.py:33: RuntimeWarning: divide by zero encountered in divide
+  R_inv2 = sparse.diags(1/r**2, 0)
+Traceback (most recent call last):
+  File "/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Pipe_Flow_Disk_EVP.py", line 83, in <module>
+    L = build_matrix()
+  File "/home/weichao/Downloads/Code_Generation_Benchmark/PDE_Benchmark/convergent/haiku/prompts/Pipe_Flow_Disk_EVP.py", line 39, in build_matrix
+    w0@D1@kz + s*I - m**2*R_inv2
+ValueError: matmul: Input operand 1 does not have enough dimensions (has 0, gufunc core with signature (n?,k),(k,m?)->(n?,m?) requires 1)
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 6
+Total Scripts Failed: 15
+--- Running: 2D_Linear_Convection.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 7
+Total Scripts Failed: 15
+--- Running: 2D_Burgers_Equation.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 8
+Total Scripts Failed: 15
+--- Running: 1D_Euler_Shock_Tube.py ---
+Exit Code: 0
+Output:
+
+Errors:
+
+--------------------------------------------------
+
+
+
+====== Execution Summary ======
+Total Scripts Passed: 9
+Total Scripts Failed: 15

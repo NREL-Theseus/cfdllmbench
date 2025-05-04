@@ -1,0 +1,13 @@
+Filename,MSE,MAE,RMSE,Cosine Similarity,R-squared
+p_2D_Poisson_Equation.npy,1.211e-05,1.235e-03,3.481e-03,8.410e-01,2.000e-02
+rho_1D_Euler_Shock_Tube.npy,2.785e-04,8.528e-03,1.669e-02,1.000e+00,9.980e-01
+u_1D_Burgers_Equation.npy,2.640e-05,1.901e-03,5.138e-03,1.000e+00,1.000e+00
+u_1D_Diffusion.npy,1.201e-03,2.379e-02,3.465e-02,1.000e+00,9.900e-01
+u_1D_Euler_Shock_Tube.npy,2.443e-03,1.770e-02,4.943e-02,9.950e-01,9.850e-01
+u_1D_Linear_Convection.npy,1.413e-03,2.137e-02,3.758e-02,9.950e-01,9.800e-01
+u_1D_Nonlinear_Convection.npy,1.874e-01,3.217e-01,4.329e-01,2.000e-01,-9.830e-01
+u_2D_Burgers_Equation.npy,2.243e-03,1.189e-02,4.736e-02,9.990e-01,9.560e-01
+u_2D_Convection.npy,3.306e-02,5.722e-02,1.818e-01,9.870e-01,-1.090e-01
+u_2D_Linear_Convection.npy,4.147e-02,6.722e-02,2.036e-01,9.840e-01,-1.220e-01
+v_2D_Burgers_Equation.npy,2.243e-03,1.189e-02,4.736e-02,9.990e-01,9.560e-01
+v_2D_Convection.npy,3.306e-02,5.722e-02,1.818e-01,9.870e-01,-1.090e-01

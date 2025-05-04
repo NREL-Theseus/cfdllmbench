@@ -1,0 +1,89 @@
+```python
+import numpy as np
+
+# Parameters
+gamma = 1.4
+nx = 400  # Number of spatial points
+dx = 2.0/nx  # Spatial step size
+x = np.linspace(-1, 1, nx)
+cfl = 0.8
+t_final = 0.25
+
+# Initialize conservative variables
+rho = np.zeros(nx)
+rhou = np.zeros(nx)
+rhoE = np.zeros(nx)
+
+# Set initial conditions
+rho[x < 0] = 1.0
+rho[x >= 0] = 0.125
+p = np.zeros(nx)
+p[x < 0] = 1.0
+p[x >= 0] = 0.1
+u = np.zeros(nx)
+E = p/(gamma-1)/rho + 0.5*u**2
+
+# Initialize conservative variables
+rhou = rho*u
+rhoE = rho*E
+
+def flux(rho, rhou, rhoE):
+    u = rhou/rho
+    E = rhoE/rho
+    p = (gamma-1)*rho*(E - 0.5*u**2)
+    f1 = rhou
+    f2 = rhou*u + p
+    f3 = u*(rhoE + p)
+    return f1, f2, f3
+
+def lax_friedrichs_step(rho, rhou, rhoE, dt):
+    # Compute fluxes
+    f1, f2, f3 = flux(rho, rhou, rhoE)
+    
+    # Update using Lax-Friedrichs scheme
+    rho_new = np.zeros_like(rho)
+    rhou_new = np.zeros_like(rhou)
+    rhoE_new = np.zeros_like(rhoE)
+    
+    # Interior points
+    for i in range(1, nx-1):
+        rho_new[i] = 0.5*(rho[i+1] + rho[i-1]) - dt/(2*dx)*(f1[i+1] - f1[i-1])
+        rhou_new[i] = 0.5*(rhou[i+1] + rhou[i-1]) - dt/(2*dx)*(f2[i+1] - f2[i-1])
+        rhoE_new[i] = 0.5*(rhoE[i+1] + rhoE[i-1]) - dt/(2*dx)*(f3[i+1] - f3[i-1])
+    
+    # Reflective boundary conditions
+    rho_new[0] = rho_new[1]
+    rhou_new[0] = -rhou_new[1]  # Reflect velocity
+    rhoE_new[0] = rhoE_new[1]
+    
+    rho_new[-1] = rho_new[-2]
+    rhou_new[-1] = -rhou_new[-2]  # Reflect velocity
+    rhoE_new[-1] = rhoE_new[-2]
+    
+    return rho_new, rhou_new, rhoE_new
+
+# Time stepping
+t = 0
+while t < t_final:
+    # Calculate time step
+    u = rhou/rho
+    p = (gamma-1)*rho*(rhoE/rho - 0.5*u**2)
+    c = np.sqrt(gamma*p/rho)
+    dt = cfl*dx/np.max(np.abs(u) + c)
+    
+    if t + dt > t_final:
+        dt = t_final - t
+        
+    # Update solution
+    rho, rhou, rhoE = lax_friedrichs_step(rho, rhou, rhoE, dt)
+    t += dt
+
+# Calculate primitive variables at final time
+u = rhou/rho
+p = (gamma-1)*rho*(rhoE/rho - 0.5*u**2)
+
+# Save variables
+np.save('rho.npy', rho)
+np.save('u.npy', u)
+np.save('p.npy', p)
+```

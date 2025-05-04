@@ -1,0 +1,46 @@
+```python
+import numpy as np
+
+def solve_burgers():
+    # Parameters
+    nu = 0.07
+    nx = 100
+    nt = 500
+    dx = 2 * np.pi / (nx - 1)
+    dt = 0.0001  # Reduced time step for stability
+    x = np.linspace(0, 2 * np.pi, nx)
+    t_final = 0.14 * np.pi
+
+    # Initial condition
+    def phi(x, nu):
+        return np.exp(-(x**2) / (4 * nu)) + np.exp(-((x - 2 * np.pi)**2) / (4 * nu))
+
+    def u_initial(x, nu):
+        phi_val = phi(x, nu)
+        dphi_dx = (-x / (2 * nu)) * np.exp(-(x**2) / (4 * nu)) + \
+                  (-(x - 2 * np.pi) / (2 * nu)) * np.exp(-((x - 2 * np.pi)**2) / (4 * nu))
+        return -2 * nu * (dphi_dx / phi_val) + 4
+
+    u = u_initial(x, nu)
+
+    # Time loop
+    t = 0
+    while t < t_final:
+        u_old = u.copy()
+
+        # Lax-Friedrichs scheme
+        u[1:-1] = 0.5 * (u_old[2:] + u_old[:-2]) - \
+                   0.5 * dt / dx * (u_old[2:]**2 - u_old[:-2]**2) + \
+                   nu * dt / dx**2 * (u_old[2:] - 2 * u_old[1:-1] + u_old[:-2])
+
+        # Periodic boundary conditions
+        u[0] = u[-2]
+        u[-1] = u[1]
+
+        t += dt
+
+    # Save the final solution
+    np.save('u.npy', u)
+
+solve_burgers()
+```

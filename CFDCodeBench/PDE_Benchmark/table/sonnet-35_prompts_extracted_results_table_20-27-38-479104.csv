@@ -1,0 +1,12 @@
+Filename,MSE,MAE,RMSE,Cosine Similarity,R-squared
+T_2D_Steady_Heat_Equation.npy,3.391e+02,1.494e+01,1.841e+01,4.540e-01,-2.812e+00
+p_2D_Laplace_Equation.npy,1.923e-03,3.267e-02,4.385e-02,9.910e-01,9.460e-01
+p_2D_Poisson_Equation.npy,3.514e-06,1.407e-03,1.875e-03,8.690e-01,7.160e-01
+u_1D_Burgers_Equation.npy,1.794e-01,2.332e-01,4.236e-01,9.960e-01,8.800e-01
+u_1D_Diffusion.npy,1.033e-03,2.193e-02,3.215e-02,1.000e+00,9.910e-01
+u_1D_Linear_Convection.npy,3.234e-03,3.320e-02,5.687e-02,9.900e-01,9.540e-01
+u_2D_Burgers_Equation.npy,1.577e-03,1.036e-02,3.971e-02,9.990e-01,9.690e-01
+u_2D_Convection.npy,6.284e-01,2.845e-01,7.927e-01,8.690e-01,-2.008e+01
+u_2D_Diffusion.npy,2.938e-03,3.465e-02,5.420e-02,9.990e-01,7.130e-01
+v_2D_Burgers_Equation.npy,1.577e-03,1.036e-02,3.971e-02,9.990e-01,9.690e-01
+v_2D_Convection.npy,6.284e-01,2.845e-01,7.927e-01,8.690e-01,-2.008e+01

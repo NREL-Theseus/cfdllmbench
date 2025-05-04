@@ -1,0 +1,78 @@
+import numpy as np
+import scipy.sparse as sp
+import scipy.sparse.linalg as spla
+
+# Domain parameters
+Lx, Ly = 2.0, 1.0
+nx, ny = 100, 50  # Grid resolution
+dx = Lx / (nx - 1)
+dy = Ly / (ny - 1)
+
+# Create grid
+x = np.linspace(0, Lx, nx)
+y = np.linspace(0, Ly, ny)
+X, Y = np.meshgrid(x, y)
+
+# Source term
+b = np.zeros((ny, nx))
+b[int(ny/4), int(nx/4)] = 100
+b[int(3*ny/4), int(3*nx/4)] = -100
+
+# Construct matrix A and right-hand side b for linear system
+def create_poisson_matrix(nx, ny, dx, dy):
+    # Create sparse matrix for 2D Poisson equation
+    main_diag = np.zeros(nx*ny)
+    lower_diag = np.zeros(nx*ny-1)
+    upper_diag = np.zeros(nx*ny-1)
+    lower_diag_x = np.zeros(nx*ny-nx)
+    upper_diag_x = np.zeros(nx*ny-nx)
+
+    for i in range(nx*ny):
+        main_diag[i] = -2*(1/dx**2 + 1/dy**2)
+    
+    for i in range(nx*ny-1):
+        if (i+1) % nx != 0:
+            lower_diag[i] = 1/dx**2
+            upper_diag[i] = 1/dx**2
+    
+    for i in range(nx*ny-nx):
+        lower_diag_x[i] = 1/dy**2
+        upper_diag_x[i] = 1/dy**2
+
+    diagonals = [main_diag, lower_diag, upper_diag, lower_diag_x, upper_diag_x]
+    offsets = [0, -1, 1, -nx, nx]
+    A = sp.diags(diagonals, offsets, shape=(nx*ny, nx*ny)).tocsr()
+    
+    return A
+
+# Apply boundary conditions
+def apply_boundary_conditions(A, b, nx, ny):
+    # Zero Dirichlet boundary conditions
+    b_flat = b.flatten()
+    
+    # Left and right boundaries
+    for j in range(ny):
+        left_idx = j*nx
+        right_idx = j*nx + (nx-1)
+        b_flat[left_idx] = 0
+        b_flat[right_idx] = 0
+        
+    # Top and bottom boundaries
+    for i in range(nx):
+        bottom_idx = i
+        top_idx = (ny-1)*nx + i
+        b_flat[bottom_idx] = 0
+        b_flat[top_idx] = 0
+    
+    return b_flat
+
+# Solve Poisson equation
+A = create_poisson_matrix(nx, ny, dx, dy)
+b_flat = apply_boundary_conditions(A, b, nx, ny)
+
+# Solve linear system
+p_flat = spla.spsolve(A, b_flat)
+p = p_flat.reshape((ny, nx))
+
+# Save solution
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/sonnet-35/prompts/p_2D_Poisson_Equation.npy', p)

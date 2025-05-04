@@ -1,0 +1,82 @@
+import numpy as np
+
+# Grid parameters
+Nr = 100  # Number of points in r direction
+Ntheta = 100  # Number of points in theta direction
+r_min, r_max = 0.5, 10.0
+dr = (r_max - r_min) / (Nr-1)
+dtheta = 2*np.pi / (Ntheta-1)
+dt = 0.001
+t_end = 10.0
+nu = 0.005
+v_inf = 1.0
+
+# Create grid
+r = np.linspace(r_min, r_max, Nr)
+theta = np.linspace(0, 2*np.pi, Ntheta)
+r_grid, theta_grid = np.meshgrid(r, theta)
+
+# Initialize fields
+psi = np.zeros((Ntheta, Nr))
+omega = np.zeros((Ntheta, Nr))
+
+# Set boundary conditions for psi
+for i in range(Ntheta):
+    psi[i,0] = 20  # Inner boundary
+    psi[i,-1] = v_inf * r_max * np.sin(theta[i]) + 20  # Outer boundary
+
+def laplacian_polar(f, dr, dtheta, r):
+    """Compute Laplacian in polar coordinates"""
+    d2f_dr2 = np.zeros_like(f)
+    d2f_dtheta2 = np.zeros_like(f)
+    df_dr = np.zeros_like(f)
+    
+    # Interior points
+    d2f_dr2[:,1:-1] = (f[:,2:] - 2*f[:,1:-1] + f[:,:-2]) / dr**2
+    d2f_dtheta2[1:-1,:] = (f[2:,:] - 2*f[1:-1,:] + f[:-2,:]) / dtheta**2
+    df_dr[:,1:-1] = (f[:,2:] - f[:,:-2]) / (2*dr)
+    
+    return d2f_dr2 + df_dr/r + d2f_dtheta2/(r**2)
+
+# Time stepping
+t = 0
+while t < t_end:
+    # Solve Poisson equation for psi
+    psi_old = psi.copy()
+    for _ in range(50):  # Gauss-Seidel iterations
+        psi[1:-1,1:-1] = ((psi[1:-1,2:] + psi[1:-1,:-2])/dr**2 +
+                         (psi[2:,1:-1] + psi[:-2,1:-1])/(r[1:-1]**2 * dtheta**2) +
+                         (psi[1:-1,2:] - psi[1:-1,:-2])/(2*r[1:-1]*dr) +
+                         omega[1:-1,1:-1]) / (2/dr**2 + 2/(r[1:-1]**2 * dtheta**2))
+        
+        # Periodic boundary conditions
+        psi[0,:] = psi[-2,:]
+        psi[-1,:] = psi[1,:]
+    
+    # Calculate velocities
+    ur = np.zeros_like(psi)
+    utheta = np.zeros_like(psi)
+    
+    # Interior points
+    ur[:,1:-1] = (psi[2:,1:-1] - psi[:-2,1:-1])/(2*r[:,1:-1]*dtheta)
+    utheta[:,1:-1] = -(psi[:,2:] - psi[:,:-2])/(2*dr)
+    
+    # Update vorticity
+    omega_new = omega.copy()
+    omega_new[1:-1,1:-1] = (omega[1:-1,1:-1] + 
+                           dt*(nu*laplacian_polar(omega, dr, dtheta, r)[1:-1,1:-1] -
+                           ur[1:-1,1:-1]*((omega[1:-1,2:] - omega[1:-1,:-2])/(2*dr)) -
+                           utheta[1:-1,1:-1]*((omega[2:,1:-1] - omega[:-2,1:-1])/(2*r[1:-1]*dtheta))))
+    
+    # Boundary conditions for vorticity
+    omega_new[:,0] = 2*(psi[:,0] - psi[:,1])/dr**2  # Inner boundary
+    omega_new[:,-1] = 0  # Outer boundary
+    omega_new[0,:] = omega_new[-2,:]  # Periodic
+    omega_new[-1,:] = omega_new[1,:]  # Periodic
+    
+    omega = omega_new
+    t += dt
+
+# Save final solutions
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/haiku/prompts/psi_Flow_Past_Circular_Cylinder.npy', psi)
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/haiku/prompts/omega_Flow_Past_Circular_Cylinder.npy', omega)

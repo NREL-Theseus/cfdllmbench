@@ -1,0 +1,19 @@
+2025-04-23 22:36:56,747 - INFO - ====== Starting Comparison ======
+2025-04-23 22:36:56,747 - INFO - Found 17 common files.
+2025-04-23 22:36:56,749 - INFO - p_2D_Poisson_Equation.npy: MSE=1.211e-05, MAE=1.235e-03, RMSE=3.481e-03, Cosine=0.841, R2=0.020, NMSE=0.980
+2025-04-23 22:36:56,749 - ERROR - ❌ p_Lid_Driven_Cavity.npy failed: Input contains NaN.
+2025-04-23 22:36:56,751 - INFO - rho_1D_Euler_Shock_Tube.npy: MSE=2.785e-04, MAE=8.528e-03, RMSE=1.669e-02, Cosine=1.000, R2=0.998, NMSE=0.001
+2025-04-23 22:36:56,752 - INFO - u_1D_Burgers_Equation.npy: MSE=2.640e-05, MAE=1.901e-03, RMSE=5.138e-03, Cosine=1.000, R2=1.000, NMSE=0.000
+2025-04-23 22:36:56,753 - INFO - u_1D_Diffusion.npy: MSE=1.201e-03, MAE=2.379e-02, RMSE=3.465e-02, Cosine=1.000, R2=0.990, NMSE=0.001
+2025-04-23 22:36:56,754 - INFO - u_1D_Euler_Shock_Tube.npy: MSE=2.443e-03, MAE=1.770e-02, RMSE=4.943e-02, Cosine=0.995, R2=0.985, NMSE=0.010
+2025-04-23 22:36:56,755 - ERROR - ❌ u_1D_KdV_Burgers_Equation.npy failed: Input contains NaN.
+2025-04-23 22:36:56,756 - INFO - u_1D_Linear_Convection.npy: MSE=1.413e-03, MAE=2.137e-02, RMSE=3.758e-02, Cosine=0.995, R2=0.980, NMSE=0.014
+2025-04-23 22:36:56,757 - INFO - u_1D_Nonlinear_Convection.npy: MSE=1.874e-01, MAE=3.217e-01, RMSE=4.329e-01, Cosine=0.200, R2=-0.983, NMSE=0.960
+2025-04-23 22:36:56,759 - INFO - u_2D_Burgers_Equation.npy: MSE=2.243e-03, MAE=1.189e-02, RMSE=4.736e-02, Cosine=0.999, R2=0.956, NMSE=0.002
+2025-04-23 22:36:56,760 - INFO - u_2D_Convection.npy: MSE=3.306e-02, MAE=5.722e-02, RMSE=1.818e-01, Cosine=0.987, R2=-0.109, NMSE=0.029
+2025-04-23 22:36:56,761 - ERROR - ❌ u_2D_Diffusion.npy failed: Input contains NaN.
+2025-04-23 22:36:56,763 - INFO - u_2D_Linear_Convection.npy: MSE=4.147e-02, MAE=6.722e-02, RMSE=2.036e-01, Cosine=0.984, R2=-0.122, NMSE=0.035
+2025-04-23 22:36:56,764 - ERROR - ❌ u_Lid_Driven_Cavity.npy failed: Input contains NaN.
+2025-04-23 22:36:56,766 - INFO - v_2D_Burgers_Equation.npy: MSE=2.243e-03, MAE=1.189e-02, RMSE=4.736e-02, Cosine=0.999, R2=0.956, NMSE=0.002
+2025-04-23 22:36:56,768 - INFO - v_2D_Convection.npy: MSE=3.306e-02, MAE=5.722e-02, RMSE=1.818e-01, Cosine=0.987, R2=-0.109, NMSE=0.029
+2025-04-23 22:36:56,769 - ERROR - ❌ v_Lid_Driven_Cavity.npy failed: Input contains NaN.

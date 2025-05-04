@@ -1,0 +1,93 @@
+```python
+import numpy as np
+
+# Grid parameters
+nx = 41
+ny = 41
+dx = 2.0 / (nx-1)
+dy = 2.0 / (ny-1)
+dt = 0.001
+nt = int(10.0/dt)
+
+# Physical parameters
+rho = 1.0
+nu = 0.1
+
+# Initialize fields
+u = np.zeros((ny, nx))
+v = np.zeros((ny, nx))
+p = np.zeros((ny, nx))
+b = np.zeros((ny, nx))
+
+# Lid-driven cavity boundary condition
+u[-1,:] = 1.0  # Top wall moving right with u = 1
+
+def build_up_b(u, v):
+    b = np.zeros((ny, nx))
+    for i in range(1, ny-1):
+        for j in range(1, nx-1):
+            b[i,j] = -rho*(
+                ((u[i,j+1] - u[i,j-1])/(2*dx))**2 +
+                2*((u[i+1,j] - u[i-1,j])/(2*dy))*((v[i,j+1] - v[i,j-1])/(2*dx)) +
+                ((v[i+1,j] - v[i-1,j])/(2*dy))**2
+            )
+    return b
+
+def pressure_poisson(p, b):
+    pn = p.copy()
+    for it in range(50):
+        pn = p.copy()
+        for i in range(1, ny-1):
+            for j in range(1, nx-1):
+                p[i,j] = ((pn[i,j+1] + pn[i,j-1])*dy**2 + 
+                         (pn[i+1,j] + pn[i-1,j])*dx**2 -
+                         b[i,j]*dx**2*dy**2)/(2*(dx**2 + dy**2))
+        
+        # Pressure boundary conditions
+        p[:,0] = p[:,1]    # dp/dx = 0 at x = 0
+        p[:,-1] = p[:,-2]  # dp/dx = 0 at x = 2
+        p[0,:] = p[1,:]    # dp/dy = 0 at y = 0
+        p[-1,:] = 0        # p = 0 at y = 2
+
+    return p
+
+# Time stepping
+for n in range(nt):
+    un = u.copy()
+    vn = v.copy()
+    
+    b = build_up_b(u, v)
+    p = pressure_poisson(p, b)
+    
+    for i in range(1, ny-1):
+        for j in range(1, nx-1):
+            u[i,j] = (un[i,j] - 
+                     dt/dx * un[i,j]*(un[i,j+1] - un[i,j-1])/2 -
+                     dt/dy * vn[i,j]*(un[i+1,j] - un[i-1,j])/2 -
+                     dt/(2*rho*dx)*(p[i,j+1] - p[i,j-1]) +
+                     nu*dt/dx**2*(un[i,j+1] - 2*un[i,j] + un[i,j-1]) +
+                     nu*dt/dy**2*(un[i+1,j] - 2*un[i,j] + un[i-1,j]))
+            
+            v[i,j] = (vn[i,j] -
+                     dt/dx * un[i,j]*(vn[i,j+1] - vn[i,j-1])/2 -
+                     dt/dy * vn[i,j]*(vn[i+1,j] - vn[i-1,j])/2 -
+                     dt/(2*rho*dy)*(p[i+1,j] - p[i-1,j]) +
+                     nu*dt/dx**2*(vn[i,j+1] - 2*vn[i,j] + vn[i,j-1]) +
+                     nu*dt/dy**2*(vn[i+1,j] - 2*vn[i,j] + vn[i-1,j]))
+    
+    # Boundary conditions
+    u[0,:] = 0
+    u[:,0] = 0
+    u[:,-1] = 0
+    u[-1,:] = 1    # Top lid u = 1
+    
+    v[0,:] = 0
+    v[:,0] = 0
+    v[:,-1] = 0
+    v[-1,:] = 0
+
+# Save final solutions
+np.save('u.npy', u)
+np.save('v.npy', v)
+np.save('p.npy', p)
+```

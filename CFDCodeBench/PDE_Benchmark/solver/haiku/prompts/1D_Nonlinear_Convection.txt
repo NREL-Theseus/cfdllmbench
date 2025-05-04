@@ -1,0 +1,31 @@
+```python
+import numpy as np
+
+# Grid parameters
+nx = 200  # Number of spatial points
+nt = 1000  # Number of time steps
+dx = 2*np.pi/nx
+dt = 0.005
+x = np.linspace(0, 2*np.pi, nx)
+t = np.linspace(0, 5, nt)
+
+# Initial condition
+u = np.sin(x) + 0.5*np.sin(0.5*x)
+
+# Time integration
+for n in range(nt-1):
+    # Periodic BC handled implicitly by numpy array indexing
+    u_new = u.copy()
+    
+    # First order upwind scheme
+    for i in range(nx):
+        if u[i] >= 0:
+            u_new[i] = u[i] - dt/dx * u[i] * (u[i] - u[i-1])
+        else:
+            u_new[i] = u[i] - dt/dx * u[i] * (u[(i+1)%nx] - u[i])
+    
+    u = u_new.copy()
+
+# Save final solution
+np.save('u.npy', u)
+```

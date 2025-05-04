@@ -1,0 +1,63 @@
+annotated-types==0.7.0
+anyio==4.9.0
+boto3==1.37.33
+botocore==1.37.33
+Bottleneck @ file:///croot/bottleneck_1731058641041/work
+cachetools==5.5.2
+certifi==2025.1.31
+charset-normalizer==3.4.1
+contourpy==1.3.1
+cycler==0.12.1
+distro==1.9.0
+exceptiongroup==1.2.2
+fonttools==4.57.0
+google-auth==2.38.0
+google-genai==1.10.0
+h11==0.14.0
+httpcore==1.0.8
+httpx==0.28.1
+idna==3.10
+imageio==2.37.0
+jiter==0.9.0
+jmespath==1.0.1
+joblib==1.4.2
+kiwisolver==1.4.8
+lazy_loader==0.4
+matplotlib==3.10.1
+mkl-service==2.4.0
+mkl_fft @ file:///io/mkl313/mkl_fft_1730824109137/work
+mkl_random @ file:///io/mkl313/mkl_random_1730823916628/work
+mpi4py==4.0.1
+networkx==3.4.2
+numexpr @ file:///croot/numexpr_1730215937391/work
+numpy @ file:///croot/numpy_and_numpy_base_1742570410886/work/dist/numpy-2.2.4-cp310-cp310-linux_x86_64.whl#sha256=ee2899e9d1dcd50f041c13c9ec9afdac7aab2bed4c39fbad27aa48a20626e8b4
+openai==1.73.0
+opencv-python==4.11.0.86
+packaging @ file:///croot/packaging_1734472117206/work
+pandas @ file:///croot/pandas_1732735089971/work/dist/pandas-2.2.3-cp310-cp310-linux_x86_64.whl#sha256=3fa290e76efa7b7868273de6ab4ee4a73af177cdd88202834ad0eea6dd898d9e
+petsc4py==3.23.0.dev0
+pillow @ file:///croot/pillow_1738010226202/work
+pyasn1==0.6.1
+pyasn1_modules==0.4.2
+pydantic==2.11.3
+pydantic_core==2.33.1
+pyparsing==3.2.3
+python-dateutil @ file:///croot/python-dateutil_1716495738603/work
+pytz @ file:///croot/pytz_1713974312559/work
+requests==2.32.3
+rsa==4.9
+s3transfer==0.11.4
+scikit-image==0.25.2
+scikit-learn==1.6.1
+scipy @ file:///home/conda/feedstock_root/build_artifacts/scipy-split_1739790642651/work/dist/scipy-1.15.2-cp310-cp310-linux_x86_64.whl#sha256=9e52bad6c3294d1a5b04a13632118ca2157130603c6c018c2d710162b223b27e
+six @ file:///tmp/build/80754af9/six_1644875935023/work
+sniffio==1.3.1
+threadpoolctl==3.6.0
+tifffile==2025.3.30
+tqdm==4.67.1
+typing-inspection==0.4.0
+typing_extensions==4.13.2
+tzdata @ file:///croot/python-tzdata_1690578112552/work
+urllib3==2.4.0
+websockets==15.0.1
+xarray @ file:///croot/xarray_1734535778780/work

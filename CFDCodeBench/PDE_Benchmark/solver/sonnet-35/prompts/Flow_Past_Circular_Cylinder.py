@@ -1,0 +1,91 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Problem parameters
+r_min, r_max = 0.5, 10.0
+theta_min, theta_max = 0.0, 2.0 * np.pi
+t_min, t_max = 0.0, 10.0
+nu = 0.005
+v_inf = 1.0
+
+# Numerical grid parameters
+nr, ntheta = 100, 100
+nt = 1000
+
+# Grid generation
+r = np.linspace(r_min, r_max, nr)
+theta = np.linspace(theta_min, theta_max, ntheta)
+t = np.linspace(t_min, t_max, nt)
+
+dr = r[1] - r[0]
+dtheta = theta[1] - theta[0]
+dt = t[1] - t[0]
+
+# Initialize solution arrays
+psi = np.zeros((nr, ntheta))
+omega = np.zeros((nr, ntheta))
+
+# Boundary conditions
+def apply_boundary_conditions(psi, omega):
+    # Inner boundary (cylinder surface)
+    psi[0, :] = 20.0
+    omega[0, :] = 2.0 * (psi[0, :] - psi[1, :]) / (dr**2)
+    
+    # Outer boundary 
+    psi[-1, :] = v_inf * r[-1] * np.sin(theta) + 20.0
+    omega[-1, :] = 0.0
+    
+    # Periodic boundary in theta
+    psi[:, 0] = psi[:, -1]
+    omega[:, 0] = omega[:, -1]
+    
+    return psi, omega
+
+# Time-stepping using finite difference method
+for n in range(1, nt):
+    # Compute velocities
+    u_r = np.zeros((nr, ntheta))
+    u_theta = np.zeros((nr, ntheta))
+    
+    for i in range(1, nr-1):
+        for j in range(1, ntheta-1):
+            u_r[i, j] = (1.0 / r[i]) * (psi[i, j+1] - psi[i, j-1]) / (2.0 * dtheta)
+            u_theta[i, j] = -(psi[i+1, j] - psi[i-1, j]) / (2.0 * dr)
+    
+    # Vorticity transport equation (explicit scheme)
+    omega_new = np.copy(omega)
+    
+    for i in range(1, nr-1):
+        for j in range(1, ntheta-1):
+            # Advection terms
+            adv_r = u_r[i, j] * (omega[i+1, j] - omega[i-1, j]) / (2.0 * dr)
+            adv_theta = (u_theta[i, j] / r[i]) * (omega[i, j+1] - omega[i, j-1]) / (2.0 * dtheta)
+            
+            # Diffusion term
+            diff_r = nu * (omega[i+1, j] - 2.0 * omega[i, j] + omega[i-1, j]) / (dr**2)
+            diff_theta = nu * (omega[i, j+1] - 2.0 * omega[i, j] + omega[i, j-1]) / (dtheta**2)
+            
+            # Update vorticity
+            omega_new[i, j] = omega[i, j] + dt * (-(adv_r + adv_theta) + diff_r + diff_theta)
+    
+    # Update solution
+    omega = omega_new
+    
+    # Solve Poisson equation for streamfunction
+    for _ in range(100):  # Iterative solution
+        psi_old = np.copy(psi)
+        
+        for i in range(1, nr-1):
+            for j in range(1, ntheta-1):
+                psi[i, j] = 0.25 * (
+                    psi_old[i+1, j] + psi_old[i-1, j] + 
+                    psi_old[i, j+1] + psi_old[i, j-1] - 
+                    dr**2 * omega[i, j]
+                )
+        
+        # Apply boundary conditions
+        psi, omega = apply_boundary_conditions(psi, omega)
+    
+# Save final solution
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/sonnet-35/prompts/psi_Flow_Past_Circular_Cylinder.npy', psi)
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/sonnet-35/prompts/omega_Flow_Past_Circular_Cylinder.npy', omega)

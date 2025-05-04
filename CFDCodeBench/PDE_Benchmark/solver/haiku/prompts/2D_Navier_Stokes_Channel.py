@@ -1,0 +1,84 @@
+import numpy as np
+
+# Grid parameters
+nx = 100
+ny = 100
+dx = 2.0 / (nx-1)
+dy = 2.0 / (ny-1)
+dt = 0.001
+nt = int(5.0/dt)
+
+# Initialize arrays
+u = np.zeros((ny, nx))
+v = np.zeros((ny, nx))
+p = np.zeros((ny, nx))
+un = np.zeros((ny, nx))
+vn = np.zeros((ny, nx))
+pn = np.zeros((ny, nx))
+
+# Parameters
+rho = 1.0
+nu = 0.1
+F = 1.0
+
+def pressure_poisson(p, u, v, dx, dy, rho):
+    pn = np.zeros_like(p)
+    
+    for it in range(50):
+        pn = p.copy()
+        p[1:-1,1:-1] = 0.25*(pn[1:-1,2:] + pn[1:-1,:-2] + pn[2:,1:-1] + pn[:-2,1:-1] - 
+                            rho*dx*dy*((u[1:-1,2:] - u[1:-1,:-2])/(2*dx))**2 -
+                            2*rho*dx*dy*((u[2:,1:-1] - u[:-2,1:-1])/(2*dy))*((v[1:-1,2:] - v[1:-1,:-2])/(2*dx)) -
+                            rho*dx*dy*((v[2:,1:-1] - v[:-2,1:-1])/(2*dy))**2)
+        
+        # Periodic BC in x
+        p[:,0] = p[:,-2]
+        p[:,-1] = p[:,1]
+        
+        # Neumann BC in y
+        p[0,1:-1] = p[1,1:-1]
+        p[-1,1:-1] = p[-2,1:-1]
+
+    return p
+
+# Time stepping
+for n in range(nt):
+    un = u.copy()
+    vn = v.copy()
+    
+    # u-momentum
+    u[1:-1,1:-1] = un[1:-1,1:-1] - \
+                   dt*un[1:-1,1:-1]*(un[1:-1,2:] - un[1:-1,:-2])/(2*dx) - \
+                   dt*vn[1:-1,1:-1]*(un[2:,1:-1] - un[:-2,1:-1])/(2*dy) - \
+                   dt/(rho)*(p[1:-1,2:] - p[1:-1,:-2])/(2*dx) + \
+                   nu*dt*(un[1:-1,2:] - 2*un[1:-1,1:-1] + un[1:-1,:-2])/dx**2 + \
+                   nu*dt*(un[2:,1:-1] - 2*un[1:-1,1:-1] + un[:-2,1:-1])/dy**2 + \
+                   F*dt
+    
+    # v-momentum
+    v[1:-1,1:-1] = vn[1:-1,1:-1] - \
+                   dt*un[1:-1,1:-1]*(vn[1:-1,2:] - vn[1:-1,:-2])/(2*dx) - \
+                   dt*vn[1:-1,1:-1]*(vn[2:,1:-1] - vn[:-2,1:-1])/(2*dy) - \
+                   dt/(rho)*(p[2:,1:-1] - p[:-2,1:-1])/(2*dy) + \
+                   nu*dt*(vn[1:-1,2:] - 2*vn[1:-1,1:-1] + vn[1:-1,:-2])/dx**2 + \
+                   nu*dt*(vn[2:,1:-1] - 2*vn[1:-1,1:-1] + vn[:-2,1:-1])/dy**2
+
+    # Periodic BC in x
+    u[:,0] = u[:,-2]
+    u[:,-1] = u[:,1]
+    v[:,0] = v[:,-2]
+    v[:,-1] = v[:,1]
+    
+    # No-slip BC in y
+    u[0,:] = 0
+    u[-1,:] = 0
+    v[0,:] = 0
+    v[-1,:] = 0
+    
+    # Solve pressure Poisson equation
+    p = pressure_poisson(p, u, v, dx, dy, rho)
+
+# Save final solutions
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/haiku/prompts/u_2D_Navier_Stokes_Channel.npy', u)
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/haiku/prompts/v_2D_Navier_Stokes_Channel.npy', v)
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/haiku/prompts/p_2D_Navier_Stokes_Channel.npy', p)

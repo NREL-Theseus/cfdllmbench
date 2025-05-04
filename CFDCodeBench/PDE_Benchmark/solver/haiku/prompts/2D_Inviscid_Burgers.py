@@ -1,0 +1,69 @@
+import numpy as np
+
+# Grid parameters
+nx = 100  # Number of points in x
+ny = 100  # Number of points in y
+dx = 2.0/(nx-1)  # Grid spacing in x
+dy = 2.0/(ny-1)  # Grid spacing in y
+dt = 0.0001      # Time step
+t_final = 0.40   # Final time
+
+# Initialize arrays
+x = np.linspace(0, 2, nx)
+y = np.linspace(0, 2, ny)
+X, Y = np.meshgrid(x, y)
+
+u = np.ones((ny, nx))
+v = np.ones((ny, nx))
+
+# Set initial conditions
+mask = (X >= 0.5) & (X <= 1.0) & (Y >= 0.5) & (Y <= 1.0)
+u[mask] = 2.0
+v[mask] = 2.0
+
+# Time stepping
+t = 0
+while t < t_final:
+    # Store previous values
+    u_prev = u.copy()
+    v_prev = v.copy()
+    
+    # Update interior points using upwind scheme
+    for i in range(1, ny-1):
+        for j in range(1, nx-1):
+            # x-derivatives
+            if u_prev[i,j] >= 0:
+                du_dx = (u_prev[i,j] - u_prev[i,j-1])/dx
+                dv_dx = (v_prev[i,j] - v_prev[i,j-1])/dx
+            else:
+                du_dx = (u_prev[i,j+1] - u_prev[i,j])/dx
+                dv_dx = (v_prev[i,j+1] - v_prev[i,j])/dx
+                
+            # y-derivatives
+            if v_prev[i,j] >= 0:
+                du_dy = (u_prev[i,j] - u_prev[i-1,j])/dy
+                dv_dy = (v_prev[i,j] - v_prev[i-1,j])/dy
+            else:
+                du_dy = (u_prev[i+1,j] - u_prev[i,j])/dy
+                dv_dy = (v_prev[i+1,j] - v_prev[i,j])/dy
+            
+            # Update u and v
+            u[i,j] = u_prev[i,j] - dt*(u_prev[i,j]*du_dx + v_prev[i,j]*du_dy)
+            v[i,j] = v_prev[i,j] - dt*(u_prev[i,j]*dv_dx + v_prev[i,j]*dv_dy)
+    
+    # Apply boundary conditions
+    u[0,:] = 1.0  # Bottom
+    u[-1,:] = 1.0 # Top
+    u[:,0] = 1.0  # Left
+    u[:,-1] = 1.0 # Right
+    
+    v[0,:] = 1.0  # Bottom
+    v[-1,:] = 1.0 # Top
+    v[:,0] = 1.0  # Left
+    v[:,-1] = 1.0 # Right
+    
+    t += dt
+
+# Save final solutions
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/haiku/prompts/u_2D_Inviscid_Burgers.npy', u)
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/haiku/prompts/v_2D_Inviscid_Burgers.npy', v)

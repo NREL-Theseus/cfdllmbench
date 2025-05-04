@@ -1,0 +1,40 @@
+```python
+import numpy as np
+
+# Parameters
+c = 1.0
+Lx, Ly = 2.0, 2.0
+T = 0.50
+nx, ny = 101, 101
+nt = 100
+dx = Lx / (nx - 1)
+dy = Ly / (ny - 1)
+dt = T / nt
+
+# Create the grid
+x = np.linspace(0, Lx, nx)
+y = np.linspace(0, Ly, ny)
+
+# Initialize the solution array
+u = np.ones((ny, nx))
+
+# Apply initial conditions
+u[(y >= 0.5) & (y <= 1.0)][:, (x >= 0.5) & (x <= 1.0)] = 2.0
+
+# Time-stepping loop
+for n in range(nt):
+    u_old = u.copy()
+    # Update the solution using upwind scheme
+    u[1:, 1:] = (u_old[1:, 1:] - 
+                 c * dt / dx * (u_old[1:, 1:] - u_old[1:, :-1]) - 
+                 c * dt / dy * (u_old[1:, 1:] - u_old[:-1, 1:]))
+    
+    # Apply boundary conditions
+    u[:, 0] = 1.0
+    u[:, -1] = 1.0
+    u[0, :] = 1.0
+    u[-1, :] = 1.0
+
+# Save the final solution
+np.save('u.npy', u)
+```

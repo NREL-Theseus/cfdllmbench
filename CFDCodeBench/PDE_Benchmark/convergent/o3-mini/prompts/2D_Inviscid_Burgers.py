@@ -1,0 +1,71 @@
+#!/usr/bin/env python3
+import numpy as np
+
+# Domain parameters
+nx = 324
+ny = 324
+lx = 2.0
+ly = 2.0
+dx = lx / (nx - 1)
+dy = ly / (ny - 1)
+x = np.linspace(0, lx, nx)
+y = np.linspace(0, ly, ny)
+
+# Time parameters
+t_final = 0.40
+dt = 0.001  # time step, should satisfy CFL condition
+nt = int(t_final / dt)
+
+# Initialize u and v fields: all ones initially
+u = np.ones((ny, nx))
+v = np.ones((ny, nx))
+
+# Set initial condition: for 0.5 <= x <= 1 and 0.5 <= y <= 1, set u=v=2
+# Using 2D meshgrid creation
+X, Y = np.meshgrid(x, y)
+inside = (X >= 0.5) & (X <= 1.0) & (Y >= 0.5) & (Y <= 1.0)
+u[inside] = 2.0
+v[inside] = 2.0
+
+# Boundary conditions (Dirichlet): set u=1 and v=1 on all boundaries
+u[0, :] = 1.0
+u[-1, :] = 1.0
+u[:, 0] = 1.0
+u[:, -1] = 1.0
+
+v[0, :] = 1.0
+v[-1, :] = 1.0
+v[:, 0] = 1.0
+v[:, -1] = 1.0
+
+# Time stepping using an upwind finite difference scheme (assume positive velocities)
+for n in range(nt):
+    u_old = u.copy()
+    v_old = v.copy()
+    
+    # Update interior points (using indices 1:-1)
+    # Use first-order upwind differences assuming u_old and v_old > 0.
+    # For u equation:
+    u[1:, 1:] = u_old[1:, 1:] - dt * (
+                    u_old[1:, 1:] * (u_old[1:, 1:] - u_old[1:, :-1]) / dx +
+                    v_old[1:, 1:] * (u_old[1:, 1:] - u_old[:-1, 1:]) / dy )
+    
+    # For v equation:
+    v[1:, 1:] = v_old[1:, 1:] - dt * (
+                    u_old[1:, 1:] * (v_old[1:, 1:] - v_old[1:, :-1]) / dx +
+                    v_old[1:, 1:] * (v_old[1:, 1:] - v_old[:-1, 1:]) / dy )
+    
+    # Reapply Dirichlet boundary conditions at each time step
+    u[0, :] = 1.0
+    u[-1, :] = 1.0
+    u[:, 0] = 1.0
+    u[:, -1] = 1.0
+
+    v[0, :] = 1.0
+    v[-1, :] = 1.0
+    v[:, 0] = 1.0
+    v[:, -1] = 1.0
+
+# Save final time step solutions as 2D arrays
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/o3-mini/prompts/u_2D_Inviscid_Burgers.npy', u)
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/o3-mini/prompts/v_2D_Inviscid_Burgers.npy', v)

@@ -1,0 +1,95 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Problem parameters
+gamma = 1.4
+x_min, x_max = -1.0, 1.0
+t_min, t_max = 0.0, 0.25
+nx = 200  # Number of spatial points
+nt = 1000  # Number of time steps
+
+# Grid setup
+dx = (x_max - x_min) / (nx - 1)
+x = np.linspace(x_min, x_max, nx)
+dt = (t_max - t_min) / nt
+
+# Initial conditions
+rho = np.zeros(nx)
+u = np.zeros(nx)
+p = np.zeros(nx)
+
+# Left and right state conditions
+rho_L, u_L, p_L = 1.0, 0.0, 1.0
+rho_R, u_R, p_R = 0.125, 0.0, 0.1
+
+# Initialize solution
+rho[x < 0] = rho_L
+rho[x >= 0] = rho_R
+u[x < 0] = u_L
+u[x >= 0] = u_R
+p[x < 0] = p_L
+p[x >= 0] = p_R
+
+# Compute conservative variables
+E = p / ((gamma - 1) * rho) + 0.5 * u**2
+U = np.zeros((3, nx))
+U[0, :] = rho
+U[1, :] = rho * u
+U[2, :] = rho * E
+
+# Compute flux
+def compute_flux(U):
+    rho = U[0]
+    u = U[1] / rho
+    E = U[2] / rho
+    p = (gamma - 1) * rho * (E - 0.5 * u**2)
+    
+    F = np.zeros_like(U)
+    F[0, :] = rho * u
+    F[1, :] = rho * u**2 + p
+    F[2, :] = u * (U[2, :] + p)
+    return F
+
+# Lax-Friedrichs flux splitting
+def lax_friedrichs_flux(UL, UR):
+    FL = compute_flux(UL)
+    FR = compute_flux(UR)
+    
+    # Compute max wave speed
+    rhoL, uL, EL = UL[0], UL[1]/UL[0], UL[2]/UL[0]
+    rhoR, uR, ER = UR[0], UR[1]/UR[0], UR[2]/UR[0]
+    pL = (gamma - 1) * rhoL * (EL - 0.5 * uL**2)
+    pR = (gamma - 1) * rhoR * (ER - 0.5 * uR**2)
+    
+    aL = np.sqrt(gamma * pL / rhoL)
+    aR = np.sqrt(gamma * pR / rhoR)
+    
+    max_speed = max(abs(uL) + aL, abs(uR) + aR)
+    
+    return 0.5 * (FL + FR - max_speed * (UR - UL))
+
+# Time integration
+for _ in range(nt):
+    # Compute fluxes
+    F = np.zeros_like(U)
+    for j in range(1, nx-1):
+        UL = U[:, j-1:j+1].mean(axis=1)
+        UR = U[:, j:j+2].mean(axis=1)
+        F[:, j] = lax_friedrichs_flux(UL, UR)
+    
+    # Update solution (Lax-Friedrichs method)
+    U[:, 1:-1] = U[:, 1:-1] - dt/dx * (F[:, 2:] - F[:, 1:-1])
+    
+    # Reflective boundary conditions
+    U[1, 0] = -U[1, 0]
+    U[1, -1] = -U[1, -1]
+
+# Extract final solution variables
+rho_final = U[0, :]
+u_final = U[1, :] / U[0, :]
+p_final = (gamma - 1) * U[0, :] * (U[2, :] / U[0, :] - 0.5 * u_final**2)
+
+# Save variables
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/sonnet-35/prompts/rho_final_1D_Euler_Shock_Tube.npy', rho_final)
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/sonnet-35/prompts/u_final_1D_Euler_Shock_Tube.npy', u_final)
+np.save('/opt/CFD-Benchmark/PDE_Benchmark/results/prediction/sonnet-35/prompts/p_final_1D_Euler_Shock_Tube.npy', p_final)

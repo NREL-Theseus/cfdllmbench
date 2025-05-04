@@ -1,0 +1,33 @@
+```python
+import numpy as np
+
+def solve_diffusion_equation():
+    # Parameters
+    nu = 0.3
+    x_start = 0
+    x_end = 2
+    t_final = 0.0333
+    nx = 100
+    nt = 100
+    dx = (x_end - x_start) / (nx - 1)
+    dt = t_final / (nt - 1)
+
+    # Initialize u
+    u = np.ones(nx)
+    for i in range(nx):
+        x = x_start + i * dx
+        if 0.5 <= x <= 1:
+            u[i] = 2
+
+    # Time loop
+    for n in range(nt - 1):
+        u_new = np.copy(u)
+        for i in range(1, nx - 1):
+            u_new[i] = u[i] + nu * dt / dx**2 * (u[i+1] - 2*u[i] + u[i-1])
+        u = u_new
+
+    # Save the solution at the final time step
+    np.save('u.npy', u)
+
+solve_diffusion_equation()
+```

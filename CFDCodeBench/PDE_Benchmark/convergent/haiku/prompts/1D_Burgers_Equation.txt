@@ -1,0 +1,43 @@
+```python
+import numpy as np
+
+# Parameters
+nu = 0.07
+L = 2*np.pi
+T = 0.14*np.pi
+
+# Grid parameters
+nx = 400
+nt = 1000
+dx = L/nx
+dt = T/nt
+x = np.linspace(0, L, nx)
+
+# Initial condition
+def phi(x):
+    return np.exp(-x**2/(4*nu)) + np.exp(-(x-2*np.pi)**2/(4*nu))
+
+def dphi_dx(x):
+    return (-x/(2*nu))*np.exp(-x**2/(4*nu)) + \
+           (-(x-2*np.pi)/(2*nu))*np.exp(-(x-2*np.pi)**2/(4*nu))
+
+# Initialize u
+u = -2*nu/phi(x) * dphi_dx(x) + 4
+
+# Time stepping
+for n in range(nt):
+    # Periodic BC handling
+    u_m1 = np.roll(u, 1)
+    u_p1 = np.roll(u, -1)
+    
+    # Spatial derivatives
+    du_dx = (u_p1 - u_m1)/(2*dx)
+    d2u_dx2 = (u_p1 - 2*u + u_m1)/dx**2
+    
+    # Update u
+    u_new = u - dt*(u*du_dx - nu*d2u_dx2)
+    u = u_new.copy()
+
+# Save final solution
+np.save('u', u)
+```
