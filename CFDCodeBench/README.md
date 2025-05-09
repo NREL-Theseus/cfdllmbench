@@ -108,6 +108,12 @@ export GOOGLE_API_KEY=your-key
 Or directly edit the ```utils.py``` to insert your keys.
 
 ---
+
+## Datasets
+The datasets used in the paper can be downloaded from "https://huggingface.co/datasets/NREL-Theseus/CFDCodeBench". 
+Place the "solution" directory into the PDE_Benchmark folder.
+Place the .json files in prompt folder.
+
 ## 💻 Run the Benchmark
 To run the benchmark pipeline for all prompts and models:
 ```bash
