@@ -27,7 +27,7 @@ def run_workflow(input_yaml):
     os.environ["CONFIG_FILE_PATH"] = input_yaml
     os.environ["INPUT_DIR"] = os.path.dirname(input_yaml)
     os.environ["INPUT_DIR_METAFOAM"] = os.path.dirname(input_yaml)
-    os.environ["WM_PROJECT_DIR"] = "/home/somasn/Documents/LLM/OpenFOAM-10"
+    os.environ["WM_PROJECT_DIR"] = "xxxxx" # provide your openfoam path here
 
     meta_root = "./algorithm/MetaOpenFOAM"
     run_source = os.path.join(meta_root, "run")

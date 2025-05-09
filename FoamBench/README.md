@@ -1,3 +1,4 @@
+
 # OpenFOAM Benchmark Framework
 
 A framework for running and evaluating different algorithms on OpenFOAM benchmark cases.
@@ -5,129 +6,123 @@ A framework for running and evaluating different algorithms on OpenFOAM benchmar
 ## Project Structure
 
 ```
-openfoam_benchmark/
-├── Dataset/                  # Contains all benchmark datasets
-│   └── [dataset_name]/      # Each dataset has multiple cases
-│       └── [case_number]/   # Case-specific files and requirements
-├── algorithm/               # Contains different algorithm implementations
-│   └── [algorithm_name]/   # Each algorithm has its own directory
-│       └── foambench_main.py  # Main script for the algorithm
+FoamBench/
+├── Dataset/                  # Contains the benchmark datasets
+│   ├── FoamBench_basic.json # To be downloaded from data repository
+│   ├── FoamBench_advanced.json # To be downloaded from data repository
+│   ├── Basic/ # json will be unpacked to this folder
+│   │   └── [dataset_name]/
+│   │       └── [1-10]/
+│   │           ├── GT_Files/ # Reference OpenFOAM files unpacked from json
+│   │           └── algorithm_files/ # OpenFOAM files produced by the framework
+│   └── Advanced/
+│       └── [dataset_name]/
+│           ├── GT_Files/
+│           └── algorithm_files/
+├── algorithm/
+│   └── framework_name/         # Folder top place the framework you want to run the benchmark with example, MetaOpenFOAM, Foam-Agent etc
 ├── logs/                    # Log files for benchmark runs
-├── runs/                    # Output files from benchmark runs
-├── run_benchmarks.py        # Local benchmark runner
-└── run_perlmutter.sh        # Perlmutter cluster benchmark runner
+├── results/                 # Output and analysis results
+├── runs/                    # Runtime files
+├── execution_report.py
+├── nmse_report.py
+├── similarity_report.py
+├── score_calculation.py
+├── read_json_basic.py
+├── read_json_advanced.py
+└── run_benchmarks.py # Example file to run the benchmark with MetaOpenFOAM
 ```
 
 ## Prerequisites
 
 - Python 3.x
-- OpenFOAM installation
-- WM_PROJECT_DIR environment variable set to OpenFOAM installation path
-- Access to Perlmutter cluster (for distributed runs)
+- OpenFOAM version 10
+- Set up OpenFOAM environment:
+
+```bash
+source /path/to/OpenFOAM-10/etc/bashrc
+export WM_PROJECT_DIR="/path/to/OpenFOAM-10"
+```
 
 ## Setup
 
 1. Clone this repository:
 ```bash
-git clone [repository_url]
-cd openfoam_benchmark
+git clone <repo_url>
+cd FoamBench
 ```
 
-2. Download the benchmark datasets:
-```bash
-# Download datasets from HuggingFace to Dataset/ directory
-```
+2. Download benchmark dataset from `<repo_url>` and place:
+   - `FoamBench_basic.json` into `Dataset/`
+   - `FoamBench_advanced.json` into `Dataset/`
 
 3. Add your algorithm:
 ```bash
-# Clone or copy your algorithm implementation to algorithm/[algorithm_name]/
-# Ensure it contains a foambench_main.py script
+# For example, to add MetaOpenFOAM:
+cd algorithm
+git clone git@github.com:Terry-cyx/MetaOpenFOAM.git
 ```
 
-4. Set OpenFOAM environment variable:
+## Running Benchmarks
+
+1. Unpack JSON benchmarks:
 ```bash
-export WM_PROJECT_DIR="/path/to/your/OpenFOAM-10"
+python read_json_basic.py      # Unpacks Basic dataset
+python read_json_advanced.py   # Unpacks Advanced dataset
 ```
 
-## Available Datasets
-
-The framework includes the following benchmark datasets:
-- BernardCells
-- Cavity
-- counterFlowFlame2D
-- Cylinder
-- forwardStep
-- damBreakWithObstacle
-- obliqueShock
-- pitzDaily
-- shallowWaterWithSquareBump
-- squareBend
-- wedge
-
-Each dataset has 10 cases (numbered 1-10) for comprehensive testing.
-
-## Usage
-
-### Local Execution
-
-To run benchmarks locally:
+2. Run benchmark:
 ```bash
-python run_benchmarks.py <algorithm_name>
+python run_benchmarks.py       # Runs benchmarks on both Basic and Advanced. Note that this script is custom built to run only with MetaOpenFOAM. Following the same logic you can connect the benchmark to any other framework as well.
 ```
 
-Example:
+After running, folder structure becomes:
+```
+Dataset/
+├── Basic/
+│   └── [dataset_name]/
+│       └── [1-10]/
+│           ├── GT_Files/
+│           └── framework_generated_files/
+└── Advanced/
+    └── [dataset_name]/
+        ├── GT_Files/
+        └── framework_generated_files/
+```
+
+## Evaluation & Scoring
+
+Run the following scripts in order:
+
+1. **Execution Score** 
 ```bash
-python run_benchmarks.py example
+python execution_report.py
 ```
+This generates:
+- `execution_status_basic.csv`
+- `execution_status_advanced.csv`
 
-### Perlmutter Cluster Execution
-
-To run benchmarks on Perlmutter:
+2. **Structural Similarity (Tree/ROUGE SCORE)** 
 ```bash
-./run_perlmutter.sh <algorithm_name>
+python similarity_report.py
 ```
 
-Example:
+3. **Numerical Accuracy (NMSE)**  
 ```bash
-./run_perlmutter.sh example
+python nmse_report.py
 ```
 
-## Algorithm Implementation
+4. **Final Metrics Calculation**
+```bash
+python score_calculation.py
+```
+This script outputs:
+- `scores_basic.csv`
+- `scores_advanced.csv`
 
-To add a new algorithm:
-1. Create a directory in `algorithm/` with your algorithm name
-2. Implement `foambench_main.py` with the following interface:
-   ```python
-   # Required command line arguments:
-   --openfoam_path    # Path to OpenFOAM installation
-   --output          # Directory to store results
-   --prompt_path     # Path to user requirements file
-   ```
-
-## Output
-
-- Log files are stored in `logs/` directory
-- Results are stored in `results/[dataset]/[case]/` directories
-- Each run creates separate output and error logs
-
-## Error Handling
-
-The framework includes checks for:
-- Algorithm directory existence
-- Main script existence
-- OpenFOAM environment setup
-- Dataset and case availability
-
-## Contributing
-
-1. Fork the repository
-2. Create your algorithm implementation
-3. Test with the benchmark framework
-4. Submit a pull request
-
-## License
-
-[Add your license information here]
-
-
-
+Metrics computed:
+- `M_exec`   — Execution score
+- `M_NMSE`   — NMSE quality score
+- `M_struct`   — Tree similarity score
+- `M_file`   — Code-level ROUGE score
+- `Success Ratio` — Overall success score
