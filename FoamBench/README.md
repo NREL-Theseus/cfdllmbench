@@ -128,7 +128,7 @@ Metrics computed:
 - `Success Ratio` — Overall success score
 
 
-5. **Docker**
+## Docker
 We provide a Dockerfile to simplify setting up the OpenFOAM + benchmarking environment.
 
 🔧 Build the Docker Image
