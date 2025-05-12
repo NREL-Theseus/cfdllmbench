@@ -67,8 +67,8 @@ git clone git@github.com:Terry-cyx/MetaOpenFOAM.git
 
 1. Unpack JSON benchmarks:
 ```bash
-python read_json_basic.py      # Unpacks Basic dataset
-python read_json_advanced.py   # Unpacks Advanced dataset
+python read_json_basic.py      # Unpacks Basic dataset. You will have to add certain paths and keys in this script
+python read_json_advanced.py   # Unpacks Advanced dataset. You will have to add certain paths and keys in this script
 ```
 
 2. Run benchmark:
@@ -126,3 +126,25 @@ Metrics computed:
 - `M_struct`   — Tree similarity score
 - `M_file`   — Code-level ROUGE score
 - `Success Ratio` — Overall success score
+
+
+5. **Docker**
+We provide a Dockerfile to simplify setting up the OpenFOAM + benchmarking environment.
+
+🔧 Build the Docker Image
+First, make sure Docker is installed and running on your system.
+
+Then, from the root of this repository, build the Docker image:
+```bash
+docker build -t foam-bench .
+```
+This installs OpenFOAM 10 inside the container and copies all the benchmark files to the container. Then run the command
+```bash
+docker build -t foam-bench .
+```
+This will take you to the folder in container where the benchmark files are present. 
+To know the location of OpenFOAM within container, perform
+```bash
+echo $WM_PROJECT_DIR
+```
+Further run the scripts as mentioned above in sequence. 
