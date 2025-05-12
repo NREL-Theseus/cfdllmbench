@@ -86,7 +86,7 @@ def process_basic():
                     continue
                 run_path = os.path.join(case_dir, run_folders[0])
 
-                total_codebleu = 0
+                total_rogue = 0
                 total_tree = 0
                 count = 0
 
@@ -94,14 +94,14 @@ def process_basic():
                     gt_sub = os.path.join(gt_dir, sub)
                     llm_sub = os.path.join(run_path, sub)
                     if os.path.exists(gt_sub) and os.path.exists(llm_sub):
-                        codebleu, tree = compare_dir_pair(gt_sub, llm_sub)
-                        total_codebleu += codebleu
+                        rogue, tree = compare_dir_pair(gt_sub, llm_sub)
+                        total_rogue += rogue
                         total_tree += tree
                         count += 1
 
                 if count > 0:
                     writer.writerow([dataset, i,
-                                     round(total_codebleu / count, 4),
+                                     round(total_rogue / count, 4),
                                      round(total_tree / count, 4)])
 
 def process_advanced():
@@ -124,7 +124,7 @@ def process_advanced():
                 continue
             run_path = os.path.join(case_dir, run_folders[0])
 
-            total_codebleu = 0
+            total_rogue = 0
             total_tree = 0
             count = 0
 
@@ -132,14 +132,14 @@ def process_advanced():
                 gt_sub = os.path.join(gt_dir, sub)
                 llm_sub = os.path.join(run_path, sub)
                 if os.path.exists(gt_sub) and os.path.exists(llm_sub):
-                    codebleu, tree = compare_dir_pair(gt_sub, llm_sub)
-                    total_codebleu += codebleu
+                    rogue, tree = compare_dir_pair(gt_sub, llm_sub)
+                    total_rogue += rogue
                     total_tree += tree
                     count += 1
 
             if count > 0:
                 writer.writerow([dataset, 1,
-                                 round(total_codebleu / count, 4),
+                                 round(total_rogue / count, 4),
                                  round(total_tree / count, 4)])
 
 if __name__ == "__main__":
