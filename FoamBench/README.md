@@ -36,6 +36,7 @@ FoamBench/
 ## Prerequisites
 
 - Python 3.x
+- packages - pandas, pyvista and rogue_scores (pip install pyvista, pip install pandas, pip install rouge-score)
 - OpenFOAM version 10
 - Set up OpenFOAM environment:
 
@@ -52,7 +53,7 @@ git clone <repo_url>
 cd FoamBench
 ```
 
-2. Download benchmark dataset from `<repo_url>` and place:
+2. Download benchmark dataset from `https://dataverse.harvard.edu/previewurl.xhtml?token=1dd353ab-573c-4b49-a083-9d706d8ea3ea` and place:
    - `FoamBench_basic.json` into `Dataset/`
    - `FoamBench_advanced.json` into `Dataset/`
 
@@ -140,11 +141,11 @@ docker build -t foam-bench .
 ```
 This installs OpenFOAM 10 inside the container and copies all the benchmark files to the container. Then run the command
 ```bash
-docker build -t foam-bench .
+docker run -it --rm foam-bench
 ```
 This will take you to the folder in container where the benchmark files are present. 
 To know the location of OpenFOAM within container, perform
 ```bash
 echo $WM_PROJECT_DIR
 ```
-Further run the scripts as mentioned above in sequence. 
+Further run the scripts as mentioned above, in sequence within the container. 

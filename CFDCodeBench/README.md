@@ -110,8 +110,8 @@ Or directly edit the ```utils.py``` to insert your keys.
 ---
 
 ## Datasets
-The datasets used in the paper can be downloaded from "https://huggingface.co/datasets/NREL-Theseus/CFDCodeBench". 
-Place the "solution" directory into the PDE_Benchmark folder.
+The datasets used in the paper can be downloaded from `https://dataverse.harvard.edu/previewurl.xhtml?token=8375a87a-dedc-4a3f-a813-b8c1c72adfb5`. 
+Place the python files into the solution directory as shown in the folder structure.
 Place the .json files in prompt folder.
 
 ## 💻 Run the Benchmark
