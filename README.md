@@ -43,13 +43,13 @@ While LLMs excel in general NLP, their ability to reason about scientific system
 
 ## 🖼️ Benchmark Overview
 
-![Benchmark Overview](figs/main_figure_v3.png)
+![Benchmark Overview](figs/main_figure_v6.png)
 
 ---
 
 ## 📈 Main Results
 
-![All Scores](figs/all_bars_mod.png)
+![All Scores](figs/all_bars.png)
 
 ---
 
