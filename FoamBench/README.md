@@ -53,9 +53,8 @@ git clone <repo_url>
 cd FoamBench
 ```
 
-2. Download benchmark dataset from `https://kaggle.com/datasets/8e5c8bf327166177435c8555fa598f91be36906b94336020d67a8aa7134edb51` and place:
-   - `FoamBench_basic.json` into `Dataset/`
-   - `FoamBench_advanced.json` into `Dataset/`
+2. Download benchmark dataset from `https://kaggle.com/datasets/f7e918624a9d2e5321ea2ec1e4ef818919c89f120cb065ba04c9596b80f1297c` and place:
+   - From FoamBench folder in the dataset, copy files `FoamBench_basic.json` and `FoamBench_advanced.json` into `Dataset/` folder.
 
 3. Add your algorithm:
 ```bash
