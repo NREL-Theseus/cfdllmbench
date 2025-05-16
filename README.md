@@ -23,7 +23,7 @@ While LLMs excel in general NLP, their ability to reason about scientific system
 
 ### 📘 CFDQuery
 
-- 108 graduate-level multiple-choice questions from CFD lectures.
+- 90 graduate-level multiple-choice questions from CFD lectures.
 - Covers numerical methods, turbulence modeling, and solver theory.
 - LLMs select the correct option from four choices.
 
@@ -35,7 +35,7 @@ While LLMs excel in general NLP, their ability to reason about scientific system
 
 ### 🌀 FoamBench
 
-- 110 Basic + 15 Advanced OpenFOAM simulation tasks.
+- 110 Basic + 16 Advanced OpenFOAM simulation tasks.
 - Benchmarks end-to-end tool use: case creation → execution → postprocessing.
 - Assesses multi-step reasoning, domain adaptation, and recovery.
 
@@ -55,5 +55,5 @@ While LLMs excel in general NLP, their ability to reason about scientific system
 
 ## 📄 License
 
-This benchmark is open-source and released under [your license].
+This benchmark is open-source and released under license: BSD-3-Clause.
 
