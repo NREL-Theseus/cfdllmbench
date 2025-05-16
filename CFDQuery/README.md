@@ -95,7 +95,7 @@ llm-cfd-evaluation/
 ```
 
 ## Dataset
-The dataset used in the paper can be downloaded from `https://dataverse.harvard.edu/previewurl.xhtml?token=9b1c811e-84db-496d-ab6c-3ae6e043bf61`.
+The dataset used in the paper can be downloaded from `https://kaggle.com/datasets/198723a001482d2012ed3075a03af8434544ea86cf91a86867180320ab5d9490`.
 - Download the dataset to the same folder as llms.py
 
 ## Acknowledgments
