@@ -53,7 +53,7 @@ git clone <repo_url>
 cd FoamBench
 ```
 
-2. Download benchmark dataset from `https://dataverse.harvard.edu/previewurl.xhtml?token=1dd353ab-573c-4b49-a083-9d706d8ea3ea` and place:
+2. Download benchmark dataset from `https://kaggle.com/datasets/8e5c8bf327166177435c8555fa598f91be36906b94336020d67a8aa7134edb51` and place:
    - `FoamBench_basic.json` into `Dataset/`
    - `FoamBench_advanced.json` into `Dataset/`
 
