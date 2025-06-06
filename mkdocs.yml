@@ -1,0 +1,99 @@
+site_name: CFDLLMBench
+site_url: https://nrel-theseus.github.io/cfdllmbench
+repo_url: https://github.com/NREL-Theseus/cfdllmbench
+repo_name: NREL-Theseus/cfdllmbench
+site_description: A comprehensive benchmark suite for evaluating Large Language Models on computational fluid dynamics tasks
+site_author: NREL Theseus Team
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+    - content.action.edit
+    - content.action.view
+  language: en
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+      primary: blue
+      accent: indigo
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+      primary: blue
+      accent: indigo
+  font:
+    text: Roboto
+    code: Roboto Mono
+  icon:
+    logo: material/water
+    repo: fontawesome/brands/github
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.mark
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.tilde
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - tables
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/NREL-Theseus
+    - icon: fontawesome/solid/paper-plane
+      link: mailto:your-email@nrel.gov
+
+copyright: Copyright &copy; 2024 NREL Theseus Team
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Benchmark Components:
+    - Overview: components/overview.md
+    - CFDQuery: components/cfdquery.md
+    - CFDCodeBench: components/cfdcodebench.md
+    - FoamBench: components/foambench.md
+  - Results: results.md
+  - API Reference: api.md
+  - Contributing: contributing.md
