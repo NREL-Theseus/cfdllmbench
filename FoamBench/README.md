@@ -53,7 +53,7 @@ git clone <repo_url>
 cd FoamBench
 ```
 
-2. Download benchmark dataset from `https://kaggle.com/datasets/f7e918624a9d2e5321ea2ec1e4ef818919c89f120cb065ba04c9596b80f1297c` and place:
+2. Download benchmark dataset from `https://www.kaggle.com/datasets/nithinsekhar/foambench/data` and place:
    - From FoamBench folder in the dataset, copy files `FoamBench_basic.json` and `FoamBench_advanced.json` into `Dataset/` folder.
 
 3. Add your algorithm:
