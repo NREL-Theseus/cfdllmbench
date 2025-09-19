@@ -95,7 +95,7 @@ llm-cfd-evaluation/
 ```
 
 ## Dataset
-The dataset used in the paper can be downloaded from `https://kaggle.com/datasets/f7e918624a9d2e5321ea2ec1e4ef818919c89f120cb065ba04c9596b80f1297c`.
+The dataset used in the paper can be downloaded from `https://www.kaggle.com/datasets/nithinsekhar/cfdquery/data`.
 - Download the file named 'CFDQuery.json' from the dataset to the same folder as llms.py
 
 ## Acknowledgments
