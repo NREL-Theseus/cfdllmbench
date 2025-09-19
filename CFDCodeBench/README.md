@@ -110,7 +110,7 @@ Or directly edit the ```utils.py``` to insert your keys.
 ---
 
 ## Datasets
-The datasets used in the paper can be downloaded from `https://kaggle.com/datasets/f7e918624a9d2e5321ea2ec1e4ef818919c89f120cb065ba04c9596b80f1297c`. 
+The datasets used in the paper can be downloaded from `https://www.kaggle.com/datasets/nithinsekhar/cfdcodebench/data`. 
 From the folder named CFDCodeBench in the dataset, copy the folders solution and prompt to the PDE_Benchmark folder.
 
 ## 💻 Run the Benchmark
